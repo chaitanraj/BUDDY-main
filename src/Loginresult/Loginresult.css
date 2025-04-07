@@ -15,12 +15,7 @@
   background-size: cover;        
   background-position: center;   
   background-repeat: no-repeat; 
-  opacity: 0.9;
 }
-.result > * {
-    position: relative;
-    z-index: 1;
-  }
 .result:hover {
   transform: scale(1.02);
 
