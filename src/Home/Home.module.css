@@ -1,0 +1,126 @@
+:root {
+  --typing-width: 17ch;
+}
+
+.tagwrapper{
+  margin-top: 10vh;
+  color: rgb(255, 255, 255);
+  font-size: 5vh;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+ }
+
+.heading {
+  font-size: 5rem;
+  font-family: monospace;
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 10px solid white;
+  width: 0ch; 
+  -webkit-text-stroke: 2px black;
+  animation: typing 6s steps(20, end) infinite alternate, 
+  blink 1s infinite;
+}
+
+@keyframes typing {
+  0% { width: 0ch; }
+  50% { width: 20ch; }
+  100% { width: 0ch; }
+}
+
+@keyframes blink {
+  50% { border-color: white; }
+  70% { border-color: transparent; }
+}
+
+.h3container {
+  background: rgba(0, 0, 0, 100);
+}
+
+.descriptionbuddy {
+  margin-top: 10vh;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  justify-items: center;
+  font-size: x-large;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 10);
+  font-weight: 900;
+}
+
+.optionsbutton {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12vh;
+  justify-content: center;
+  margin-top: 10vh;
+  opacity: 0.9;
+}
+
+.button1 {
+  margin: 12px;
+  height: 10vh;
+  width: 18vw;
+  border-radius: 10px;
+  background: #000000;
+  justify-content: center;
+  align-items: center;
+  box-shadow: -5px -5px 15px #444, 5px 5px 15px #222, inset 5px 5px 10px #444,
+    inset -5px -5px 10px #222;
+  cursor: pointer;
+  border: none;
+  font-size: 1.8rem;
+  color: white;
+  transition: 500ms;
+  font-weight: bold;
+  display: inline-block;
+  transition: transform 0.1s ease-in-out;
+}
+
+.button1:hover {
+  box-shadow: -5px -5px 15px #444, 5px 5px 15px #222, inset 5px 5px 10px #222,
+    inset -5px -5px 10px #444;
+  color: #000000;
+  background-color: #1c85e8;
+  transition: 500ms;
+  transform: scale(1.2);
+}
+
+@media screen and (max-width: 800px) {
+ .descriptionbuddy{
+  font-weight: lighter;
+  font-size: medium;
+  text-align: center;
+ }
+ .optionsbutton {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8vh;
+ }
+ .button1 {
+  display: flex;
+  font-size: 60%;
+  height: 1.8rem;
+  gap: none;
+ }
+ .heading{
+  font-size: 3rem;
+  
+ }
+ .tagwrapper{
+  color: rgb(255, 255, 255);
+ }
+
+}
+@media (max-width: 400px) {
+  .heading {
+    font-size: 2.5rem; /* Reduce font-size on small screens */
+  }
+}

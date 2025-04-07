@@ -1,0 +1,20 @@
+.maparea {
+    height: 90%;
+    max-width: 400px;
+    width: 150vw;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 30px;
+    background: #212121;
+    box-shadow: 15px 15px 30px rgb(25, 25, 25),
+        -15px -15px 30px rgb(60, 60, 60);
+    color: white;
+    display: inline-block;
+    transition: transform 0.1s ease-in-out;
+}
+
+
+.maparea:hover {
+    transform: scale(1.02);
+
+}
