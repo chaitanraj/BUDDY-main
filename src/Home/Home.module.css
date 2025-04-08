@@ -19,13 +19,13 @@
   display: inline-block;
   white-space: nowrap;
   overflow: hidden;
-  /* border-right: 10px solid white; */
-  /* width: 0ch; 
+   border-right: 10px solid white;
+   width: 0ch; 
   -webkit-text-stroke: 2px black;
   animation: typing 6s steps(20, end) infinite alternate, 
-  blink 1s infinite; */
-}
-/* 
+  blink 1s infinite; 
+} 
+
 @keyframes typing {
   0% { width: 0ch; }
   50% { width: 20ch; }
@@ -35,7 +35,7 @@
 @keyframes blink {
   50% { border-color: white; }
   70% { border-color: transparent; }
-} */
+}
 
 .h3container {
   background: rgba(0, 0, 0, 100);
