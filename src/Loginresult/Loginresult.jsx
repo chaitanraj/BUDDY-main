@@ -33,7 +33,7 @@ const Loginresult = () => {
   return (
     <div className="resultcard">
       <div className="result">
-        <h1 className="resultheader">Enter Details</h1>
+        <h1 className="resultheader">Enter Ride Details</h1>
 
         <div className="resultfield">
           <label>Name: </label>

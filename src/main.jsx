@@ -54,7 +54,7 @@ const router = createBrowserRouter([
 
   },
     {//login result page
-      path: "/about",
+      path: "/result",
       element: <>
         <div className="body" style={mystyle("street1.jpg")} >
           <Navbar />
