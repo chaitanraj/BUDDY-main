@@ -10,6 +10,8 @@ import Footer from './components/Footer'
 import Home from './Home/home'
 import Signup from './Signup/signup.jsx'
 import Loginresult from './Loginresult/Loginresult.jsx'
+// import SearchResult from './SearchResult.jsx';
+import SearchResult from './Searchresult.jsx/searchresult.jsx'
 
 
 export const mystyle = (imageurl) => ({
@@ -63,6 +65,16 @@ const router = createBrowserRouter([
         </div>
       </>
   
+    },
+    {
+      path: "/searchresult",
+      element: <>
+        <div className="body" style={mystyle("street1.jpg")}>
+          <Navbar />
+          <SearchResult />
+          <Footer />
+        </div>
+      </>
     }
 ])
 createRoot(document.getElementById('root')).render(

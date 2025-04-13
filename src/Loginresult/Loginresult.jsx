@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
 import "./Loginresult.css";
+import { useNavigate } from 'react-router-dom';
 
-const Loginresult = () => {
+const Loginresult = () => {  
+
+  const navigate = useNavigate();
+  const [name, setName] = useState('');
   const [location, setLocation] = useState('');
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
+  const [gender, setGender] = useState('');
   const [suggestions, setSuggestions] = useState([]);
 
   const handleLocationChange = async (e) => {
@@ -28,6 +35,28 @@ const Loginresult = () => {
   const handleSuggestionClick = (place) => {
     setLocation(place.properties.formatted);
     setSuggestions([]);
+  };
+  const handleSubmit = async () => {
+    const datetime = new Date(`${date}T${time}`);
+    try {
+      const res = await fetch("http://localhost:5000/api/rides/submit-ride", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          gender,
+          location,
+          datetime,
+          userId: "userid123" // Replace with actual user ID if available
+        })
+      });
+
+      const data = await res.json();
+      navigate("/searchresult", { state: data });
+    } catch (err) {
+      console.error("Error submitting ride:", err);
+      alert("Submission failed");
+    }
   };
 
   return (

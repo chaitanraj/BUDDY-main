@@ -1,0 +1,52 @@
+.resultCard {
+    max-width: 800px;
+    margin: 40px auto;
+    background-color: #121212;
+    border-radius: 12px;
+    padding: 30px;
+    color: #f1f1f1;
+    box-shadow: 0 0 20px rgba(0, 255, 123, 0.3);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .header {
+    text-align: center;
+    font-size: 2rem;
+    color: #00ffa2;
+    margin-bottom: 30px;
+  }
+  
+  .userDetails {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  .userBox {
+    background-color: #1f1f1f;
+    padding: 20px;
+    border-radius: 10px;
+    width: 40%;
+    min-width: 280px;
+    margin: 10px;
+    border: 1px solid #2ecc71;
+  }
+  
+  .userBox h3 {
+    border-bottom: 1px solid #2ecc71;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+    color: #2ecc71;
+  }
+  
+  .userBox p {
+    margin: 6px 0;
+  }
+  
+  .noMatch {
+    text-align: center;
+    margin-top: 100px;
+    color: #ff4d4d;
+    font-size: 1.5rem;
+  }
+  

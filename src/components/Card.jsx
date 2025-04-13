@@ -10,6 +10,11 @@ const Card = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        if (!email || !password) {
+            alert("Please fill in all fields");
+            return;
+          }
+          
         try {
             const res = await fetch("http://localhost:5000/api/login", {
                 method: "POST",
