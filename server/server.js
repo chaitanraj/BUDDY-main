@@ -12,7 +12,7 @@ app.use(express.json());
 
 // MongoDB connection
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(`${process.env.MONGO_URI}`)
   .then(() => console.log("✅ Connected to MongoDB"))
   .catch((err) => console.error("❌ MongoDB connection error:", err));
 
@@ -20,7 +20,8 @@ mongoose
   
 // Sample route for testing
 app.use("/api", require("./routes/auth"));
-app.use("/api/rides", require("./routes/ride"));
+const rideRouter = require("./routes/ride")
+app.use("/api/rides", rideRouter);
 
 // Start server
 app.listen(PORT, () => {

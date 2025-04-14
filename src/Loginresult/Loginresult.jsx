@@ -32,11 +32,17 @@ const Loginresult = () => {
     }
   };
 
+  const handleGenderChange = (event) => {
+    setGender(event.target.value);
+  };
+
   const handleSuggestionClick = (place) => {
     setLocation(place.properties.formatted);
     setSuggestions([]);
   };
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log("🧠 Submit clicked")
     const datetime = new Date(`${date}T${time}`);
     try {
       const res = await fetch("http://localhost:5000/api/rides/submit-ride", {
@@ -50,6 +56,7 @@ const Loginresult = () => {
           userId: "userid123" // Replace with actual user ID if available
         })
       });
+      
 
       const data = await res.json();
       navigate("/searchresult", { state: data });
@@ -63,10 +70,14 @@ const Loginresult = () => {
     <div className="resultcard">
       <div className="result">
         <h1 className="resultheader">Enter Ride Details</h1>
-
+        <form onSubmit={handleSubmit}>
         <div className="resultfield">
           <label>Name: </label>
-          <input type="text" placeholder="Enter your name" />
+          <input type="text" placeholder="Enter your name" 
+            onChange={(e)=>{
+              setName(e.target.value)
+            }}
+          />
         </div>
 
         <div className="resultfield" style={{ position: 'relative', zIndex: 2 }}>
@@ -118,31 +129,46 @@ const Loginresult = () => {
 
         <div className="resultfield">
           <label>Date: </label>
-          <input type="date" />
+          <input type="date" 
+          onChange={(e)=>{
+            setDate(e.target.value)
+          }} />
         </div>
 
         <div className="resultfield">
           <label>Time: </label>
-          <input type="time" />
+          <input type="time" 
+            onChange={(e)=>{
+              setTime(e.target.value)
+            }}
+           />
         </div>
 
         <div className="resultgender">
           <label>Gender: </label>
           <div className="resultradiobtn">
             <label>Male </label>
-            <input type="radio" name="myGender" />
+            <input type="radio" name="myGender"  value="male"
+             checked={gender === "male"}
+             onChange={handleGenderChange}
+            />
             <label>Female </label>
-            <input type="radio" name="myGender" />
+            <input type="radio" name="myGender" value="female"
+            checked={gender === "female"}
+            onChange={handleGenderChange}
+            />
           </div>
         </div>
 
         <div className="submitbtn">
-          <button className="btn17">
+          <button  type="submit" className="btn17">
             <span className="textcontainer">
               <span className="text">SUBMIT</span>
             </span>
           </button>
         </div>
+        </form>
+        
       </div>
     </div>
   );

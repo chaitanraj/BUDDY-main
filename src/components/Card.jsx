@@ -12,6 +12,8 @@ const Card = () => {
         e.preventDefault();
         if (!email || !password) {
             alert("Please fill in all fields");
+                
+              
             return;
           }
           

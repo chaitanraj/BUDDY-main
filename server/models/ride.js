@@ -8,4 +8,6 @@ const rideSchema = new mongoose.Schema({
   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true }
 });
 
-module.exports = mongoose.model('Ride', rideSchema);
+const Ride = mongoose.model('Ride', rideSchema);
+
+module.exports = Ride;
