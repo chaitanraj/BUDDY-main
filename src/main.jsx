@@ -9,8 +9,7 @@ import Map from './components/Map'
 import Footer from './components/Footer'
 import Home from './Home/home'
 import Signup from './Signup/signup.jsx'
-import Loginresult from './Loginresult/Loginresult.jsx'
-// import SearchResult from './SearchResult.jsx';
+import Loginresult from './Loginresult/Loginresult.jsx';
 import SearchResult from './Searchresult.jsx/searchresult.jsx'
 
 

@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import "./Loginresult.css";
 import { useNavigate } from 'react-router-dom';
+import {jwtDecode} from "jwt-decode";
+
 
 const Loginresult = () => {  
-
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [location, setLocation] = useState('');
@@ -40,28 +41,58 @@ const Loginresult = () => {
     setLocation(place.properties.formatted);
     setSuggestions([]);
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("🧠 Submit clicked")
+    console.log("🧠 Submit clicked");
+
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const token = localStorage.getItem("token");
+    let userId;
+  
+    if (token) {
+      try {
+        // Decode the token to extract user information
+        const decoded = jwtDecode(token);
+        console.log("Decoded token:", decoded);
+        
+        // Extract the userId from the decoded token (adjust field based on your token's structure)
+        userId = decoded.userId || decoded.id || decoded._id;
+        
+      } catch (err) {
+        console.error("Failed to decode token", err);
+      }
+    }
+
     const datetime = new Date(`${date}T${time}`);
+
     try {
       const res = await fetch("http://localhost:5000/api/rides/submit-ride", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
         body: JSON.stringify({
           name,
           gender,
           location,
           datetime,
-          userId: "userid123" // Replace with actual user ID if available
-        })
+          userId, // ✅ Including userId
+        }),
       });
-      
 
       const data = await res.json();
+
+      if (!res.ok) {
+        console.error("❌ Submission failed:", data);
+        alert(data.message || "Submission failed");
+        return;
+      }
+
       navigate("/searchresult", { state: data });
     } catch (err) {
-      console.error("Error submitting ride:", err);
+      console.error("❌ Error submitting ride:", err);
       alert("Submission failed");
     }
   };

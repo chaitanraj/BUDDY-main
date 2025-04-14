@@ -1,12 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const Ride = require('../models/ride');
+const authMiddleware = require('../middleware/authMiddleware');
 
-router.post('/submit-ride', async (req, res) => {
+router.post('/submit-ride', authMiddleware, async (req, res) => {
   try {
     console.log("🚀 Reached backend route");
 
-    const { name, gender, location, datetime, userId } = req.body;
+    const { name, gender, location, datetime } = req.body;
+    const userId = req.userId; // Injected by middleware
 
     if (!name || !gender || !location || !datetime || !userId) {
       return res.status(400).json({ error: "Missing required fields" });
@@ -22,18 +24,14 @@ router.post('/submit-ride', async (req, res) => {
       gender,
       location,
       datetime: rideDate,
-      userId
+      userId,
     });
 
-    res.status(200).json({
-      msg: "Ride created successfully"
-    });
-
+    res.status(200).json({ msg: "Ride created successfully" });
   } catch (err) {
     console.error("❌ Error in POST /submit-ride:", err);
     res.status(500).json({ message: "Internal server error" });
   }
 });
-
 
 module.exports = router;

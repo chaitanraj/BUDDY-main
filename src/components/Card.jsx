@@ -11,9 +11,7 @@ const Card = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!email || !password) {
-            alert("Please fill in all fields");
-                
-              
+            alert("Please fill in all fields");      
             return;
           }
           
@@ -25,9 +23,14 @@ const Card = () => {
             });
 
             const data = await res.json();
-            if (res.ok) {
+            if (res.ok)  {
+                // ✅ Save token and user to localStorage
+                localStorage.setItem("user", JSON.stringify({
+                    token: data.token,
+                    user: data.user
+                }));
                 // alert("Login successful!");
-                console.log(data);
+                console.log("Login successfull: ",data);
                 navigate("/result");
             } else {
                 alert(data.message || "Login failed");
