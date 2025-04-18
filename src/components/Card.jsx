@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import styles from '../components/Card.module.css';
+
 import { useNavigate } from "react-router-dom";
+import styles from '../components/Card.module.css';
 
 
 const Card = () => {
@@ -16,6 +17,7 @@ const Card = () => {
           }
           
         try {
+         
             const res = await fetch("http://localhost:5000/api/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -24,12 +26,9 @@ const Card = () => {
 
             const data = await res.json();
             if (res.ok)  {
-                // ✅ Save token and user to localStorage
-                localStorage.setItem("user", JSON.stringify({
-                    token: data.token,
-                    user: data.user
-                }));
-                // alert("Login successful!");
+                let curToken = data.token;
+                console.log(curToken)
+                    localStorage.setItem('userToken', curToken);
                 console.log("Login successfull: ",data);
                 navigate("/result");
             } else {

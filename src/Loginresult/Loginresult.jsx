@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import "./Loginresult.css";
 import { useNavigate } from 'react-router-dom';
-import {jwtDecode} from "jwt-decode";
-
+import { jwtDecode } from 'jwt-decode'; 
 
 const Loginresult = () => {  
   const navigate = useNavigate();
@@ -26,6 +25,7 @@ const Loginresult = () => {
       const response = await fetch(
         `https://api.geoapify.com/v1/geocode/autocomplete?text=${query}&filter=countrycode:in&apiKey=1db3c494724342c787346c1adf082be2`
       );
+      
       const data = await response.json();
       setSuggestions(data.features || []);
     } catch (error) {
@@ -38,64 +38,58 @@ const Loginresult = () => {
   };
 
   const handleSuggestionClick = (place) => {
-    setLocation(place.properties.formatted);
-    setSuggestions([]);
-  };
+        setLocation(place.properties.formatted);
+        setSuggestions([]);
+      };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("🧠 Submit clicked");
-
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-    const token = localStorage.getItem("token");
-    let userId;
   
-    if (token) {
-      try {
-        // Decode the token to extract user information
-        const decoded = jwtDecode(token);
-        console.log("Decoded token:", decoded);
-        
-        // Extract the userId from the decoded token (adjust field based on your token's structure)
-        userId = decoded.userId || decoded.id || decoded._id;
-        
-      } catch (err) {
-        console.error("Failed to decode token", err);
-      }
-    }
-
     const datetime = new Date(`${date}T${time}`);
-
+  
     try {
+      const userToken = localStorage.getItem('userToken');
+      if (!userToken) {
+        alert("User not authenticated");
+        return;
+      }
+  
+      const decodedToken = jwtDecode(userToken);
+      const userId = decodedToken.userId || decodedToken.id || decodedToken.sub; 
+  
+      console.log("✅ Decoded userId:", userId);
+  
       const res = await fetch("http://localhost:5000/api/rides/submit-ride", {
-        method: "POST",
         headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          Authorization:` Bearer ${userToken}`,
+          'Content-Type': 'application/json',
         },
+        method: "POST",
         body: JSON.stringify({
           name,
           gender,
           location,
           datetime,
-          userId, // ✅ Including userId
+          userId,
         }),
       });
-
+  
       const data = await res.json();
-
+  
       if (!res.ok) {
         console.error("❌ Submission failed:", data);
         alert(data.message || "Submission failed");
         return;
       }
-
+  
       navigate("/searchresult", { state: data });
     } catch (err) {
       console.error("❌ Error submitting ride:", err);
       alert("Submission failed");
     }
   };
+  
 
   return (
     <div className="resultcard">
