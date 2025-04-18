@@ -13,9 +13,10 @@ const SearchResult = () => {
 
   if (!hasMatches) {
     return (
+      <div className={styles.parent}>
       <div className={styles.noMatch}>
-        <h2>No rides matched at the moment</h2>
-        <p>Your ride details have been saved! We'll notify you when a suitable ride partner is found.</p>
+        <h2>NO RIDES MATCHED AT THE MOMENT!!!</h2>
+      </div>
       </div>
     );
   }

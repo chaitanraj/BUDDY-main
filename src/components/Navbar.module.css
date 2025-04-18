@@ -19,7 +19,9 @@
     height: auto;
     object-fit: contain;
 }
-
+.aTag{
+    margin-right: 20px;
+}
 .navbar .navlink {
     color: #ddbc64;
     margin: 0 0.75rem;

@@ -1,42 +1,79 @@
+ body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+}
+.userCard, .yourInfoCard {
+  width: 60%;
+  max-width: 800px;
+  margin: 0 auto; 
+  box-sizing: border-box;
+  padding: 30px;
+}
+.userCard h3, .yourInfoCard h3, .userCard h2, .yourInfoCard h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  width: 100%;
+  justify-content: center;
+}
+
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
   color: white;
   font-family: 'Arial', sans-serif;
+  width: 90%;
+  max-width: 1400px; 
+  margin: 0 auto;
+  padding: 30px; 
 }
 
 .header {
   text-align: center;
-  color: #10b981;
-  font-size: 2.5rem;
+  color: #000000;
+  font-size: 3rem;
+  text-decoration: dashed;
   margin-bottom: 40px;
-  text-shadow: 0 0 10px rgba(16, 185, 129, 0.7);
-  animation: glow 1.5s ease-in-out infinite alternate;
+  /* text-shadow: 0 0 10px rgba(0, 0, 0, 0.7); */
+  animation: glow 1s ease-in-out infinite alternate,blinkPulse 1s infinite ease-in-out;
+  /* animation: blinkPulse 1s infinite ease-in-out; */
 }
+
+@keyframes blinkPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    /* opacity: 0.5; */
+    transform: scale(0.9);
+  }
+}
+
 
 
 @keyframes glow {
   from {
-    text-shadow: 0 0 5px rgba(16, 185, 129, 0.7);
+    text-shadow: 0 0 5px rgba(191, 133, 9, 0.7);
   }
   to {
-    text-shadow: 0 0 15px rgba(16, 185, 129, 0.9), 0 0 20px rgba(16, 185, 129, 0.5);
+    text-shadow: 0 0 15px rgba(213, 150, 16, 0.9), 0 0 20px rgba(195, 141, 24, 0.5);
   }
 }
 
 .yourInfoCard {
-  background-color: rgba(16, 185, 129, 0.2);
-  border: 2px solid #10b981;
+  background-color: rgba(9, 104, 73, 0.4);
+  border: 2px solid #135841;
   border-radius: 12px;
   padding: 25px;
   margin-bottom: 40px;
   box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
   backdrop-filter: blur(5px);
+  width: 40vw;
+  font-weight: 500;
 }
 
 .yourInfoCard h3 {
-  color: #10b981;
+  color: #acccbc;
   font-size: 1.5rem;
   margin-top: 0;
   margin-bottom: 20px;
@@ -49,7 +86,9 @@
 
 .matchesHeader {
   font-size: 1.8rem;
-  color: #3b82f6;
+  color: #99c0ff;
+  font-weight: 900;
+  text-decoration: underline;
   margin: 30px 0;
   text-align: center;
   text-shadow: 0 0 10px rgba(59, 130, 246, 0.7);
@@ -57,16 +96,23 @@
 
 .matchesGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 25px;
-  margin-top: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px; 
+  margin-top: 40px;
+  margin-bottom: 40px;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .matchCard {
-  background-color: rgba(59, 130, 246, 0.2);
-  border: 2px solid #3b82f6;
+  padding: 30px; 
+  margin-bottom: 20px;
+  background-color: rgba(0, 25, 60, 0.7); 
+  border-radius: 16px; 
+  width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
   border-radius: 12px;
-  padding: 25px;
   box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
   transition: transform 0.3s, box-shadow 0.3s;
   backdrop-filter: blur(5px);
@@ -93,12 +139,17 @@
 .userInfo {
   font-size: 1.1rem;
   line-height: 1.6;
+  /* white-space: normal;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 60%; or any suitable width */
 }
 
 .userInfo p {
-  margin: 12px 0;
   display: flex;
   flex-direction: column;
+  margin: 18px 0;
+  line-height: 1.8;
 }
 
 .userInfo strong {
@@ -106,20 +157,38 @@
   color: rgba(255, 255, 255, 0.9);
   margin-bottom: 4px;
 }
+.parent{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 75vh; 
+}
 
 .noMatch {
   text-align: center;
   padding: 40px 20px;
-  background-color: rgba(239, 68, 68, 0.2);
+  background-color: rgba(239, 68, 68, 0.5);
   border: 2px solid #ef4444;
   border-radius: 12px;
   margin-top: 30px;
   box-shadow: 0 0 20px rgba(239, 68, 68, 0.4);
+  animation: blinkPulse 1s infinite ease-in-out;
 }
 
+@keyframes blinkPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    /* opacity: 0.5; */
+    transform: scale(0.9);
+  }
+}
 .noMatch h2 {
-  color: #ef4444;
+  color: #240101;
   margin-bottom: 15px;
+  font-weight: bolder;
 }
 
 .noMatch p {
@@ -127,6 +196,7 @@
   font-size: 1.1rem;
   line-height: 1.5;
 }
+
 
 
 @keyframes fadeIn {
@@ -151,6 +221,17 @@
 }
 .matchCard:nth-child(5) {
   animation-delay: 0.4s;
+}
+@media (max-width: 992px) {
+  .matchesGrid {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+}
+
+@media (max-width: 768px) {
+  .matchesGrid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 768px) {
@@ -195,4 +276,6 @@
     margin: 8px 0;
   }
 } 
+ 
 
+ 
