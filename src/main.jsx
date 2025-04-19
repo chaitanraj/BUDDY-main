@@ -23,26 +23,26 @@ export const mystyle = (imageurl) => ({
   backgroundRepeat: "no-repeat",
   backgroundAttachment: "fixed",
   overflowX: "hidden", 
-  position: "relative"
+  position: "relative",
 });
 
 
 const router = createBrowserRouter([
   {//home
     path: "/",
-    element: <> <div className="bodyimage" style={mystyle("trafficblack2.jpg")} >
+    element: <> <div className="bodyimage" style={mystyle("masterbck.jpg")} >
       <Navbar /> <Home />
-      <Footer />
+      {/* <Footer /> */}
     </div> </>
   },
 
   {//login page
     path: "/login",
     element: <>
-      <div className="body" style={mystyle("bckgrnd2.jpg")} >
+      <div className="body" style={mystyle("masterbck.jpg")} >
         <Navbar />
         <Card />
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
 
@@ -50,10 +50,10 @@ const router = createBrowserRouter([
   {//signup page
     path: "/signup",
     element: <>
-      <div className="body" style={mystyle("trafficlate.jpg")} >
+      <div className="body" style={mystyle("masterbck.jpg")} >
         <Navbar />
         <Signup />
-        <Footer />
+        {/* <Footer /> */}
       </div>
     </>
 
@@ -61,10 +61,10 @@ const router = createBrowserRouter([
     {//login result page
       path: "/result",
       element: <>
-        <div className="body" style={mystyle("street1.jpg")} >
+        <div className="body" style={mystyle("masterbck.jpg")} >
           <Navbar />
           <Loginresult/>
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </>
   
@@ -72,10 +72,10 @@ const router = createBrowserRouter([
     {
       path: "/searchresult",
       element: <>
-        <div className="body" style={mystyle("result3.jpg")}>
+        <div className="body" style={mystyle("result11.jpg")}>
           <Navbar />
           <SearchResult />
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </>
     }

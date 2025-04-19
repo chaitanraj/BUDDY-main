@@ -1,20 +1,27 @@
-:root {
-  --typing-width: 17ch;
+
+@font-face {
+  font-family: "SF Pro";
+  src: url("./assets/fonts/SFPRODISPLAYTHINITALIC.OTF") format("opentype");
+  font-weight: 100;
+  font-style: italic;
 }
 
 .tagwrapper{
-  margin-top: 10vh;
+  /* margin-top: 10vh; */
   color: rgb(255, 255, 255);
+  font-family: monospace;
   font-size: 5vh;
   text-align: center;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  align-items: flex-start;
   justify-items: center;
+  flex-direction: column;
  }
 
 .heading {
-  font-size: 5rem;
+  margin-left: 5vh;
+  font-size: 3rem;
   font-family: monospace;
   display: inline-block;
   white-space: nowrap;
@@ -22,13 +29,13 @@
    border-right: 10px solid white;
    width: 0ch; 
   -webkit-text-stroke: 2px black;
-  animation: typing 6s steps(20, end) infinite alternate, 
-  blink 1s infinite; 
+  animation: typing 9s steps(25, end) infinite alternate, 
+  blink 2s infinite; 
 } 
 
 @keyframes typing {
   0% { width: 0ch; }
-  50% { width: 20ch; }
+  50% { width: 24ch; }
   100% { width: 0ch; }
 }
 
@@ -41,37 +48,51 @@
   background: rgba(0, 0, 0, 100);
 }
 
+.titlebuddy{
+  display: flex;
+  margin-left: 25vh;
+  margin-top: 20vh;
+  align-items: center;
+  color: white;
+  font-size: 12vh;
+}
+
 .descriptionbuddy {
-  margin-top: 10vh;
+  margin-top: 15vh;
   color: white;
   text-align: center;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  justify-items: center;
+  justify-content: left;
+  align-items: flex-start;
   font-size: x-large;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 10);
-  font-weight: 900;
+  text-shadow: 1px 1px 1px rgba(255, 255, 255, 6);
+  /* font-weight: 900; */
+  font-family: "SF Pro", sans-serif; 
 }
+
 
 .optionsbutton {
+  position: absolute;
+  top: 40%;
+  left: 50vh;
+  right: 0;
   display: flex;
-  flex-wrap: wrap;
-  gap: 12vh;
   justify-content: center;
-  margin-top: 10vh;
-  opacity: 0.9;
-}
-
-.button1 {
-  margin: 12px;
-  height: 10vh;
-  width: 18vw;
-  border-radius: 10px;
-  background: #000000;
-  justify-content: center;
+  gap: 5vh;
+  width: 100%;
   align-items: center;
+  flex-direction: column;
+  opacity: 0.9;
+  /* z-index: 10;  */
+}
+.button1 {
+  border: 3px solid red;
+  margin: 12px;
+  height: 12vh;
+  width: 18vw;
+  border-radius: 200px;
+  background: #000000;
   box-shadow: -5px -5px 15px #444, 5px 5px 15px #222, inset 5px 5px 10px #444,
     inset -5px -5px 10px #222;
   cursor: pointer;
@@ -80,7 +101,7 @@
   color: white;
   transition: 500ms;
   font-weight: bold;
-  display: inline-block;
+  /* display: inline-block; */
   transition: transform 0.1s ease-in-out;
 }
 

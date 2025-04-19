@@ -1,10 +1,15 @@
+@font-face {
+    font-family: "SF Pro";
+    src: url("./assets/fonts/SFPRODISPLAYTHINITALIC.OTF") format("opentype");
+}
+
 .navbar {
     background: rgba(0, 0, 0, 0.7);
     backdrop-filter: blur(10px);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 10vh;
+    height: 6vh;
     width: 100%;
     color: white;
     width: 100%;
@@ -16,19 +21,22 @@
 
 .img {
     max-width: 50px;
-    height: auto;
+    height: 5vh;
     object-fit: contain;
 }
-.aTag{
+
+.aTag {
     margin-right: 20px;
 }
+
 .navbar .navlink {
     color: #ddbc64;
     margin: 0 0.75rem;
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-weight: 600;
     display: inline-block;
     transition: color 0.3s ease, transform 0.2s ease-in;
+    font-family: "SF Pro", sans-serif;
 }
 
 .navbar .navlink:hover {
@@ -36,29 +44,32 @@
     /* text-decoration: underline; */
     transform: scale(1.2);
 }
+
 .tagLine {
     text-align: center;
-    font-size: 1.4rem;
-    font-weight: 600;
+    font-size: 1rem;
+    /* font-weight: 600; */
     text-shadow: 20px 5px 6px rgba(0, 0, 0, 1.0);
-    margin-left: auto; 
+    margin-left: auto;
     margin-right: auto;
+    font-family: "SF Pro", sans-serif;
 }
 
 .logoItem {
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 1.25rem;
-    font-weight: 600;
+    font-size: 0.75rem;
+    font-weight: 500;
     text-align: center;
+    font-family: "SF Pro", sans-serif;
 }
 
 
 /* Responsive   */
 @media screen and (max-width: 768px) {
     .navbar {
-        height: auto; 
+        height: auto;
     }
 
     .logoItem {

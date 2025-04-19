@@ -11,7 +11,8 @@ const Navbar = () => {
                 <div className={styles.logoItem}>BUDDY</div>              
             </div>
             <div className={styles.tagLine}>
-           LET'S FIND YOUR RIDE PARTNER</div>
+           LET'S FIND YOUR RIDE PARTNER
+           </div>
             <div className={styles.aTag}>
                 <NavLink to="/" className={styles.navlink}>Home</NavLink>
                 <NavLink to="/about" className={styles.navlink}>About</NavLink>
