@@ -8,7 +8,7 @@
     /* Your existing styles... */
     opacity: 0;
     transform: translateX(-100px);
-    animation: slideInFromLeft 0.8s ease-out 0.2s forwards;
+    animation: slideInFromLeft 0.4s ease-out 0.2s forwards;
 }
 .tagwrapper{
   /* margin-top: 10vh; */
@@ -101,7 +101,7 @@
   /* z-index: 10;  */
   opacity: 0;
     transform: translateX(100px);
-    animation: slideInFromRight 1s ease-out 1s forwards;
+    animation: slideInFromRight 0.4s ease-out 1s forwards;
 }
 .button1 {
   border: 3px solid red;
