@@ -9,7 +9,7 @@ import Footer from './components/Footer.jsx'
 import Home from './Home/Home.jsx'
 import Signup from './Signup/Signup.jsx'
 import Loginresult from './Loginresult/Loginresult.jsx';
-import SearchResult from './Searchresult.jsx/Searchresult.jsx'
+import SearchResult from './SearchResult.jsx/SearchResult.jsx'
 import About from './About/About.jsx'
 import Feedback from './Feedback/Feedback.jsx'
 
