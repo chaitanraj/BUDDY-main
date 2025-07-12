@@ -18,7 +18,8 @@ const Home = () => {
                         <h3 className={styles.descriptionbuddy}>
                             CONNECTING TRAVELLERS FOR SHARED JOURNEYS <br />
                             AND SMARTER COMMUTES <br />
-                            <br></br> SIGN UP and let's get started!
+                            <br></br>
+                             SIGN UP and let's get started!
 
                         </h3>
                     </div>

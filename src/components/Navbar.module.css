@@ -9,7 +9,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 6vh;
+    height: 8vh;
     width: 100%;
     color: white;
     width: 100%;
@@ -21,7 +21,7 @@
 
 .img {
     max-width: 50px;
-    height: 5vh;
+    height: 8vh;
     object-fit: contain;
 }
 
@@ -32,7 +32,7 @@
 .navbar .navlink {
     color: #ddbc64;
     margin: 0 0.75rem;
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 600;
     display: inline-block;
     transition: color 0.3s ease, transform 0.2s ease-in;
@@ -47,7 +47,7 @@
 
 .tagLine {
     text-align: center;
-    font-size: 1rem;
+    font-size: 1.25rem;
     /* font-weight: 600; */
     text-shadow: 20px 5px 6px rgba(0, 0, 0, 1.0);
     margin-left: auto;
@@ -59,7 +59,7 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
-    font-size: 0.75rem;
+    font-size: 1.05rem;
     font-weight: 500;
     text-align: center;
     font-family: "SF Pro", sans-serif;

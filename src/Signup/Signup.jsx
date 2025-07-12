@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import styles from "./Signup.module.css";
 
+import { NavLink } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 const Signup = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -19,13 +22,13 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-  const { name, email, password, gender } = formData;
+
+    const { name, email, password, gender } = formData;
     if (!name || !email || !password || !gender) {
       alert("Please fill in all the fields.");
       return;
     }
-  
+
     try {
       const res = await fetch("http://localhost:5000/api/signup", {
         method: "POST",
@@ -35,6 +38,7 @@ const Signup = () => {
       const data = await res.json();
       if (res.ok) {
         alert("Signup successful!");
+        navigate("/");
       } else {
         alert(data.message || "Signup failed");
       }
@@ -104,6 +108,10 @@ const Signup = () => {
                 <span className={styles.text}>SUBMIT</span>
               </span>
             </button>
+          </div>
+          <div className={styles.message}>
+            <p>Already have an account ?</p>
+            <NavLink to="/login" className={styles.logininstead}>LOGIN NOW!</NavLink>
           </div>
         </form>
       </div>

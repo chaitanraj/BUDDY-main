@@ -5,13 +5,13 @@ import App from './App.jsx'
 import Navbar from './components/navbar'
 import Card from './components/Card.jsx'
 import { createBrowserRouter, RouterProvider, useNavigate } from 'react-router-dom'
-import Map from './components/Map'
 import Footer from './components/Footer'
 import Home from './Home/home'
 import Signup from './Signup/signup.jsx'
 import Loginresult from './Loginresult/Loginresult.jsx';
 import SearchResult from './Searchresult.jsx/searchresult.jsx'
-
+import About from './About/About.jsx'
+import Feedback from './feedback/feedback.jsx'
 
 export const mystyle = (imageurl) => ({
   width: "100vw",
@@ -32,7 +32,7 @@ const router = createBrowserRouter([
     path: "/",
     element: <> <div className="bodyimage" style={mystyle("masterbck.jpg")} >
       <Navbar /> <Home />
-      {/* <Footer /> */}
+      <Footer />
     </div> </>
   },
 
@@ -78,6 +78,29 @@ const router = createBrowserRouter([
           {/* <Footer /> */}
         </div>
       </>
+    },
+     {//about page
+      path: "/about",
+      element: <>
+        <div className="body" style={mystyle("masterbck.jpg")} >
+          <Navbar />
+          <About/>
+        </div>
+        
+      </>
+  
+    },
+     {//connect page
+      path: "/feedback",
+      element: <>
+        <div className="body" style={mystyle("masterbck.jpg")} >
+          <Navbar />
+          <Feedback/>
+          <Footer/>
+        </div>
+        
+      </>
+  
     }
 ])
 createRoot(document.getElementById('root')).render(

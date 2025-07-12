@@ -16,7 +16,7 @@ const Navbar = () => {
             <div className={styles.aTag}>
                 <NavLink to="/" className={styles.navlink}>Home</NavLink>
                 <NavLink to="/about" className={styles.navlink}>About</NavLink>
-                <NavLink to="/contact" className={styles.navlink}>Contact</NavLink>
+                <NavLink to="/feedback" className={styles.navlink}>Feedback</NavLink>
             </div>
         </div>
     );

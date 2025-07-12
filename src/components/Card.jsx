@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+import { NavLink } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import styles from '../components/Card.module.css';
 
@@ -12,12 +13,12 @@ const Card = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!email || !password) {
-            alert("Please fill in all fields");      
+            alert("Please fill in all fields");
             return;
-          }
-          
+        }
+
         try {
-         
+
             const res = await fetch("http://localhost:5000/api/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -25,11 +26,11 @@ const Card = () => {
             });
 
             const data = await res.json();
-            if (res.ok)  {
+            if (res.ok) {
                 let curToken = data.token;
                 console.log(curToken)
-                    localStorage.setItem('userToken', curToken);
-                console.log("Login successfull: ",data);
+                localStorage.setItem('userToken', curToken);
+                console.log("Login successfull: ", data);
                 navigate("/result");
             } else {
                 alert(data.message || "Login failed");
@@ -69,10 +70,14 @@ const Card = () => {
                             </span>
                         </button>
                     </div>
+                    <div className={styles.message}>
+                        <p>Don't have an account?</p>
+                        <NavLink to="/signup" className={styles.signupinstead}>SIGN UP instead!</NavLink>
+                    </div>
                 </form>
-                </div>
-                </div>
-                );
+            </div>
+        </div>
+    );
 }
 
 export default Card;
