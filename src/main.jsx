@@ -5,13 +5,13 @@ import App from './App.jsx'
 import Navbar from './components/Navbar.jsx'
 import Card from './components/Card.jsx'
 import { createBrowserRouter, RouterProvider, useNavigate } from 'react-router-dom'
-import Footer from './components/Footer'
+import Footer from './components/Footer.jsx'
 import Home from './Home/Home.jsx'
-import Signup from './Signup/signup.jsx'
+import Signup from './Signup/Signup.jsx'
 import Loginresult from './Loginresult/Loginresult.jsx';
-import SearchResult from './Searchresult.jsx/searchresult.jsx'
+import SearchResult from './Searchresult.jsx/Searchresult.jsx'
 import About from './About/About.jsx'
-import Feedback from './feedback/feedback.jsx'
+import Feedback from './Feedback/Feedback.jsx'
 
 export const mystyle = (imageurl) => ({
   width: "100vw",
