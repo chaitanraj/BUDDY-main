@@ -1,4 +1,4 @@
-import Navbar from './components/navbar'
+import Navbar from './components/Navbar'
 import Login from './components/Card'
 import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
