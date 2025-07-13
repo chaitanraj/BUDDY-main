@@ -345,6 +345,9 @@
 @media screen and (max-width: 900px) {
   .login {
     width: 15rem;
+    box-shadow: none;
+    
+  margin-top: 2vh;
   }
 
   .loginheader {
@@ -359,4 +362,9 @@
     padding: 0.7rem;
   }
 
+}
+@media screen and (max-width: 450px) {
+  .login {
+  margin-top: 2vh;
+  }
 }

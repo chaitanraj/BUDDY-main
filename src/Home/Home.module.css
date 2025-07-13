@@ -102,10 +102,10 @@ html, body {
   line-height: 1.4;                   
   font-family: "SF Pro", sans-serif;
   max-width: 90%;                    
-  margin-left: auto;                 
-  margin-right: auto;                
+  /* margin-left: auto;                 
+  margin-right: auto;     */
+  font-weight: 900;            
 }
-
 
 .optionsbutton {
   position: absolute;
@@ -408,26 +408,24 @@ html, body {
     font-size: 5vh;
     margin-left: 2vh;
     margin-top: 3vh;
-  }
+  }*/
 
   .descriptionbuddy {
-    font-size: small;
-    margin-left: 1vh;
-    margin-right: 1vh;
+    margin-top: 1.5vh;
+    font-weight: 750;
   }
 
-  .tagwrapper {
+  /* .tagwrapper {
     font-size: 2.5vh;
   }
 
   .heading {
     font-size: 1.8rem;
     margin-left: 1vh;
-  }*/
+  } */
 
   .button1 {
     width: 35vw;
-    /* height: 7vh; */
     font-size: 1rem;
     margin: 6px;
   }

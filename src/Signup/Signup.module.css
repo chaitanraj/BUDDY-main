@@ -324,8 +324,9 @@
 /* responsive design */
 @media screen and (max-width: 900px) {
   .signup {
-    height: 29rem;
-    width: 20rem;
+    height: 30rem;
+    width: 15rem;
+    box-shadow: none;
   }
 
   .signupheader {
