@@ -15,7 +15,7 @@ import { useState, useEffect } from 'react'
 
 export const mystyle = (imageurl) => ({
   width: "100vw",
-  height: "auto",
+  height: "100vh",
   minHeight: "100vh",
   backgroundImage: `url(${imageurl})`,
   backgroundSize: "cover",
@@ -23,7 +23,10 @@ export const mystyle = (imageurl) => ({
   backgroundRepeat: "no-repeat",
   backgroundAttachment: "fixed",
   overflowX: "hidden",
-  position: "relative",
+  overflowY: "hidden",                
+  position: "fixed",                 
+  top: 0,                            
+  left: 0,  
 });
 
 const BackgroundWrapper = ({ children, bgImage }) => {
