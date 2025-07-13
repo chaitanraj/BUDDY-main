@@ -97,7 +97,7 @@
     }
 
     .navbar .navlink {
-        margin: 0.5rem;
+        /* margin: 0.5rem; */
         font-size: 0.7rem;
     }
 }
@@ -114,7 +114,7 @@
 
     .navbar .navlink {
         font-size: 0.85rem;
-        margin: 0.25rem;
+        /* margin: 0.25rem; */
     }
 
     .logoItem {

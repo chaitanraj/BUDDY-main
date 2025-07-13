@@ -103,8 +103,7 @@ html, body {
   font-family: "SF Pro", sans-serif;
   max-width: 90%;                    
   /* margin-left: auto;                 
-  margin-right: auto;     */
-  font-weight: 900;            
+  margin-right: auto;     */         
 }
 
 .optionsbutton {
@@ -414,15 +413,6 @@ html, body {
     margin-top: 1.5vh;
     font-weight: 750;
   }
-
-  /* .tagwrapper {
-    font-size: 2.5vh;
-  }
-
-  .heading {
-    font-size: 1.8rem;
-    margin-left: 1vh;
-  } */
 
   .button1 {
     width: 35vw;
