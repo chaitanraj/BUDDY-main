@@ -41,6 +41,11 @@ html, body {
   white-space: nowrap;
   overflow: hidden;
   font-weight: lighter;
+  border-right:5px solid white;
+  /* animation: typing 6s steps(20, end) infinite alternate, 
+  blink 1s infinite;  */
+  animation: typing 6s steps(25, end) infinite alternate, 
+  blink 4s infinite; 
 }
 
 @keyframes typing {

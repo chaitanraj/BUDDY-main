@@ -20,8 +20,6 @@ const Home = () => {
                             SHARED JOURNEYS 
                             AND SMARTER COMMUTES <br />
                             <br></br>
-                             SIGN UP and let's get started!
-
                         </h3>
                     </div>
                 </div>
