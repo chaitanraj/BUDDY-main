@@ -1,12 +1,13 @@
 import React from "react";
 import logo from "../pics/logo.png";
 import styles from "./Navbar.module.css"; 
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+    const navigate=useNavigate();
     return (
         <div className={styles.navbar}>
-            <div className={styles.logoItem}>
+            <div className={styles.logoItem} onClick={()=>navigate("/")}>
                 <img className={styles.img} src={logo} alt="Let's find you a buddy" />
                 <div className={styles.logoItem}>BUDDY</div>              
             </div>

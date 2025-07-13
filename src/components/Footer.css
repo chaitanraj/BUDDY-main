@@ -4,13 +4,29 @@
     flex-wrap: wrap;
     align-items: center;
     height: 7.5vh;
-    background: rgba(0, 0, 0, 0.7); 
+    background: rgba(0, 0, 0); 
+     background-color: #000; 
     backdrop-filter: blur(20px);
-    color: beige;
+    /* color: beige; */
+    color: #f0f0c0;
     width: 100vw;
     bottom: 0;
     position: fixed;
     font-size:1.5rem;
+      opacity: 0;
+  transform: translateY(20px);
+  animation: fadeSlideUp 0.4s ease-out 0.4s forwards;
+}
+
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 ul {
@@ -25,6 +41,7 @@ ul {
     padding: 0;
     margin: 0;
     list-style: none;
+    gap: 10px;
   }
   .example-2 li {
     margin: 0 0.5rem;

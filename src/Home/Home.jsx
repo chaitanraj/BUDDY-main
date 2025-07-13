@@ -16,7 +16,8 @@ const Home = () => {
                     </div>
                     <div className={styles.h3conatiner}>
                         <h3 className={styles.descriptionbuddy}>
-                            CONNECTING TRAVELLERS FOR SHARED JOURNEYS <br />
+                            CONNECTING TRAVELLERS FOR <br />
+                            SHARED JOURNEYS 
                             AND SMARTER COMMUTES <br />
                             <br></br>
                              SIGN UP and let's get started!
@@ -26,11 +27,12 @@ const Home = () => {
                 </div>
             </div>
             <div style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                flexDirection: 'column',
-                width: '100%'
+                // display: 'flex',
+                // justifyContent: 'center',
+                // alignItems: 'center',
+                // flexDirection: 'column',
+                // width: '100%',
+                // marginTop: '25vh'
             }} className={styles.optionsbutton}>
                 <button onClick={() => navigate("/login")} className={styles.button1}>LOGIN</button>
                 <button onClick={() => navigate("/signup")} className={styles.button1}>SIGN-UP</button>

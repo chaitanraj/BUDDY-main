@@ -1,112 +1,138 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import './index.css'
-import App from './App.jsx'
 import Navbar from './components/Navbar.jsx'
 import Card from './components/Card.jsx'
-import { createBrowserRouter, RouterProvider, useNavigate } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Footer from './components/Footer.jsx'
 import Home from './Home/Home.jsx'
 import Signup from './Signup/Signup.jsx'
-import Loginresult from './Loginresult/Loginresult.jsx';
+import Loginresult from './Loginresult/Loginresult.jsx'
 import SearchResult from './Searchresult/SearchResult.jsx'
 import About from './About/About.jsx'
 import Feedback from './Feedback/Feedback.jsx'
+import { useState, useEffect } from 'react'
 
 export const mystyle = (imageurl) => ({
   width: "100vw",
-  height: "auto", 
-  minHeight: "100vh", 
+  height: "auto",
+  minHeight: "100vh",
   backgroundImage: `url(${imageurl})`,
   backgroundSize: "cover",
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
   backgroundAttachment: "fixed",
-  overflowX: "hidden", 
+  overflowX: "hidden",
   position: "relative",
 });
 
+const BackgroundWrapper = ({ children, bgImage }) => {
+  const [currentBg, setCurrentBg] = useState(bgImage || 'masterbck.jpg');
+
+  useEffect(() => {
+    const updateBg = () => {
+      const width = window.innerWidth;
+      if (bgImage === 'masterbck.jpg') {
+        if (width <= 750) setCurrentBg('masterbck2.jpg');
+        else setCurrentBg('masterbck.jpg');
+      } else {
+        setCurrentBg(bgImage);
+      }
+    };
+
+    updateBg();
+    window.addEventListener('resize', updateBg);
+    return () => window.removeEventListener('resize', updateBg);
+  }, [bgImage]);
+
+  return (
+    <div className="body" style={mystyle(currentBg)}>
+      {children}
+    </div>
+  );
+};
 
 const router = createBrowserRouter([
-  {//home
+  {
     path: "/",
-    element: <> <div className="bodyimage" style={mystyle("masterbck.jpg")} >
-      <Navbar /> <Home />
-      <Footer />
-    </div> </>
+    element: (
+      <BackgroundWrapper bgImage="masterbck.jpg">
+        <Navbar />
+        <Home />
+        <Footer />
+      </BackgroundWrapper>
+    )
   },
-
-  {//login page
+  {
     path: "/login",
-    element: <>
-      <div className="body" style={mystyle("masterbck.jpg")} >
+    element: (
+      <BackgroundWrapper bgImage="masterbck.jpg">
         <Navbar />
         <Card />
-        {/* <Footer /> */}
-      </div>
-    </>
-
+        <Footer />
+      </BackgroundWrapper>
+    )
   },
-  {//signup page
+  {
     path: "/signup",
-    element: <>
-      <div className="body" style={mystyle("masterbck.jpg")} >
+    element: (
+      <BackgroundWrapper bgImage="masterbck.jpg">
         <Navbar />
         <Signup />
-        {/* <Footer /> */}
-      </div>
-    </>
-
+        <Footer />
+      </BackgroundWrapper>
+    )
   },
-    {//login result page
-      path: "/result",
-      element: <>
-        <div className="body" style={mystyle("masterbck.jpg")} >
-          <Navbar />
-          <Loginresult/>
-          {/* <Footer /> */}
-        </div>
-      </>
-  
-    },
-    {
-      path: "/searchresult",
-      element: <>
-        <div className="body" style={mystyle("result11.jpg")}>
-          <Navbar />
-          <SearchResult />
-          {/* <Footer /> */}
-        </div>
-      </>
-    },
-     {//about page
-      path: "/about",
-      element: <>
-        <div className="body" style={mystyle("masterbck.jpg")} >
-          <Navbar />
-          <About/>
-        </div>
-        
-      </>
-  
-    },
-     {//connect page
-      path: "/feedback",
-      element: <>
-        <div className="body" style={mystyle("masterbck.jpg")} >
-          <Navbar />
-          <Feedback/>
-          <Footer/>
-        </div>
-        
-      </>
-  
-    }
-])
+  {
+    path: "/result",
+    element: (
+      <BackgroundWrapper bgImage="masterbck.jpg">
+        <Navbar />
+        <Loginresult />
+        <Footer />
+      </BackgroundWrapper>
+    )
+  },
+  {
+    path: "/searchresult",
+    element: (
+      <BackgroundWrapper bgImage="result11.jpg">
+        <Navbar />
+        <SearchResult />
+        <Footer />
+      </BackgroundWrapper>
+    )
+  },
+  {
+    path: "/about",
+    element: (
+      <BackgroundWrapper bgImage="masterbck.jpg">
+        <Navbar />
+        <About />
+        <Footer />
+      </BackgroundWrapper>
+    )
+  },
+  {
+    path: "/feedback",
+    element: (
+      <BackgroundWrapper bgImage="masterbck.jpg">
+        <Navbar />
+        <Feedback />
+        <Footer />
+      </BackgroundWrapper>
+    )
+  }
+]);
+
+const App = () => {
+  return <RouterProvider router={router} />;
+};
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <RouterProvider router={router}>
-      <App />
-    </RouterProvider>
+    <App />
   </StrictMode>
-)
+);
+
+export default App;
