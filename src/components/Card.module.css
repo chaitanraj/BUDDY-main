@@ -77,26 +77,24 @@ body,html{
 }
 
 .radiobtn {
-
   margin-left: 25px;
   display: flex;
   gap: 30px;
 }
 
-.detailField {
-
+.detailField { 
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   flex-direction: column;
   padding: 5px;
   margin-bottom: 15px;
+ 
   opacity: 0;
   transform: translateX(-20px);
   animation: slideInFromLeft 0.4s ease-out forwards;
-
-
 }
+
 .detailField:nth-child(1) {
     animation-delay: 0.3s;
 }
@@ -371,9 +369,8 @@ body,html{
   margin-top: 5px;
   }
   .detailField label {
-    font-size: 2.5vh;
+    font-size: 2.3vh;
   }
-
   .detailField input {
     padding: 0.7rem;
     height: 2vh;
@@ -388,5 +385,8 @@ body,html{
   width: 70%;
   height: 5%;
   font-size: 90%;
+  }
+  .detailField { 
+  margin-top: 1.1rem;
   }
 }

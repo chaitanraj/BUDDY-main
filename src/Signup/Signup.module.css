@@ -358,21 +358,21 @@ body,html{
 @media screen and (max-width: 450px) {
   .signup {
   margin-top: 1px;
-  height: 26rem;
+  height: 28rem;
   }
   .signupdetailField label {
-    font-size: 2.4vh;
+    font-size: 2.2vh;
   }
 
   .signupdetailField input {
     padding: 0.7rem;
-    height: 1.2vh;
+    height: 1vh;
   }
   .message {
   font-size: 1rem;
   }
   .gender {
-  font-size: 1.1rem;
+  font-size: 1rem;
   }
   .btn17 {
   width: 70%;
