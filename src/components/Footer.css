@@ -16,9 +16,7 @@
   transform: translateY(20px);
   animation: fadeSlideUp 0.4s ease-out 0.4s forwards;
 }
-* {
-  background-color: red !important;
-}
+
 html,body{
   margin: 0;
   padding: 0;
@@ -159,8 +157,9 @@ ul {
     display: flex;
     flex-direction: row;
     text-align: center;
-    font-size: 1rem;
-
+    font-size: 1rem;  
+    background-color: #000;
+    height: 6vh;
   }
 
   .footer p {
