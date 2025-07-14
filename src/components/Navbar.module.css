@@ -10,7 +10,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 8vh;
+    height: 7vh;
     width: 100%;
     color: white;
     width: 100%;
@@ -34,9 +34,10 @@
   }
 }
 .img {
-    max-width: 50px;
-    height: 8vh;
-    object-fit: contain;
+    /* max-width: 50px; */
+    width: 17vh;
+    height: 4.5vh;
+    /* object-fit: contain; */
 }
 
 
@@ -186,6 +187,8 @@ body{
 @media screen and (max-width: 600px) {
     .img {
         max-width: 40px;
+        height: 1.8vh;
+        width: 15vh;
     }
 
     .tagLine {

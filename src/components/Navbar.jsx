@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../pics/logo.png";
+// import logo from "/logo.jpg";
 import styles from "./Navbar.module.css";
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from "react";
@@ -22,8 +22,8 @@ const Navbar = () => {
         isMobile ? (
             <div className={styles.navbar}>
                 <div className={styles.logoItem} onClick={() => navigate("/")}>
-                    <img className={styles.img} src={logo} alt="Let's find you a buddy" />
-                    <div className={styles.logoItem}>BUDDY</div>
+                    <img className={styles.img} src="/logonew.png" alt="Let's find you a buddy" />
+                    {/* <div className={styles.logoItem}>BUDDY</div> */}
                 </div>
                 <div className={styles.tagLine}>
                     LET'S FIND YOUR RIDE PARTNER
@@ -38,8 +38,8 @@ const Navbar = () => {
             : (
                 <div className={styles.navbar}>
                     <div className={styles.logoItem} onClick={() => navigate("/")}>
-                        <img className={styles.img} src={logo} alt="Let's find you a buddy" />
-                        <div className={styles.logoItem}>BUDDY</div>
+                        <img className={styles.img} src="/logof.png" alt="Let's find you a buddy" />
+                        {/* <div className={styles.logoItem}>BUDDY</div> */}
                     </div>
                     <div className={styles.tagLine}>
                         LET'S FIND YOUR RIDE PARTNER
