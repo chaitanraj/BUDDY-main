@@ -38,7 +38,7 @@ const Navbar = () => {
             : (
                 <div className={styles.navbar}>
                     <div className={styles.logoItem} onClick={() => navigate("/")}>
-                        <img className={styles.img} src="/logof.png" alt="Let's find you a buddy" />
+                        <img className={styles.img} src="/logonew.png" alt="Let's find you a buddy" />
                         {/* <div className={styles.logoItem}>BUDDY</div> */}
                     </div>
                     <div className={styles.tagLine}>
