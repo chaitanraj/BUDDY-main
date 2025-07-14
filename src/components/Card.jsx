@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
@@ -16,22 +16,18 @@ const Card = () => {
             alert("Please fill in all fields");
             return;
         }
-
+    
         try {
-
             const res = await fetch("http://localhost:5000/api/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password }),
             });
 
-            const data = await res.json();
+            // const data = await res.json();
             if (res.ok) {
-                let curToken = data.token;
-                console.log(curToken)
-                localStorage.setItem('userToken', curToken);
-                console.log("Login successfull: ", data);
-                navigate("/result");
+                console.log("Login successfull: ");
+                navigate("/");
             } else {
                 alert(data.message || "Login failed");
             }

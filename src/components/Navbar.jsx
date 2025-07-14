@@ -25,9 +25,9 @@ const Navbar = () => {
                     <img className={styles.img} src="/logonew.png" alt="Let's find you a buddy" />
                     {/* <div className={styles.logoItem}>BUDDY</div> */}
                 </div>
-                <div className={styles.tagLine}>
+                {/* <div className={styles.tagLine}>
                     LET'S FIND YOUR RIDE PARTNER
-                </div>
+                </div> */}
                 <div className={styles.aTag}>
                     <NavLink to="/" className={styles.navlink}>Home</NavLink>
                     <NavLink to="/about" className={styles.navlink}>About</NavLink>

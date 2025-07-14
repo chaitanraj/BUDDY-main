@@ -1,12 +1,31 @@
 import React from "react";
 import styles from "./Home.module.css";
 import { useNavigate } from "react-router-dom";
+import { useEffect,useState } from "react";
 
 const Home = () => {
+    const[isAuthenticated,setIsAuthenticated]=useState(false);
+    const[user,setUser]= useState(null)
     const navigate = useNavigate();
 
+    useEffect(()=>{
+        fetch("http://localhost:5000/api/verify-user",{
+        credentials:"include"
+        })
+        .then((res)=>{
+            if(!res.ok)
+                throw new Error("Not authenticated")
+            return res.json();
+        })
+        .then((data)=>{
+            setIsAuthenticated(true);
+            setUser(data.name);
+            console.log("Successfull Login")
+        })
+    },[]);
+
     return (
-        <>
+        <div>
             <div className={styles.container1}>
                 <div className={styles.body1}>
                     <h1 className={styles.titlebuddy}>BUDDY</h1>
@@ -24,19 +43,16 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <div style={{
-                // display: 'flex',
-                // justifyContent: 'center',
-                // alignItems: 'center',
-                // flexDirection: 'column',
-                // width: '100%',
-                // marginTop: '25vh'
-            }} className={styles.optionsbutton}>
+        {!isAuthenticated} ?(
+            <div className={styles.optionsbutton}>
                 <button onClick={() => navigate("/login")} className={styles.button1}>LOGIN</button>
                 <button onClick={() => navigate("/signup")} className={styles.button1}>SIGN-UP</button>
             </div>
+        ):(
+              <h1>Welcome, BRO</h1>
+        )
 
-        </>
+        </div>
     );
 }
 

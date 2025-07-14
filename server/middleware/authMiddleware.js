@@ -1,22 +1,17 @@
-// server/middleware/authMiddleware.js
 const jwt = require("jsonwebtoken");
 
-const authMiddleware = (req, res, next) => {
-  const authHeader = req.headers.authorization;
+const verifyUser=(req,res,next)=>{
+  const tokenCookie=req.cookies?.token;
+  if (!tokenCookie)
+    return res.send("No user detected")
 
-  if (!authHeader || !authHeader.startsWith("Bearer ")) {
-    return res.status(401).json({ error: "Unauthorized" });
-  }
+  jwt.verify(tokenCookie,process.env.JWT_SECRET,(err,decoded)=>{
+      if (err)
+        return res.send("Invalid Token");
 
-  const token = authHeader.split(" ")[1];
+      req.user=decoded;
+      next();
+  })
+}
 
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.userId = decoded.id;
-    next();
-  } catch (err) {
-    return res.status(401).json({ error: "Invalid token" });
-  }
-};
-
-module.exports = authMiddleware;
+module.exports=verifyUser;

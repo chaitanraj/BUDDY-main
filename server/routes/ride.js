@@ -1,14 +1,16 @@
 const express = require('express');
 const router = express.Router();
 const Ride = require('../models/ride');
-const authMiddleware = require('../middleware/authMiddleware');
+// const authMiddleware = require('../middleware/authMiddleware');
+const verifyUser = require("../middleware/authMiddleware");
 
-router.post('/submit-ride', authMiddleware, async (req, res) => {
+
+router.post('/submit-ride', verifyUser, async (req, res) => {
   try {
     console.log("🚀 Reached backend route");
     
     const { name, gender, location, datetime } = req.body;
-    const userId = req.userId; 
+    const userId = req.user.id; 
     
     if (!name || !gender || !location || !datetime || !userId) {
       return res.status(400).json({ error: "Missing required fields" });
