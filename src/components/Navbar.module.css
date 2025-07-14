@@ -39,9 +39,7 @@
     object-fit: contain;
 }
 
-.aTag {
-    margin-right: 20px;
-}
+
 
 .navbar .navlink {
     color: #ddbc64;
@@ -79,6 +77,89 @@
     font-family: "SF Pro", sans-serif;
     cursor: pointer;
 }
+
+/* Hamburger Menu */
+.aTag {
+    margin-right: 20px;
+}
+body {
+    margin: 0px;
+}
+ul {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    background-color: rgb(106, 80, 48);
+}
+/* 
+.menuchk {
+    position: absolute;
+    left: 30%;
+    z-index: 1;
+    display: block;
+    width: 43px;
+    height: 23px;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.menubtn {
+    position: absolute;
+    left: 30%;
+    background-color: transparent;
+    border: none;
+}
+.menubtn .line {
+    display: block;
+    margin-bottom: 5px;
+    height: 5px;
+    background-color: red;
+    width: 40px;
+    transition-duration: 1s;
+}
+
+
+
+#main-nav {
+    background-color: #000;
+    position: fixed;
+    height: 30%;
+    top: 10%;
+    width: 100%;
+    transform: translateX(-100%);
+    transition-duration: 0.5s;
+}
+
+#main-nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    display: block;
+    padding: 40px;
+    font-size: 20px;
+}
+#main-nav ul li a:hover {
+    background-color: red;
+}
+
+.menuchk:checked ~ #main-nav {
+    transform: translateX(0%);
+      height: 300px;
+      overflow-y: auto;
+}
+
+.menuchk:checked ~ .menubtn .line:nth-child(2) {
+    opacity: 0;
+}
+
+.menuchk:checked ~ .menubtn .line:first-child {
+    transform: rotate(45deg) translate(15px, 13px);
+}
+
+.menuchk:checked ~ .menubtn .line:last-child {
+    transform: rotate(-45deg);
+} */
 
 
 /* Responsive   */

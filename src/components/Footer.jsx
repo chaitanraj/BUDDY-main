@@ -3,8 +3,9 @@ import "./Footer.css"
 const Footer = () => {
     return (
         <div className='footer'>
-            <p> Copyright &copy; Chaitanya Raj|All rights reserved</p>
-            <div>
+            <p> Copyright &copy; Chaitanya Raj | All rights reserved</p>
+            <p> Privacy Policy | Terms of Service</p>
+            {/* <div>
                 <ul className="example-2">
                     <li className="icon-content">
                         <a
@@ -69,7 +70,8 @@ const Footer = () => {
                         <div className="tooltip">Instagram</div>
                     </li>
                 </ul>
-            </div>
+            </div> */}
+
 
         </div>
     )
