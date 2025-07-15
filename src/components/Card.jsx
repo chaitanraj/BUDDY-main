@@ -27,7 +27,7 @@ const Card = () => {
             // const data = await res.json();
             if (res.ok) {
                 console.log("Login successfull: ");
-                navigate("/");
+                navigate("/result");
             } else {
                 alert(data.message || "Login failed");
             }

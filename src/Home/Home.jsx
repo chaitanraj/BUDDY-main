@@ -43,7 +43,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-        {!isAuthenticated} ?(
+        {!isAuthenticated ?(
             <div className={styles.optionsbutton}>
                 <button onClick={() => navigate("/login")} className={styles.button1}>LOGIN</button>
                 <button onClick={() => navigate("/signup")} className={styles.button1}>SIGN-UP</button>
@@ -51,6 +51,7 @@ const Home = () => {
         ):(
               <h1>Welcome, BRO</h1>
         )
+    }
 
         </div>
     );
