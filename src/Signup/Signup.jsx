@@ -28,14 +28,13 @@ const Signup = () => {
       alert("Please fill in all the fields.");
       return;
     }
-
     try {
-      const res = await fetch(`${process.env.API_URL}/signup`, {
+      const res = await fetch(`${process.env.REACT_APP_API_URL}/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-      const data = await res.json();
+      const data = await res.json();z
       if (res.ok) {
         alert("Signup successful!");
         navigate("/");
