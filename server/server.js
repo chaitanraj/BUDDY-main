@@ -22,7 +22,7 @@ mongoose
 const authRouter = require("./routes/auth");
 const rideRouter = require("./routes/ride");
 
-router.get("/api/verify-user",verifyUser,(req,res)=>{
+app.get("/verify-user",verifyUser,(req,res)=>{
   res.json({message:"User verified",name:req.user.name})
 })
 
