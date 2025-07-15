@@ -9,7 +9,7 @@ const Home = () => {
     const navigate = useNavigate();
 
     useEffect(()=>{
-        fetch(`${process.env.API_URL}/verify-user`,{
+        fetch(`${import.meta.env.VITE_API_URL}/verify-user`,{
         credentials:"include"
         })
         .then((res)=>{

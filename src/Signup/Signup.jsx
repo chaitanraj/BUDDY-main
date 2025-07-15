@@ -35,7 +35,7 @@ const Signup = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-      const data = await res.json();z
+      const data = await res.json();
       if (res.ok) {
         alert("Signup successful!");
         navigate("/");

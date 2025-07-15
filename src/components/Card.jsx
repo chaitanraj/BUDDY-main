@@ -29,7 +29,7 @@ const Card = () => {
                 console.log("Login successfull: ");
                 navigate("/result");
             } else {
-                alert(data.message || "Login failed");
+                alert("Login failed");
             }
         } catch (err) {
             console.error("Error:", err);
