@@ -29,6 +29,7 @@ const Signup = () => {
       return;
     }
     try {
+      console.log("API URL →", import.meta.env.VITE_API_URL);
       const res = await fetch(`${import.meta.env.VITE_API_URL}/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
