@@ -7,7 +7,7 @@ const router = express.Router();
 const app = express();
 const PORT = process.env.PORT || 5000;
 const verifyUser =require("./middleware/authMiddleware");
-
+app.options("*", cors());
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -21,7 +21,7 @@ app.use(
     credentials: true,
   })
 );
-app.options("*", cors());
+
 
 app.use((req, res, next) => {
   console.log("Origin: ", req.headers.origin);
