@@ -43,11 +43,11 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-        {!isAuthenticated ?(
-            <div className={styles.optionsbutton}>
-                <button onClick={() => navigate("/login")} className={styles.button1}>LOGIN</button>
-                <button onClick={() => navigate("/signup")} className={styles.button1}>SIGN-UP</button>
-            </div>
+        {!isAuthenticated ? (
+                <div className={styles.optionsbutton}>
+                    <button onClick={() => navigate("/login")} className={styles.button1}>LOGIN</button>
+                    <button onClick={() => navigate("/signup")} className={styles.button1}>SIGN-UP</button>
+                </div>
         ):(
               <h1>Welcome, BRO</h1>
         )
