@@ -5,9 +5,15 @@ const cors = require("cors");
 
 const router = express.Router();
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = 5000;
 const verifyUser =require("./middleware/authMiddleware");
 app.options("*", cors());
+app.use(cookieParser());
+
+app.get('/test', (req, res) => {
+  res.send('Working');
+});
+
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -44,6 +50,10 @@ app.get("/verify-user",verifyUser,(req,res)=>{
 app.use("/", authRouter);
 app.use("/api/rides", rideRouter);
 
+
+
+
+
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log("🚀 Server running on http://localhost//5000");
 });
