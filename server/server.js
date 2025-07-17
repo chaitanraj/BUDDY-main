@@ -2,18 +2,15 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const cookieParser = require("cookie-parser");
+const verifyUser = require("./middleware/authMiddleware");
 
-const router = express.Router();
 const app = express();
 const PORT = 5000;
-const verifyUser =require("./middleware/authMiddleware");
-app.options("*", cors());
+
+// app.options("*", cors());
+
 app.use(cookieParser());
-
-app.get('/test', (req, res) => {
-  res.send('Working');
-});
-
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -28,32 +25,33 @@ app.use(
   })
 );
 
-
 app.use((req, res, next) => {
   console.log("Origin: ", req.headers.origin);
   next();
 });
+
 app.use(express.json());
 
 mongoose
-  .connect(`${process.env.MONGO_URI}`)
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("✅ Connected to MongoDB"))
   .catch((err) => console.error("❌ MongoDB connection error:", err));
+
+app.get("/test", (req, res) => {
+  res.send("Working");
+});
 
 const authRouter = require("./routes/auth");
 const rideRouter = require("./routes/ride");
 
-app.get("/verify-user",verifyUser,(req,res)=>{
-  res.json({message:"User verified",name:req.user.name})
-})
+app.get("/verify-user", verifyUser, (req, res) => {
+   console.log("Cookies:", req.cookies); 
+  res.json({ message: "User verified", name: req.user.name });
+});
 
 app.use("/", authRouter);
 app.use("/api/rides", rideRouter);
 
-
-
-
-
 app.listen(PORT, () => {
-  console.log("🚀 Server running on http://localhost//5000");
+  console.log(`🚀 Server running on http://localhost:${PORT}`);
 });

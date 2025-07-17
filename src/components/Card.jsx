@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import styles from '../components/Card.module.css';
 
-
 const Card = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
