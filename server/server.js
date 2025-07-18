@@ -14,7 +14,7 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: (origin, callback) => {
-      const allowedOrigins = ["https://buddy-ride.vercel.app"];
+      const allowedOrigins = ["http://localhost:5173"];
       if (allowedOrigins.includes(origin) || !origin) {
         callback(null, true);
       } else {
@@ -36,10 +36,6 @@ mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("✅ Connected to MongoDB"))
   .catch((err) => console.error("❌ MongoDB connection error:", err));
-
-app.get("/test", (req, res) => {
-  res.send("Working");
-});
 
 const authRouter = require("./routes/auth");
 const rideRouter = require("./routes/ride");

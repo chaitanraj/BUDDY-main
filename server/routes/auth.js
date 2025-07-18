@@ -33,9 +33,9 @@ router.post("/login", async (req, res) => {
     expiresIn: "1d",
   });
   res.cookie("token", token, {
-    httpOnly: true,
-    secure: true,
-    sameSite: "Strict",
+    httpOnly: false,
+    secure: false,
+    sameSite: "Lax",
     maxAge: 24 * 60 * 60 * 1000,
   });
 

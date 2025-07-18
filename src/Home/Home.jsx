@@ -9,7 +9,10 @@ const Home = () => {
     const navigate = useNavigate();
 
     useEffect(()=>{
-        fetch(`${import.meta.env.VITE_API_URL}/verify-user`,{
+
+        fetch("http://localhost:5000/verify-user",{
+            method:"GET",
+        // fetch(`${import.meta.env.VITE_API_URL}/verify-user`,{
         credentials:"include"
         })
         .then((res)=>{
