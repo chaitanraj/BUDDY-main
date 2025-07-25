@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import "./Loginresult.css";
 import { useNavigate } from 'react-router-dom';
-import { jwtDecode } from 'jwt-decode'; 
+import { jwtDecode } from 'jwt-decode';
 
-const Loginresult = () => {  
+
+const Loginresult = () => {
   const navigate = useNavigate();
   const [name, setName] = useState('');
   const [location, setLocation] = useState('');
@@ -25,7 +26,7 @@ const Loginresult = () => {
       const response = await fetch(
         `https://api.geoapify.com/v1/geocode/autocomplete?text=${query}&filter=countrycode:in&apiKey=1db3c494724342c787346c1adf082be2`
       );
-      
+
       const data = await response.json();
       setSuggestions(data.features || []);
     } catch (error) {
@@ -37,69 +38,61 @@ const Loginresult = () => {
     setGender(event.target.value);
   };
 
+
   const handleSuggestionClick = (place) => {
-        setLocation(place.properties.formatted);
-        setSuggestions([]);
-      };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("🧠 Submit clicked");
-  
-    const datetime = new Date(`${date}T${time}`);
-  
-    try {
-      const userToken = localStorage.getItem('userToken');
-      if (!userToken) {
-        alert("User not authenticated");
-        return;
-      }
-  
-      const decodedToken = jwtDecode(userToken);
-      const userId = decodedToken.userId || decodedToken.id || decodedToken.sub; 
-  
-      console.log("✅ Decoded userId:", userId);
-  
-      const res = await fetch("http://localhost:5000/api/rides/submit-ride", {
-        headers: {
-          Authorization:` Bearer ${userToken}`,
-          'Content-Type': 'application/json',
-        },
-        method: "POST",
-        body: JSON.stringify({
-          name,
-          gender,
-          location,
-          datetime,
-          userId,
-        }),
-      });
-  
-      const data = await res.json();
-  
-      if (!res.ok) {
-        console.error("❌ Submission failed:", data);
-        alert(data.message || "Submission failed");
-        return;
-      }
-  
-      navigate("/searchresult", { state: data });
-    } catch (err) {
-      console.error("❌ Error submitting ride:", err);
-      alert("Submission failed");
-    }
+    setLocation(place.properties.formatted);
+    setSuggestions([]);
   };
-  
 
-  return (
-    <div className="resultcard">
-      <div className="result">
-        <h1 className="resultheader">Enter Ride Details</h1>
-        <form onSubmit={handleSubmit}>
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  console.log("🧠 Submit clicked");
+
+   const datetime = `${date}T${time}`;
+   
+
+
+  try {
+    const res = await fetch("http://localhost:5000/api/rides/submit-ride", {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: "include",
+      method: "POST",
+      body: JSON.stringify({
+        name,
+        gender,
+        location,
+        datetime
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!res.ok) {
+      console.error("❌ Submission failed:", data);
+      alert(data.message || "Submission failed");
+      return;
+    }
+
+    navigate("/searchresult", { state: data });
+  } catch (err) {
+    console.error("❌ Error submitting ride:", err);
+    alert("Submission failed");
+  }
+};
+
+
+
+return (
+  <div className="resultcard">
+    <div className="result">
+      <h1 className="resultheader">Enter Ride Details</h1>
+      <form onSubmit={handleSubmit}>
         <div className="resultfield">
           <label>Name: </label>
-          <input type="text" placeholder="Enter your name" 
-            onChange={(e)=>{
+          <input type="text" placeholder="Enter your name"
+            onChange={(e) => {
               setName(e.target.value)
             }}
           />
@@ -116,7 +109,7 @@ const Loginresult = () => {
           />
           {suggestions.length > 0 && (
             <ul
-            style={{
+              style={{
                 position: 'absolute',
                 top: '100%',
                 left: 0,
@@ -150,54 +143,54 @@ const Loginresult = () => {
             </ul>
           )}
         </div>
-  
+
 
         <div className="resultfield">
           <label>Date: </label>
-          <input type="date" 
-          onChange={(e)=>{
-            setDate(e.target.value)
-          }} />
+          <input type="date"
+            onChange={(e) => {
+              setDate(e.target.value)
+            }} />
         </div>
 
         <div className="resultfield">
           <label>Time: </label>
-          <input type="time" 
-            onChange={(e)=>{
+          <input type="time"
+            onChange={(e) => {
               setTime(e.target.value)
             }}
-           />
+          />
         </div>
 
         <div className="resultgender">
           <label>Gender: </label>
           <div className="resultradiobtn">
             <label>Male </label>
-            <input type="radio" name="myGender"  value="male"
-             checked={gender === "male"}
-             onChange={handleGenderChange}
+            <input type="radio" name="myGender" value="male"
+              checked={gender === "male"}
+              onChange={handleGenderChange}
             />
             <label>Female </label>
             <input type="radio" name="myGender" value="female"
-            checked={gender === "female"}
-            onChange={handleGenderChange}
+              checked={gender === "female"}
+              onChange={handleGenderChange}
             />
           </div>
         </div>
 
         <div className="submitbtn">
-          <button  type="submit" className="btn17">
+          <button type="submit" className="btn17">
             <span className="textcontainer">
               <span className="text">SUBMIT</span>
             </span>
           </button>
         </div>
-        
-        </form>
-        
-      </div>
+
+      </form>
+
     </div>
-  );
+  </div>
+);
 };
 
 export default Loginresult;

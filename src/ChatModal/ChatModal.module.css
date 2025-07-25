@@ -1,0 +1,136 @@
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+.chatContainer { 
+     /* max-width: 600px; */
+    height: 18vh;
+    width: 50vh;
+  margin: 0 auto;
+  padding: 16px;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  background-color: #fff;
+ 
+}
+
+.chatHeader { 
+margin-top:1vh;
+  text-align: center;
+  margin-bottom: 16px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.chatBox {
+  min-height: 200px;
+  max-height: 300px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  padding: 12px;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+}
+
+.noMessages {
+  text-align: center;
+  color: #888;
+}
+
+.sent {
+  text-align: right;
+  margin: 8px 0;
+}
+
+.received {
+  text-align: left;
+  margin: 8px 0;
+}
+
+.msgText {
+  display: inline-block;
+  padding: 8px 12px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 16px;
+  max-width: 70%;
+}
+
+.received .msgText {
+  background-color: #e5e5ea;
+  color: #000;
+}
+
+.msgTime {
+  display: block;
+  font-size: 0.75rem;
+  color: #666;
+  margin-top: 4px;
+}
+
+.inputSection {
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+}
+
+.inputBox {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+.modalButtons {
+    margin-top: 2vh;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.sendButton {
+  margin-left: 8px;
+  padding: 10px 16px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.cancelBtn {
+  background-color: #dc3545;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.sendButton:hover {
+  background-color: #218838;
+}
+
+@media (max-width: 768px) {
+  .chat-container {
+    padding: 1.5rem;
+    max-width: 90%;
+  }
+}
+
+/* ✅ Mobile (small) screens */
+@media (max-width: 480px) {
+  .chat-container {
+    padding: 1rem;
+    font-size: 0.95rem;
+    border-radius: 0.75rem;
+  }
+}

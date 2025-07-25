@@ -12,22 +12,21 @@ import SearchResult from './Searchresult/SearchResult.jsx'
 import About from './About/About.jsx'
 import Feedback from './Feedback/Feedback.jsx'
 import { useState, useEffect } from 'react'
+import Chat from './Chat/Chat.jsx';
+
 
 export const mystyle = (imageurl) => ({
   width: "100vw",
   height: "100vh",
   minHeight: "100vh",
-  backgroundImage: `url(${imageurl})`,
+  backgroundImage: `url(/${imageurl})`,
   backgroundSize: "cover",
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
   backgroundAttachment: "fixed",
   overflowX: "hidden",
-  overflowY: "hidden",                
-  position: "fixed",                 
-  top: 0,                            
-  left: 0,  
-});
+  overflowY: "auto",
+})
 
 const BackgroundWrapper = ({ children, bgImage }) => {
   const [currentBg, setCurrentBg] = useState(bgImage || 'masterbck.jpg');
@@ -56,6 +55,7 @@ const BackgroundWrapper = ({ children, bgImage }) => {
 };
 
 const router = createBrowserRouter([
+
   {
     path: "/",
     element: (

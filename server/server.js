@@ -8,7 +8,6 @@ const verifyUser = require("./middleware/authMiddleware");
 const app = express();
 const PORT = 5000;
 
-// app.options("*", cors());
 
 app.use(cookieParser());
 app.use(
@@ -25,10 +24,7 @@ app.use(
   })
 );
 
-app.use((req, res, next) => {
-  console.log("Origin: ", req.headers.origin);
-  next();
-});
+
 
 app.use(express.json());
 
@@ -43,6 +39,15 @@ const rideRouter = require("./routes/ride");
 app.get("/verify-user", verifyUser, (req, res) => {
    console.log("Cookies:", req.cookies); 
   res.json({ message: "User verified", name: req.user.name });
+});
+
+app.get("/logout", (req, res) => {
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: true,         // only over HTTPS
+    sameSite: "lax"       // or 'none' if using cross-origin
+  });
+  res.status(200).json({ message: "Logged out successfully" });
 });
 
 app.use("/", authRouter);

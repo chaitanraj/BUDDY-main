@@ -4,6 +4,7 @@
   overflow-x: hidden;
   width: 100%;
 }
+
 .userCard, .yourInfoCard {
   width: 60%;
   max-width: 800px;
@@ -24,7 +25,8 @@
   width: 90%;
   max-width: 1400px; 
   margin: 0 auto;
-  padding: 30px; 
+  padding: 30px;
+  overflow-y: auto;
 }
 
 .header {
@@ -172,7 +174,7 @@
   justify-content: center;
   align-items: center;
   min-height: 75vh; 
-}
+} 
 
 .noMatch {
   text-align: center;
@@ -232,6 +234,29 @@
 .matchCard:nth-child(5) {
   animation-delay: 0.4s;
 }
+ /* CHAT BUTTON */
+
+ .chatButton {
+  margin-top: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  gap: 6px;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.chatButton:hover {
+  background-color: #0056b3;
+}
+
+
+
 @media (max-width: 992px) {
   .matchesGrid {
     grid-template-columns: repeat(2, 1fr); 

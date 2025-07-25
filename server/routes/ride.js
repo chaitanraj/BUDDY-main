@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const Ride = require('../models/ride');
+const verifyUser = require('../middleware/authMiddleware');
 // const authMiddleware = require('../middleware/authMiddleware');
-const verifyUser = require("../middleware/authMiddleware");
+// const verifyUser = require("../middleware/authMiddleware");
 
 
 router.post('/submit-ride', verifyUser, async (req, res) => {
@@ -10,6 +11,7 @@ router.post('/submit-ride', verifyUser, async (req, res) => {
     console.log("🚀 Reached backend route");
     
     const { name, gender, location, datetime } = req.body;
+    
     const userId = req.user.id; 
     
     if (!name || !gender || !location || !datetime || !userId) {

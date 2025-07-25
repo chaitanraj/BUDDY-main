@@ -21,13 +21,14 @@ const Card = () => {
             // const res = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
+                credentials: "include",
                 body: JSON.stringify({ email, password }),
             });
 
             // const data = await res.json();
             if (res.ok) {
                 console.log("Login successfull: ");
-                navigate("/result");
+                navigate("/");
             } else {
                 alert("Login failed");
             }

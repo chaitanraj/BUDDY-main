@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
+const verifyUser = require("../middleware/authMiddleware");
 
 // Sign up
 router.post("/signup", async (req, res) => {
@@ -32,10 +33,12 @@ router.post("/login", async (req, res) => {
   }, process.env.JWT_SECRET, {
     expiresIn: "1d",
   });
+
+  
   res.cookie("token", token, {
-    httpOnly: false,
-    secure: false,
-    sameSite: "Lax",
+    httpOnly: true,
+    secure: true,
+    sameSite: "None",
     maxAge: 24 * 60 * 60 * 1000,
   });
 
