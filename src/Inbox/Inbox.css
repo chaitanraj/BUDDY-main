@@ -1,0 +1,43 @@
+.inbox-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 7vh;
+  width: 80%;
+  background-color: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.2);
+}
+.inbox-container h1{
+    margin-top: 0;
+    text-decoration: underline;
+}
+
+.inbox-container p{
+    margin-top: 3vh;
+    font-size: 3vh;
+    font-weight: 500;
+
+}
+
+.conversation-list {
+  list-style: none;
+  padding: 0;
+}
+
+.conversation-item {
+  border-bottom: 1px solid #ccc;
+  padding: 1rem 0;
+}
+
+.conv-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.last-message {
+  color: gray;
+}

@@ -12,8 +12,6 @@ const SearchResult = () => {
   const navigate = useNavigate();
   const [chatWith, setChatWith] = useState(null);
 
-
-
   console.log("Location state:", responseData);
 
   const hasMatches = responseData &&
@@ -108,7 +106,6 @@ const SearchResult = () => {
                       <FaComments size={20} />
                       &nbsp; Send Message
                     </button>
-                
 
                   </div>
                 );

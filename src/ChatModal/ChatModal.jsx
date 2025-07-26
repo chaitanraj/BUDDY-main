@@ -4,7 +4,7 @@ import styles from './ChatModal.module.css';
 const ChatModal = ({ user1, user2, onClose }) => {
     const [message, setMessage] = useState('');
     const [sent, setSent] = useState(false);
-    const [isOpen, setIsOpen] = useState(true); // Start with true since modal is being rendered
+    const [isOpen, setIsOpen] = useState(true);
 
     useEffect(() => {
         if (isOpen) {
@@ -22,16 +22,23 @@ const ChatModal = ({ user1, user2, onClose }) => {
         if (message.trim() === '') return;
 
         // TODO: Save to backend/inbox
+
+        const from = user1.name;
+        const to = user2.name;
+        const messageContent =  message ;
+
         console.log('Message sent:', {
-            from: user1.name,
-            to: user2.name,
-            content: message,
+            from,
+            to,
+            message
         });
 
         setSent(true);
-        setMessage(''); // Clear message after sending
-        // Optionally close modal after sending
-        // onClose();
+        messageSend(from, to, message);
+
+        // setTimeout(() => {
+        //     onClose();
+        // }, 2000);
     };
 
     const handleClose = () => {
@@ -39,36 +46,74 @@ const ChatModal = ({ user1, user2, onClose }) => {
         onClose();
     };
 
+    const messageSend=async(from,to,message)=>{
+    try{
+         const res = await fetch("http://localhost:5000/inbox", {
+            // const res = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
+                body: JSON.stringify({ from, to,message }),
+            });
+             if (res.ok) {
+                console.log("Message sent successfully ");
+            } else {
+                alert("Inbox rendering failed");
+            }
+        } catch (err) {
+            console.error("Error:", err);
+            alert("Server error");
+        }
+    }
+
     return (
         <div className={styles.modalOverlay}>
             <div className={styles.chatContainer}>
-                <h2 className={styles.chatHeader}>
-                    Send message to {user2?.name || 'Ride Buddy'}
-                </h2>
-                
-                <div className={styles.inputSection}>
-                    <input
-                        type="text"
-                        value={message}
-                        placeholder="Type a message..."
-                        onChange={(e) => setMessage(e.target.value)} // Fixed variable name
-                        className={styles.inputBox}
-                    />
-                    <div className={styles.modalButtons}>
-                        <button 
-                            className={styles.sendButton} 
-                            onClick={handleSend}
+                {sent ? (
+
+                    <div className={styles.sentContainer}>
+                        <p className={styles.sentMessage}>Message sent!</p>
+                        <h2>{message}</h2>
+
+                        <button
+                            className={styles.cancelBtn}
+                            onClick={handleClose}
                         >
-                            Send
-                        </button>
-                        <button 
-                            className={styles.cancelBtn} 
-                            onClick={handleClose} // Fixed function calls
-                        >
-                            Cancel
+                            Okay
                         </button>
                     </div>
-                </div>
+                ) : (
+
+                    <>
+                        <h2 className={styles.chatHeader}>
+                            Send message to {user2?.name || 'Ride Buddy'}
+                        </h2>
+
+                        <div className={styles.inputSection}>
+                            <input
+                                type="text"
+                                value={message}
+                                placeholder="Type a message..."
+                                onChange={(e) => setMessage(e.target.value)}
+                                className={styles.inputBox}
+                            />
+                            <div className={styles.modalButtons}>
+                                <button
+                                    className={styles.sendButton}
+                                    onClick={()=>{handleSend();messageSend()}}
+                                >
+                                    Send
+                                </button>
+                                <button
+                                    className={styles.cancelBtn}
+                                    onClick={handleClose}
+                                >
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </>
+                )}
             </div>
         </div>
     );

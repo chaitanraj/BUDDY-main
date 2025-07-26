@@ -3,7 +3,6 @@ import "./Loginresult.css";
 import { useNavigate } from 'react-router-dom';
 import { jwtDecode } from 'jwt-decode';
 
-
 const Loginresult = () => {
   const navigate = useNavigate();
   const [name, setName] = useState('');
@@ -21,6 +20,7 @@ const Loginresult = () => {
       setSuggestions([]);
       return;
     }
+
 
     try {
       const response = await fetch(
@@ -44,6 +44,7 @@ const Loginresult = () => {
     setSuggestions([]);
   };
 
+  
 const handleSubmit = async (e) => {
   e.preventDefault();
   console.log("🧠 Submit clicked");

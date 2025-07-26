@@ -118,7 +118,28 @@ margin-top:1vh;
 .sendButton:hover {
   background-color: #218838;
 }
-
+.sentContainer{
+    gap: 2vh;
+   display: flex;
+   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.sentMessage {
+  margin-top: 2vh;
+    color: #096e62;
+    font-size: 3.5vh;
+    /* margin: 10px 0; */
+    text-align: center;
+    font-weight: 700;
+}
+.sentContainer h2{
+  font-size: 3vh;
+  margin: 0;
+  padding: 0;
+  color: #000;
+  opacity: 0.5;
+}
 @media (max-width: 768px) {
   .chat-container {
     padding: 1.5rem;

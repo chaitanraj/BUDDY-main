@@ -12,7 +12,6 @@ const Home = () => {
       // fetch(`${import.meta.env.VITE_API_URL}/verify-user`,{
         fetch("http://localhost:5000/verify-user", {
             method: "GET",
-      
             credentials: "include",
         })
             .then((res) => {

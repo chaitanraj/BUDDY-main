@@ -35,6 +35,7 @@ mongoose
 
 const authRouter = require("./routes/auth");
 const rideRouter = require("./routes/ride");
+const InboxRouter=require('./routes/inbox');
 
 app.get("/verify-user", verifyUser, (req, res) => {
    console.log("Cookies:", req.cookies); 
@@ -52,6 +53,7 @@ app.get("/logout", (req, res) => {
 
 app.use("/", authRouter);
 app.use("/api/rides", rideRouter);
+app.use("/inbox", InboxRouter);
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);

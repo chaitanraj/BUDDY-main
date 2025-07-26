@@ -13,6 +13,7 @@ import About from './About/About.jsx'
 import Feedback from './Feedback/Feedback.jsx'
 import { useState, useEffect } from 'react'
 import Chat from './Chat/Chat.jsx';
+import Inbox from './Inbox/Inbox.jsx';
 
 
 export const mystyle = (imageurl) => ({
@@ -122,6 +123,16 @@ const router = createBrowserRouter([
       <BackgroundWrapper bgImage="masterbck.jpg">
         <Navbar />
         <Feedback />
+        <Footer />
+      </BackgroundWrapper>
+    )
+  },
+  {
+    path: "/inbox",
+    element: (
+      <BackgroundWrapper bgImage="masterbck.jpg">
+        <Navbar />
+        <Inbox />
         <Footer />
       </BackgroundWrapper>
     )

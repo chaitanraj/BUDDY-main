@@ -1,5 +1,4 @@
 import React from "react";
-// import logo from "/logo.jpg";
 import styles from "./Navbar.module.css";
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from "react";
@@ -8,7 +7,27 @@ import Hambergermenu from "./Hambergermenu.jsx";
 
 const Navbar = () => {
     const navigate = useNavigate();
+    const [user,setUser]=useState(null);
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth >= 800);
+
+     useEffect(() => {
+          // fetch(`${import.meta.env.VITE_API_URL}/verify-user`,{
+            fetch("http://localhost:5000/verify-user", {
+                method: "GET",
+                credentials: "include",
+            })
+                .then((res) => {
+                    if (!res.ok)
+                        throw new Error("Not authenticated")
+                    return res.json();
+                })
+                .then((data) => {
+                    setIsAuthenticated(true);
+                    setUser(data.name);
+                    console.log("Successfull Login")
+                })
+        }, []);
 
     useEffect(() => {
         const handleResize = () => {
@@ -29,7 +48,7 @@ const Navbar = () => {
                     LET'S FIND YOUR RIDE PARTNER
                 </div> */}
                 <div className={styles.aTag}>
-                    <NavLink to="/" className={styles.navlink}>Home</NavLink>
+                    <NavLink to="/inbox" className={styles.navlink}>Inbox</NavLink>
                     <NavLink to="/about" className={styles.navlink}>About</NavLink>
                     <NavLink to="/feedback" className={styles.navlink}>Feedback</NavLink>
                 </div>
