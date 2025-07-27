@@ -48,6 +48,7 @@ const ChatModal = ({ user1, user2, onClose }) => {
 
     const messageSend=async(from,to,message)=>{
     try{
+        console.log({ from, to, message });
          const res = await fetch("http://localhost:5000/inbox", {
             // const res = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
                 method: "POST",
@@ -100,7 +101,7 @@ const ChatModal = ({ user1, user2, onClose }) => {
                             <div className={styles.modalButtons}>
                                 <button
                                     className={styles.sendButton}
-                                    onClick={()=>{handleSend();messageSend()}}
+                                   onClick={handleSend}
                                 >
                                     Send
                                 </button>
