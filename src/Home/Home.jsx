@@ -25,6 +25,8 @@ const Home = () => {
                 console.log("Successfull Login")
             })
     }, []);
+
+    
     const handleLogout = async () => {
         try {
             const res = await fetch("http://localhost:5000/logout", {

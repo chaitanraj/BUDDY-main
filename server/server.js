@@ -36,6 +36,8 @@ mongoose
 const authRouter = require("./routes/auth");
 const rideRouter = require("./routes/ride");
 const InboxRouter=require('./routes/inbox');
+console.log("✅ InboxRouter loaded", typeof InboxRouter); 
+
 
 app.get("/verify-user", verifyUser, (req, res) => {
    console.log("Cookies:", req.cookies); 

@@ -14,7 +14,28 @@ import Feedback from './Feedback/Feedback.jsx'
 import { useState, useEffect } from 'react'
 import Chat from './Chat/Chat.jsx';
 import Inbox from './Inbox/Inbox.jsx';
+// import Chat from './Chat/Chat.jsx'
 
+const [isAuthenticated, setIsAuthenticated] = useState(false);
+const [user, setUser] = useState(null);
+const [loading, setLoading] = useState(true);
+ useEffect(() => {
+      // fetch(`${import.meta.env.VITE_API_URL}/verify-user`,{
+        fetch("http://localhost:5000/verify-user", {
+            method: "GET",
+            credentials: "include",
+        })
+            .then((res) => {
+                if (!res.ok)
+                    throw new Error("Not authenticated")
+                return res.json();
+            })
+            .then((data) => {
+                setIsAuthenticated(true);
+                setUser(data.name);
+                console.log("Successfull Login")
+            })
+    }, []);
 
 export const mystyle = (imageurl) => ({
   width: "100vw",
@@ -129,6 +150,16 @@ const router = createBrowserRouter([
   },
   {
     path: "/inbox",
+    element: (
+      <BackgroundWrapper bgImage="masterbck.jpg">
+        <Navbar />
+        <Inbox currentUser={user}/>
+        <Footer />
+      </BackgroundWrapper>
+    )
+  },
+  {
+    path: "/chat",
     element: (
       <BackgroundWrapper bgImage="masterbck.jpg">
         <Navbar />

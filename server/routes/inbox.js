@@ -16,4 +16,34 @@ router.post('/',async(req,res)=>{
   }
 })
 
-module.exports=router;
+
+
+router.get('/:user', async (req, res) => {
+  const currentUser = req.params.user;
+
+  try {
+    const messages = await Inbox.find({
+      $or: [{ from: currentUser }, { to: currentUser }]
+    }).sort({ createdAt: -1 });
+
+    const conversationMap = new Map();
+
+    for (const msg of messages) {
+      const otherUser = msg.from === currentUser ? msg.to : msg.from;
+
+      if (!conversationMap.has(otherUser)) {
+        conversationMap.set(otherUser, {
+          username: otherUser,
+          latestMessage: msg.message,
+          latestTimestamp: msg.createdAt
+        });
+      }
+    }
+    const conversations = Array.from(conversationMap.values());
+    res.json(conversations);
+
+  } catch (err) {
+    console.error("Error fetching inbox contacts:", err);
+    res.status(500).json({ error: "Failed to fetch inbox contacts" });
+  }
+});

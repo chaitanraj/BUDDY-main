@@ -10,7 +10,6 @@ const Chat = () => {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
 
-  // Dummy fetch: In real use, fetch chat history here
   useEffect(() => {
     if (user1 && user2) {
       console.log("Starting chat between:", user1.name, "and", user2.name);
