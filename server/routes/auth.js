@@ -2,9 +2,9 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const User = require("../models/user");
+const User = require("../models/User");
 const verifyUser = require("../middleware/authMiddleware");
-
+console.log('Auth router loaded');
 // Sign up
 router.post("/signup", async (req, res) => {
   const { name, email, password, gender } = req.body;
@@ -18,8 +18,10 @@ router.post("/signup", async (req, res) => {
   return res.status(201).json({ message: "User created" });
 });
 
+
 // Login
 router.post("/login", async (req, res) => {
+    console.log('Login route hit');
   const { email, password } = req.body;
   const user = await User.findOne({ email });
   if (!user) return res.status(404).json({ message: "User not found" });
@@ -28,11 +30,12 @@ router.post("/login", async (req, res) => {
   if (!isMatch) return res.status(400).json({ message: "Invalid credentials" });
 
   const token = jwt.sign({
-    id: user._id,
+    userId: user._id,
     name: user.name
   }, process.env.JWT_SECRET, {
     expiresIn: "1d",
   });
+  
 
   res.cookie("token", token, {
     httpOnly: true,

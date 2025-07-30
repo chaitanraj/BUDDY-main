@@ -10,6 +10,7 @@ const PORT = 5000;
 
 
 app.use(cookieParser());
+
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -24,19 +25,21 @@ app.use(
   })
 );
 
-
-
 app.use(express.json());
+
+
+const authRouter = require("./routes/auth");
+const rideRouter = require("./routes/ride");
+const InboxRouter=require('./routes/inbox');
+
+app.use("/", authRouter);
+app.use("/api/rides", rideRouter);
+app.use("/inbox", InboxRouter);
 
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("✅ Connected to MongoDB"))
   .catch((err) => console.error("❌ MongoDB connection error:", err));
-
-const authRouter = require("./routes/auth");
-const rideRouter = require("./routes/ride");
-const InboxRouter=require('./routes/inbox');
-console.log("✅ InboxRouter loaded", typeof InboxRouter); 
 
 
 app.get("/verify-user", verifyUser, (req, res) => {
@@ -47,15 +50,13 @@ app.get("/verify-user", verifyUser, (req, res) => {
 app.get("/logout", (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
-    secure: true,         // only over HTTPS
-    sameSite: "lax"       // or 'none' if using cross-origin
+    secure: true,         
+    sameSite: "lax"       
   });
   res.status(200).json({ message: "Logged out successfully" });
 });
 
-app.use("/", authRouter);
-app.use("/api/rides", rideRouter);
-app.use("/inbox", InboxRouter);
+
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);

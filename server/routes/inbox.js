@@ -1,49 +1,75 @@
-const express=require('express')
-const router=express.Router()
-const Inbox=require("../models/inbox")
+const express = require('express')
+const router = express.Router()
+const Inbox = require("../models/inbox")
+const verifyUser = require("../middleware/authMiddleware");
 
-router.post('/',async(req,res)=>{
-  console.log("Required Body: ",req.body);
-    try{
-    const{from,to,message}=req.body;
-    const inbox=new Inbox({from,to,message});
+router.post("/", verifyUser, async (req, res) => {
+  const { to, message } = req.body;
+  const from = req.user._id; // comes from verifyUser JWT middleware
 
-    await inbox.save();
-    return res.status(201).json({ message: "Inbox created" });
-    } catch (err) {
-    console.error('Error saving inbox message:', err);
-    return res.status(500).json({ error: 'Internal server error' });
+  if (!to || !message) {
+    return res.status(400).json({ error: "Recipient and message are required." });
   }
-})
-
-
-
-router.get('/:user', async (req, res) => {
-  const currentUser = req.params.user;
 
   try {
-    const messages = await Inbox.find({
-      $or: [{ from: currentUser }, { to: currentUser }]
-    }).sort({ createdAt: -1 });
+    const newMessage = new Inbox({
+      from,
+      to,
+      message,
+    });
 
-    const conversationMap = new Map();
-
-    for (const msg of messages) {
-      const otherUser = msg.from === currentUser ? msg.to : msg.from;
-
-      if (!conversationMap.has(otherUser)) {
-        conversationMap.set(otherUser, {
-          username: otherUser,
-          latestMessage: msg.message,
-          latestTimestamp: msg.createdAt
-        });
-      }
-    }
-    const conversations = Array.from(conversationMap.values());
-    res.json(conversations);
-
+    await newMessage.save();
+    res.status(201).json({ message: "Message sent." });
   } catch (err) {
-    console.error("Error fetching inbox contacts:", err);
-    res.status(500).json({ error: "Failed to fetch inbox contacts" });
+    console.error("Error sending message:", err);
+    res.status(500).json({ error: "Server error." });
   }
 });
+
+
+
+// router.get("/",verifyUser, async (req, res) => {    console.log("📥 Inbox GET route hit");
+//   console.log("User from middleware:", req.user);
+
+//   const userId = req.user._id;
+
+//   try {
+//     const messages = await Inbox.find({
+//       $or: [{ from: userId }, { to: userId }],
+//     }).populate("from to", "name email"); // populate name/email of both sides
+
+//     // Group by unique users the current user talked to
+//     const conversations = {};
+
+//     messages.forEach((msg) => {
+//       const partner =
+//         msg.from._id.toString() === userId.toString()
+//           ? msg.to
+//           : msg.from;
+
+//       // Always update if this message is newer
+//       if (!conversations[partner._id] || msg.timestamp > conversations[partner._id].latestTimestamp) {
+//         conversations[partner._id] = {
+//           partnerId: partner._id,
+//           username: partner.name,
+//           latestMessage: msg.message,
+//           latestTimestamp: msg.timestamp,
+//         };
+//       }
+//     });
+
+//     res.json(Object.values(conversations));
+//   } catch (err) {
+//     console.error("Inbox fetch error:", err);
+//     res.status(500).json({ error: "Could not fetch inbox." });
+//   }
+// });
+
+
+router.get("/", (req, res) => {
+  console.log("📥 SIMPLE INBOX GET HIT - NO MIDDLEWARE");
+  res.json({ test: "inbox get working", timestamp: new Date() });
+});
+
+module.exports = router;
+

@@ -5,13 +5,27 @@ const Inbox = ({ currentUser }) => {
   const [conversations, setConversations] = useState([]);
 
   useEffect(() => {
+    if (!currentUser) return; 
+
     const fetchInbox = async () => {
       try {
-        const res = await fetch(`http://localhost:5000/inbox/${currentUser}`);
+        console.log("🔍 Fetching inbox...");
+        const res = await fetch("http://localhost:5000/inbox", {
+          method: 'GET', // explicitly set method
+          credentials: "include",
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch inbox");
+        }
+
         const data = await res.json();
-        setConversations(data); // Array of { username, latestMessage, latestTimestamp }
-      } catch (error) {
-        console.error("Failed to fetch inbox:", error);
+        setConversations(data);
+      } catch (err) {
+        console.error("Inbox fetch error:", err.message);
       }
     };
 
@@ -19,7 +33,6 @@ const Inbox = ({ currentUser }) => {
   }, [currentUser]);
 
   const handleOpenChat = (conv) => {
-    // You can open a chat modal or navigate to a chat page here
     console.log(`Open chat with ${conv.username}`);
   };
 

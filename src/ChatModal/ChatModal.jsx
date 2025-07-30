@@ -21,8 +21,6 @@ const ChatModal = ({ user1, user2, onClose }) => {
     const handleSend = () => {
         if (message.trim() === '') return;
 
-        // TODO: Save to backend/inbox
-
         const from = user1.name;
         const to = user2.name;
         const messageContent =  message ;
@@ -54,7 +52,8 @@ const ChatModal = ({ user1, user2, onClose }) => {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 credentials: "include",
-                body: JSON.stringify({ from, to,message }),
+                body: JSON.stringify({  to: user2._id,
+                         message: message, }),
             });
              if (res.ok) {
                 console.log("Message sent successfully ");
