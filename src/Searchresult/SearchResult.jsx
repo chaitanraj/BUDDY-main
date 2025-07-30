@@ -69,15 +69,16 @@ const SearchResult = () => {
                 : 'Your Ride Buddy'}
             </h3>
             <div className={styles.matchesGrid}>
-                  {chatWith && (
-                      <ChatModal
-                        user1={userData}
-                        user2={chatWith}
-                        onClose={() => setChatWith(null)}
-                      />
-                    )}
+              {chatWith && (
+                <ChatModal
+                  user1={userData}
+                  user2={chatWith}
+                  onClose={() => setChatWith(null)}
+                />
+              )}
               {matches.map((match, index) => {
                 const matchData = match.user || match;
+
                 const matchId = matchData._id || matchData.matchId || `match-${index}`;
 
                 const handleChatClick = () => {

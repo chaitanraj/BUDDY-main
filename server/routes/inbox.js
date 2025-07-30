@@ -4,8 +4,18 @@ const Inbox = require("../models/inbox")
 const verifyUser = require("../middleware/authMiddleware");
 
 router.post("/", verifyUser, async (req, res) => {
+  console.log("📨 POST /inbox route hit");
+  console.log("req.user:", req.user);
+  console.log("BODY:", req.body);
+   
   const { to, message } = req.body;
-  const from = req.user._id; // comes from verifyUser JWT middleware
+  const from = req.user._id || req.user.id;
+   
+  console.log("📨 Message details:", {
+    from: from,
+    to: to,
+    message: message
+  });
 
   if (!to || !message) {
     return res.status(400).json({ error: "Recipient and message are required." });
@@ -19,57 +29,85 @@ router.post("/", verifyUser, async (req, res) => {
     });
 
     await newMessage.save();
+    console.log("✅ Message saved:", newMessage);
     res.status(201).json({ message: "Message sent." });
   } catch (err) {
-    console.error("Error sending message:", err);
+    console.error("❌ Error sending message:", err);
     res.status(500).json({ error: "Server error." });
   }
 });
 
+router.get("/", verifyUser, async (req, res) => {
+  console.log("📥 Inbox GET route hit");
+  
+  const userId = req.user._id || req.user.id;
+  const userIdString = userId.toString();
+  console.log("🔍 Current user ID:", userIdString);
 
+  try {
+   
+    const messages = await Inbox.find({
+      $or: [{ from: userId }, { to: userId }],
+    }).populate("from to", "name email username")
+      .sort({ timestamp: -1 }); 
 
-// router.get("/",verifyUser, async (req, res) => {    console.log("📥 Inbox GET route hit");
-//   console.log("User from middleware:", req.user);
+    console.log("🔍 Found messages:", messages.length);
 
-//   const userId = req.user._id;
+    
+    const conversations = {};
 
-//   try {
-//     const messages = await Inbox.find({
-//       $or: [{ from: userId }, { to: userId }],
-//     }).populate("from to", "name email"); // populate name/email of both sides
+    messages.forEach((msg) => {
+     
+      if (!msg.from || !msg.to) {
+        console.log("⚠️ Skipping message with missing user data: from=" + !!msg.from + ", to=" + !!msg.to);
+        return;
+      }
 
-//     // Group by unique users the current user talked to
-//     const conversations = {};
+      const partner = msg.from._id.toString() === userIdString ? msg.to : msg.from;
+      const partnerId = partner._id.toString();
 
-//     messages.forEach((msg) => {
-//       const partner =
-//         msg.from._id.toString() === userId.toString()
-//           ? msg.to
-//           : msg.from;
+      if (!conversations[partnerId]) {
+        conversations[partnerId] = {
+          partnerId: partnerId,
+          username: partner.name || partner.username || partner.email || 'Unknown User',
+          messages: [], 
+          latestTimestamp: msg.timestamp,
+        };
+      }
 
-//       // Always update if this message is newer
-//       if (!conversations[partner._id] || msg.timestamp > conversations[partner._id].latestTimestamp) {
-//         conversations[partner._id] = {
-//           partnerId: partner._id,
-//           username: partner.name,
-//           latestMessage: msg.message,
-//           latestTimestamp: msg.timestamp,
-//         };
-//       }
-//     });
+      conversations[partnerId].messages.push({
+        id: msg._id,
+        message: msg.message,
+        timestamp: msg.timestamp,
+        fromMe: msg.from._id.toString() === userIdString, 
+        from: {
+          id: msg.from._id,
+          username: msg.from.name || msg.from.username || msg.from.email
+        },
+        to: {
+          id: msg.to._id,
+          username: msg.to.name || msg.to.username || msg.to.email
+        }
+      });
 
-//     res.json(Object.values(conversations));
-//   } catch (err) {
-//     console.error("Inbox fetch error:", err);
-//     res.status(500).json({ error: "Could not fetch inbox." });
-//   }
-// });
+      if (msg.timestamp > conversations[partnerId].latestTimestamp) {
+        conversations[partnerId].latestTimestamp = msg.timestamp;
+      }
+    });
 
+    Object.values(conversations).forEach(conversation => {
+      conversation.messages.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
+    });
 
-router.get("/", (req, res) => {
-  console.log("📥 SIMPLE INBOX GET HIT - NO MIDDLEWARE");
-  res.json({ test: "inbox get working", timestamp: new Date() });
+    const conversationArray = Object.values(conversations);
+    console.log("🔍 Final conversations:", conversationArray.length);
+    console.log("🔍 Conversation partners:", conversationArray.map(c => `${c.username} (${c.messages.length} messages)`));
+
+    res.json(conversationArray);
+  } catch (err) {
+    console.error("❌ Inbox fetch error:", err);
+    res.status(500).json({ error: "Could not fetch inbox." });
+  }
 });
 
-module.exports = router;
-
+module.exports=router;

@@ -2,8 +2,6 @@ const express = require('express');
 const router = express.Router();
 const Ride = require('../models/ride');
 const verifyUser = require('../middleware/authMiddleware');
-// const authMiddleware = require('../middleware/authMiddleware');
-// const verifyUser = require("../middleware/authMiddleware");
 
 
 router.post('/submit-ride', verifyUser, async (req, res) => {
@@ -12,7 +10,8 @@ router.post('/submit-ride', verifyUser, async (req, res) => {
     
     const { name, gender, location, datetime } = req.body;
     
-    const userId = req.user.id; 
+    const userId = req.user.id.toString();
+
     
     if (!name || !gender || !location || !datetime || !userId) {
       return res.status(400).json({ error: "Missing required fields" });
@@ -23,7 +22,7 @@ router.post('/submit-ride', verifyUser, async (req, res) => {
       return res.status(400).json({ error: "Invalid datetime format" });
     }
     
-    // Create the new ride
+    
     const newRide = await Ride.create({
       name,
       gender,
@@ -47,22 +46,24 @@ router.post('/submit-ride', verifyUser, async (req, res) => {
     if (potentialMatches && potentialMatches.length > 0) {
       
       const userData = {
+        _id: userId,
         name: name,
         location: location,
         date: rideDate.toLocaleDateString(),
         time: rideDate.toLocaleTimeString(),
         gender: gender
       };
-      
+
   
       const matches = potentialMatches.map(match => ({
+        _id: match.userId,
         name: match.name,
         location: match.location,
         date: new Date(match.datetime).toLocaleDateString(),
         time: new Date(match.datetime).toLocaleTimeString(),
         gender: match.gender
       }));
-      
+
       return res.status(200).json({
         userData,
         matches,

@@ -234,6 +234,16 @@
 .matchCard:nth-child(5) {
   animation-delay: 0.4s;
 }
+
+.disabledButton {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: #ccc;
+}
+
+.disabledButton:hover {
+  background-color: #ccc;
+}
  /* CHAT BUTTON */
 
  .chatButton {

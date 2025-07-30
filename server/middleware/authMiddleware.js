@@ -26,6 +26,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
 const verifyUser = async (req, res, next) => {
+  console.log("Cookies received:", req.cookies);
   const token = req.cookies?.token;
   if (!token) return res.status(401).json({ error: "No token." });
 
