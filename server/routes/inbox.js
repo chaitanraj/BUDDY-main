@@ -45,7 +45,6 @@ router.get("/", verifyUser, async (req, res) => {
   console.log("🔍 Current user ID:", userIdString);
 
   try {
-   
     const messages = await Inbox.find({
       $or: [{ from: userId }, { to: userId }],
     }).populate("from to", "name email username")
@@ -53,11 +52,9 @@ router.get("/", verifyUser, async (req, res) => {
 
     console.log("🔍 Found messages:", messages.length);
 
-    
     const conversations = {};
 
     messages.forEach((msg) => {
-     
       if (!msg.from || !msg.to) {
         console.log("⚠️ Skipping message with missing user data: from=" + !!msg.from + ", to=" + !!msg.to);
         return;
@@ -75,11 +72,14 @@ router.get("/", verifyUser, async (req, res) => {
         };
       }
 
+      // ✅ Fixed: Match frontend expected format
       conversations[partnerId].messages.push({
         id: msg._id,
         message: msg.message,
         timestamp: msg.timestamp,
-        fromMe: msg.from._id.toString() === userIdString, 
+        sender: msg.from._id.toString() === userIdString ? 'you' : partnerId, // ✅ Fixed format
+        // Optional: Keep original data for debugging
+        fromMe: msg.from._id.toString() === userIdString,
         from: {
           id: msg.from._id,
           username: msg.from.name || msg.from.username || msg.from.email
@@ -90,18 +90,26 @@ router.get("/", verifyUser, async (req, res) => {
         }
       });
 
+      // ✅ Update latest timestamp correctly
       if (msg.timestamp > conversations[partnerId].latestTimestamp) {
         conversations[partnerId].latestTimestamp = msg.timestamp;
       }
     });
 
+    // ✅ Sort messages chronologically within each conversation
     Object.values(conversations).forEach(conversation => {
       conversation.messages.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
     });
 
-    const conversationArray = Object.values(conversations);
+    // ✅ Sort conversations by latest message timestamp (most recent first)
+    const conversationArray = Object.values(conversations).sort((a, b) => 
+      new Date(b.latestTimestamp) - new Date(a.latestTimestamp)
+    );
+
     console.log("🔍 Final conversations:", conversationArray.length);
-    console.log("🔍 Conversation partners:", conversationArray.map(c => `${c.username} (${c.messages.length} messages)`));
+    console.log("🔍 Conversation partners:", conversationArray.map(c => 
+      `${c.username} (${c.messages.length} messages, latest: ${c.latestTimestamp})`
+    ));
 
     res.json(conversationArray);
   } catch (err) {
