@@ -13,7 +13,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "buddy-ride.vercel.app",
+    origin: "https://buddy-ride.vercel.app",
     credentials: true,
   })
 );
