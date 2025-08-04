@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const User = require("../models/User");
+const User = require("../models/user");
 
 const verifyUser = async (req, res, next) => {
   console.log("Cookies received:", req.cookies);
