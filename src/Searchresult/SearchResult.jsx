@@ -13,6 +13,7 @@ const SearchResult = () => {
   const [chatWith, setChatWith] = useState(null);
 
   console.log("Location state:", responseData);
+  console.log("The receiver", chatWith);
 
   const hasMatches = responseData &&
     (Array.isArray(responseData.matches) || responseData.user2);
@@ -27,14 +28,12 @@ const SearchResult = () => {
     );
   }
 
-
   let matches = [];
   if (Array.isArray(responseData.matches)) {
     matches = responseData.matches;
   } else if (responseData.user2) {
     matches = [{ user: responseData.user2 }];
   } else if (Array.isArray(responseData)) {
-
     matches = responseData;
   }
 
@@ -79,9 +78,13 @@ const SearchResult = () => {
               {matches.map((match, index) => {
                 const matchData = match.user || match;
 
-                const matchId = matchData._id || matchData.matchId || `match-${index}`;
+                console.log(`🔍 Match ${index} data:`, matchData);
+                console.log(`🔍 Match ${index} _id:`, matchData._id);
+                console.log(`🔍 Match ${index} all keys:`, Object.keys(matchData));
 
                 const handleChatClick = () => {
+                  console.log(`🚀 Setting chatWith to:`, matchData);
+                  console.log(`🚀 matchData._id:`, matchData._id);
                   setChatWith(matchData);
                 };
 
@@ -95,6 +98,7 @@ const SearchResult = () => {
                       <p><strong>Location:</strong> {matchData.location || "N/A"}</p>
                       <p><strong>Date:</strong> {matchData.date || "N/A"}</p>
                       <p><strong>Time:</strong> {matchData.time || "N/A"}</p>
+                      <p><strong>Debug ID:</strong> {matchData._id || "NO _ID FOUND"}</p>
                       {matchData.gender && (
                         <p><strong>Gender:</strong> {matchData.gender.charAt(0).toUpperCase() + matchData.gender.slice(1)}</p>
                       )}
@@ -107,7 +111,6 @@ const SearchResult = () => {
                       <FaComments size={20} />
                       &nbsp; Send Message
                     </button>
-
                   </div>
                 );
               })}

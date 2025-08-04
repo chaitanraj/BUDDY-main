@@ -46,8 +46,10 @@ const ChatModal = ({ user1, user2, onClose }) => {
         if (message.trim() === '') return;
 
         const to = user2._id;
-
-        console.log('Message sent:', {
+        console.log('🔍 FULL user2 object:', user2);
+        console.log('🔍 user2._id (recipient):', to);
+        console.log('🔍 Is this the correct recipient ID?');
+        console.log('Message sent: FRONTEND', {
             to,
             message
         });

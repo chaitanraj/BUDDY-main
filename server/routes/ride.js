@@ -56,7 +56,7 @@ router.post('/submit-ride', verifyUser, async (req, res) => {
 
   
       const matches = potentialMatches.map(match => ({
-        _id: match.userId,
+       _id: match.userId, 
         name: match.name,
         location: match.location,
         date: new Date(match.datetime).toLocaleDateString(),

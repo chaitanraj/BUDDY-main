@@ -88,7 +88,6 @@ body,html{
   flex-direction: column;
   padding: 5px;
   margin-bottom: 15px;
- 
   opacity: 0;
   transform: translateX(-20px);
   animation: slideInFromLeft 0.4s ease-out forwards;
@@ -106,6 +105,7 @@ body,html{
   font-size: larger;
   font-weight: bold;
   margin-bottom: 5px;
+  margin-left: 2.5vh;
 }
 
 .detailField input {
@@ -115,8 +115,8 @@ body,html{
   border: 1px solid #f4ebeb;
   border-radius: 9999px;
   outline: none;
-  
   box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+  margin-left: 2.5vh;
 }
 
 
@@ -124,8 +124,6 @@ body,html{
   margin-left: 5px;
   transform: scale(1.2);
   box-shadow: none;
-
-
 }
 
 .logincard {

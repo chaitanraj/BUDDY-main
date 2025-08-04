@@ -95,11 +95,11 @@ const Navbar = () => {
                 </div>
                 {isAuthenticated && (
                     <div className="profile-container" ref={dropdownRef} onClick={toggleMenu}>
-                        <div className="profile-name">
+                        {/* <div className="profile-name">
                             <img className="usericon" src={img} alt="user" />
                             {user}
                             <img className="usericon" src={dropdown} alt="dropdown" />
-                        </div>
+                        </div> */}
                         {showMenu && (
                             <div className="dropdown-menu">
                                 {/* <div className="menu-item" onClick={(e) => { e.stopPropagation(); handleLogout(); }}>Logout</div> */}

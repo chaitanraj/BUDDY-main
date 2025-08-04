@@ -1,8 +1,11 @@
+/* General Styles */
 * {
   box-sizing: border-box;
 }
 
-.loading-container {
+/* Loading and Error States */
+.loading-container,
+.error-container {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,11 +20,16 @@
   z-index: 1000;
 }
 
+.error-container > div {
+  text-align: center;
+}
+
 .error-text {
   color: #ff4444;
   font-weight: 500;
 }
 
+/* Inbox Container */
 .inbox-container {
   position: fixed;
   top: 50%;
@@ -38,6 +46,7 @@
   overflow: hidden;
 }
 
+/* Inbox Header */
 .inbox-header {
   background-color: #25D366;
   color: white;
@@ -58,6 +67,7 @@
   margin: 0;
 }
 
+/* Conversations List */
 .conversations-list {
   background-color: white;
   height: calc(100% - 80px);
@@ -152,6 +162,7 @@
   font-weight: 500;
 }
 
+/* Empty States */
 .empty-inbox,
 .empty-chat {
   padding: 32px;
@@ -159,6 +170,7 @@
   color: #666;
 }
 
+/* Chat Container */
 .chat-container {
   position: fixed;
   top: 50%;
@@ -177,6 +189,7 @@
   overflow: hidden;
 }
 
+/* Chat Header */
 .chat-header {
   background-color: #25D366;
   color: white;
@@ -232,6 +245,7 @@
   opacity: 0.9;
 }
 
+/* Messages Container */
 .messages-container {
   flex: 1;
   overflow-y: auto;
@@ -285,6 +299,7 @@
   opacity: 0.7;
 }
 
+/* Input Container */
 .input-container {
   background-color: white;
   padding: 16px;
@@ -334,6 +349,7 @@
   cursor: not-allowed;
 }
 
+/* Responsive Design */
 @media (max-width: 480px) {
   .inbox-container,
   .chat-container {
@@ -355,7 +371,7 @@
   }
 }
 
-
+/* Scrollbar Styling */
 .messages-container::-webkit-scrollbar,
 .conversations-list::-webkit-scrollbar {
   width: 6px;
@@ -377,6 +393,7 @@
   background: #a8a8a8;
 }
 
+/* login button  */
 
 .login-container {
   display: flex;
@@ -388,8 +405,8 @@
 
 .button1 {
   border: 3px solid red;
-  margin: 0px;
-  height: 14vh;
+  margin: 12px;
+  height: 13vh;
   width: 30vw;
   min-width: 250px;
   border-radius: 8px;
