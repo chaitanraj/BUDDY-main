@@ -63,17 +63,14 @@
 }
 
 .yourInfoCard {
-  /* background-color: rgba(9, 104, 73, 0.4); */
   background:rgba(33, 33, 33, 0.5) ;
   box-shadow: 15px 15px 30px rgb(25, 25, 25),
     -15px -15px 30px rgb(60, 60, 60);
 
-  /* border: 2px solid #135841; */
   border: 2px solid #0b0b0b;
   border-radius: 12px;
   padding: 25px;
   margin-bottom: 40px;
-  /* box-shadow: 0 0 20px rgba(16, 185, 129, 0.4); */
   box-shadow: 0 0 20px rgba(28, 31, 30, 0.4);
   backdrop-filter: blur(5px);
   width: 40vw;
@@ -302,7 +299,9 @@
   .container {
     padding: 15px;
   }
-  
+  .yourInfoCard{
+    width: 80vw;
+  }
   .header {
     font-size: 1.75rem;
     margin-bottom: 25px;

@@ -1,15 +1,15 @@
 .subscribe {
+  display: flex;
+  justify-content: center;
   position: relative;
-  height: 15vh;
+  height: 18vh;
   width: 40vh;
-  padding: 20px;
   background-color: #FFF;
   border-radius: 4px;
   color: #333;
   box-shadow: 0px 0px 60px 5px rgba(0, 0, 0, 0.4);
   transform: translateY(20px);
   animation: fadeInUp 0.9s ease-out forwards;
-  /* transition: transform 0.3s ease; */
 }
 
 
@@ -19,10 +19,6 @@
     transform: translateY(0);
   }
 }
-
-
-
-
 
 .feedbackdiv{
    display: grid;
@@ -43,11 +39,10 @@
 }
 
 .subscribe h1 {
-  text-align: center;
+  /* text-align: center; */
   font-size: 4vh;
   font-weight: bold;
-  /* letter-spacing: 4px; */
-  line-height: 28px;
+  /* line-height: 28px; */
 }
 
 .subscribe textarea {
@@ -55,13 +50,11 @@
   bottom: 30px;
   border: none;
   border-bottom: 1px solid #d4d4d4;
-  padding: 1.5vh;
+  padding: 1.0vh;
   width: 80%;
   background: transparent;
   transition: all .25s ease;
 }
-
-
 
 .subscribe textarea:focus {
   outline: none;

@@ -78,10 +78,6 @@ const SearchResult = () => {
               {matches.map((match, index) => {
                 const matchData = match.user || match;
 
-                console.log(`🔍 Match ${index} data:`, matchData);
-                console.log(`🔍 Match ${index} _id:`, matchData._id);
-                console.log(`🔍 Match ${index} all keys:`, Object.keys(matchData));
-
                 const handleChatClick = () => {
                   console.log(`🚀 Setting chatWith to:`, matchData);
                   console.log(`🚀 matchData._id:`, matchData._id);
@@ -98,7 +94,6 @@ const SearchResult = () => {
                       <p><strong>Location:</strong> {matchData.location || "N/A"}</p>
                       <p><strong>Date:</strong> {matchData.date || "N/A"}</p>
                       <p><strong>Time:</strong> {matchData.time || "N/A"}</p>
-                      <p><strong>Debug ID:</strong> {matchData._id || "NO _ID FOUND"}</p>
                       {matchData.gender && (
                         <p><strong>Gender:</strong> {matchData.gender.charAt(0).toUpperCase() + matchData.gender.slice(1)}</p>
                       )}

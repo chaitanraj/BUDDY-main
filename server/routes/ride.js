@@ -3,7 +3,6 @@ const router = express.Router();
 const Ride = require('../models/ride');
 const verifyUser = require('../middleware/authMiddleware');
 
-
 router.post('/submit-ride', verifyUser, async (req, res) => {
   try {
     console.log("🚀 Reached backend route");
@@ -12,7 +11,6 @@ router.post('/submit-ride', verifyUser, async (req, res) => {
     
     const userId = req.user.id.toString();
 
-    
     if (!name || !gender || !location || !datetime || !userId) {
       return res.status(400).json({ error: "Missing required fields" });
     }
@@ -21,7 +19,6 @@ router.post('/submit-ride', verifyUser, async (req, res) => {
     if (isNaN(rideDate.getTime())) {
       return res.status(400).json({ error: "Invalid datetime format" });
     }
-    
     
     const newRide = await Ride.create({
       name,

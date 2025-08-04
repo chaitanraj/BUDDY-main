@@ -9,8 +9,8 @@ const Home = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-      // fetch(`${import.meta.env.VITE_API_URL}/verify-user`,{
-        fetch("http://localhost:5000/verify-user", {
+      fetch(`${import.meta.env.VITE_API_URL}/verify-user`,{
+        // fetch("http://localhost:5000/verify-user", {
             method: "GET",
             credentials: "include",
         })
@@ -29,7 +29,7 @@ const Home = () => {
     
     const handleLogout = async () => {
         try {
-            const res = await fetch("http://localhost:5000/logout", {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/logout)`, {
                 method: "GET",
                 credentials: "include",
             });

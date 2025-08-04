@@ -261,14 +261,12 @@ html, body {
   }
 }
 
-/* RESPONSIVE MEDIA QUERY */
 
 @media  (max-width: 950px)  {
   .titlebuddy {
     margin-left: 20vh;
     margin-top: 15vh;
-    /* font-size: 10vh; */
-  }
+    }
 
   .button1 {
     width: 15vw;

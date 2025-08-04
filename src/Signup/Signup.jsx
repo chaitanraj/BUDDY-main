@@ -29,9 +29,8 @@ const Signup = () => {
       return;
     }
     try {
-      console.log("API URL →", import.meta.env.VITE_API_URL);
-      // const res = await fetch(`${import.meta.env.VITE_API_URL}/signup`, {
-      const res = await fetch("http://localhost:5000/signup", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/signup`, {
+      // const res = await fetch("http://localhost:5000/signup", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),

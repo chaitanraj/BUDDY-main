@@ -13,17 +13,11 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: (origin, callback) => {
-      const allowedOrigins = ["http://localhost:5173"];
-      if (allowedOrigins.includes(origin) || !origin) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: "buddy-ride.vercel.app",
     credentials: true,
   })
 );
+
 
 app.use(express.json());
 
@@ -31,10 +25,12 @@ app.use(express.json());
 const authRouter = require("./routes/auth");
 const rideRouter = require("./routes/ride");
 const InboxRouter=require('./routes/inbox');
+const feedbackRouter=require('./routes/feedback')
 
 app.use("/", authRouter);
 app.use("/api/rides", rideRouter);
 app.use("/inbox", InboxRouter);
+app.use("/feedback",feedbackRouter)
 
 mongoose
   .connect(process.env.MONGO_URI)
