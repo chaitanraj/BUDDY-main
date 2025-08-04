@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Inbox.css';
+import { useNavigate } from 'react-router-dom';
 
 const Inbox = () => {
   const [conversations, setConversations] = useState([]);
@@ -7,6 +8,8 @@ const Inbox = () => {
   const [error, setError] = useState(null);
   const [selectedChat, setSelectedChat] = useState(null);
   const [newMessage, setNewMessage] = useState('');
+  
+    const navigate=useNavigate();
 
   useEffect(() => {
     const fetchInbox = async () => {

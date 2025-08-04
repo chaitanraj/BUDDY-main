@@ -430,3 +430,12 @@
   transition: 500ms;
   transform: scale(1.2);
 }
+
+/* Resposnive Behaviour */
+@media screen and (max-width: 480px) {
+.button1 {
+  height: 13vh;
+  width: 80vw;
+  font-size: 1.2rem;
+}
+}

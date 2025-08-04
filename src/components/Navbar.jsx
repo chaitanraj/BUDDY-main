@@ -10,6 +10,8 @@ import dropdown from "../pics/dropdown.png"
 
 
 const Navbar = () => {
+    
+const navigate=useNavigate();
     return (
         
             <div className={styles.navbar}>

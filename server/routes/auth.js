@@ -9,6 +9,7 @@ console.log('Auth router loaded');
 
 // Sign up
 router.post("/signup", async (req, res) => {
+  console.log('Signup route hit');
   const { name, email, password, gender } = req.body;
   const existingUser = await User.findOne({ email });
   if (existingUser)
