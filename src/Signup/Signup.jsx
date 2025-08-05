@@ -3,6 +3,7 @@ import styles from "./Signup.module.css";
 
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
+
 const Signup = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -28,21 +29,55 @@ const Signup = () => {
       alert("Please fill in all the fields.");
       return;
     }
+
     try {
       const res = await fetch(`${import.meta.env.VITE_API_URL}/signup`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+        },
+        credentials: 'include', // Add this if you're using cookies
         body: JSON.stringify(formData),
       });
-      const data = await res.json();
-      if (res.ok) {
+
+      // Check if the response is ok first
+      if (!res.ok) {
+        // Try to get error message if response is JSON
+        const contentType = res.headers.get('content-type');
+        if (contentType && contentType.includes('application/json')) {
+          const errorData = await res.json();
+          alert(errorData.message || `Signup failed: ${res.status}`);
+        } else {
+          // If not JSON, it might be HTML error page
+          const errorText = await res.text();
+          console.error('Server error:', errorText);
+          alert(`Signup failed: ${res.status} - ${res.statusText}`);
+        }
+        return;
+      }
+
+      // Only parse JSON if response is ok
+      const contentType = res.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        const data = await res.json();
         alert("Signup successful!");
         navigate("/");
       } else {
-        alert(data.message || "Signup failed");
+        // Handle case where server returns success but not JSON
+        alert("Signup successful!");
+        navigate("/");
       }
+
     } catch (error) {
-      console.error("Error:", error);
+      console.error("Network or parsing error:", error);
+      
+      // Check if it's a JSON parsing error
+      if (error.message.includes('JSON')) {
+        alert("Server response error. Please try again.");
+      } else {
+        // Network error or server unreachable
+        alert("Network error. Please check your connection and try again.");
+      }
     }
   };
 
