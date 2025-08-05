@@ -31,6 +31,17 @@ const rideRouter = require("./routes/ride");
 const InboxRouter = require('./routes/inbox');
 const feedbackRouter = require('./routes/feedback');
 
+// Logout route
+app.get("/logout", (req, res) => {
+  console.log("🔥 Logout route hit!");
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "None" 
+  });
+  res.status(200).json({ message: "Logged out successfully" });
+});
+
 app.use("/", authRouter);
 app.use("/api/rides", rideRouter);
 app.use("/inbox", InboxRouter);
@@ -48,15 +59,7 @@ app.get("/verify-user", verifyUser, (req, res) => {
   res.json({ message: "User verified", name: req.user.name });
 });
 
-// Logout route
-app.get("/logout", (req, res) => {
-  res.clearCookie("token", {
-    httpOnly: true,
-    secure: true,
-    sameSite: "None" // Changed from "lax" to "None" for cross-origin
-  });
-  res.status(200).json({ message: "Logged out successfully" });
-});
+
 
 // Start server
 app.listen(PORT, () => {

@@ -29,7 +29,7 @@ const Home = () => {
     
     const handleLogout = async () => {
         try {
-            const res = await fetch(`${import.meta.env.VITE_API_URL}/logout)`, {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/logout`, {
                 method: "GET",
                 credentials: "include",
             });
@@ -47,7 +47,6 @@ const Home = () => {
             console.error("Error during logout:", err);
         }
     };
-
 
     return (
         <div>
