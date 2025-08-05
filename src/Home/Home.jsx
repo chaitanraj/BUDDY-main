@@ -9,8 +9,8 @@ const Home = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-      fetch(`${import.meta.env.VITE_API_URL}/verify-user`,{
-        // fetch("http://localhost:5000/verify-user", {
+    //   fetch(`${import.meta.env.VITE_API_URL}/verify-user`,{
+        fetch("http://localhost:5000/verify-user", {
             method: "GET",
             credentials: "include",
         })
@@ -38,6 +38,7 @@ const Home = () => {
                 setIsAuthenticated(false);
                 setUser(null);
                 navigate("/"); 
+                
                 console.log("Logout successful");
             } else {
                 console.log("Logout failed");
@@ -71,19 +72,17 @@ const Home = () => {
                     <div className={styles.welcome1}>
                         Welcome {user}!
                     </div>
-                    <div className="userbutton">
                         <div className={styles.optionsbutton}>
                             <button onClick={() => navigate("/result")} className={styles.button1}>Create RIDE!</button>
                             <button onClick={handleLogout} className={styles.button1}>Logout!</button>
                         </div>
-                    </div>
                 </>
             ) : (
                 <>
 
-                    <div className={styles.optionsbutton}>
-                        <button onClick={() => navigate("/login")} className={styles.button1}>LOGIN</button>
-                        <button onClick={() => navigate("/signup")} className={styles.button1}>SIGN-UP</button>
+                    <div className={styles.optionsbutton1}>
+                        <button onClick={() => navigate("/login")} className={styles.button2}>LOGIN</button>
+                        <button onClick={() => navigate("/signup")} className={styles.button2}>SIGN-UP</button>
                     </div>
                 </>
 

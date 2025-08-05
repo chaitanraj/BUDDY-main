@@ -27,7 +27,6 @@ const Inbox = () => {
         }
         const data = await res.json();
         console.log("📥 Received inbox data:", data);
-       
         setConversations(data);
         setError(null);
       } catch (err) {
@@ -241,11 +240,11 @@ if (error) {
                   <span className="conversation-message-count">
                     {conv.messages ? conv.messages.length : 0} messages
                   </span>
-                  {conv.partnerId && (
+                  {/* {conv.partnerId && (
                     <span className="conversation-user-id">
                       ID: {conv.partnerId}
                     </span>
-                  )}
+                  )} */}
                 </div>
               </div>
             </div>

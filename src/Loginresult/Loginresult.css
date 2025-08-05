@@ -252,3 +252,19 @@
   }
   
 }
+@media screen and (max-width: 480px) {
+  .result {
+    width: 35rem;
+    height: 35rem;
+  }
+  .resultheader{
+    font-size: x-large;
+  }
+  .resultfield label {
+    font-size: large;
+  }
+  .resultfield input {
+    padding: 0.7rem;
+  }
+  
+}

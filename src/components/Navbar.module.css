@@ -79,7 +79,6 @@
     cursor: pointer;
 }
 
-
 /* Responsive   */
 @media (min-width:600px) and (max-width: 768px) {
     .navbar {
@@ -107,16 +106,16 @@
         height: 4vh;
         width: 12vh;
     }
+    .navbar .navlink{
+        margin: 0 0.3rem;
+        font-size: 0.85rem;
+    }
 
     .tagLine {
         /* font-size: 0.85rem; */
         display: none;
     }
 
-    .navbar .navlink {
-        font-size: 0.85rem;
-        /* margin: 0.25rem; */
-    }
 
     .logoItem {
         font-size: 1rem;

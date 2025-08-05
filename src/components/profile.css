@@ -6,6 +6,7 @@
   cursor: pointer;
   color: white;
   font-weight: bold;
+  /* font-size: larger; */
 }
 
 .usericon {
@@ -80,9 +81,12 @@
     height: 3vh;
     width: 3.5vw;
   }
+.profile-name{
+  padding: 0px;
+}
 
-  .profile-name {
-    font-size: 0.7rem;
-    font-weight: 600;
-  }
+.profile-container {
+  font-size: 2vh;
+}
+
 }

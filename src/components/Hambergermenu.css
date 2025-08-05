@@ -54,3 +54,98 @@ input[type]:checked ~ span.middle {
   transform: translateX(-20px);
   opacity: 0;
 }
+/* Animation when hamburger is clicked */
+input[type="checkbox"]:checked ~ span.top {
+  transform: rotate(45deg);
+  transform-origin: top left;
+  width: 30px;
+  left: 5px;
+}
+
+input[type="checkbox"]:checked ~ span.bottom {
+  transform: rotate(-45deg);
+  transform-origin: top left;
+  width: 30px;
+  bottom: -2px;
+  box-shadow: 0 0 10px #495057;
+}
+
+input[type="checkbox"]:checked ~ span.middle {
+  transform: translateX(-20px);
+  opacity: 0;
+}
+
+/* Dropdown Menu Styles */
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100vw; 
+  background-color: #333;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transform: translateY(-100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+.dropdown-menu.open {
+  transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+.nav-links {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+.navlink {
+  display: block;
+  padding: 15px 30px;
+  color: #f1faee;
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 700;
+  border-bottom: 1px solid rgba(241, 250, 238, 0.1);
+  transition: all 0.3s ease;
+}
+
+.navlink:hover {
+  background-color: rgba(29, 32, 28, 0.1);
+  color: #fff;
+  padding-left: 40px;
+}
+
+.navlink:last-child {
+  border-bottom: none;
+}
+
+
+.navlink.active {
+  background-color: rgba(241, 250, 238, 0.2);
+  color: #fff;
+}
+
+/* Responsive adjustments */
+/* @media (max-width: 768px) {
+  .dropdown-menu {
+    width: 100vw;
+    left: 0;
+    right: auto;
+  }
+  
+  .navlink {
+    font-size: 16px;
+    padding: 12px 20px;
+  }
+}
+
+
+.navbar .hamburger-container .dropdown-menu {
+  width: 100%;
+  left: 0;
+  right: auto;
+} */

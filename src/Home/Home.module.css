@@ -91,31 +91,40 @@ html, body {
   transform: translateY(-40px) scale(0.95);
   animation: titleEntrance 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards;
 }
+
 .welcome1 {
+  position: absolute;
+  top: 22%; 
+  right: 15vh; 
   font-size: 3.5rem;
-  font-weight: 700;
-  color: #000000; /* Black text */
+  font-weight: 800;
+  color: #000000;
   text-align: center;
-  margin: 2rem 0;
+  text-decoration: underline;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-  font-family: 'Georgia', 'Times New Roman', serif; /* Classic serif font */
+  font-family: 'Georgia', 'Times New Roman', serif;
   letter-spacing: 0.5px;
-  margin-left: 100vh;
-  order: -1;
+  padding: 1rem;
+  /* background-color: rgba(255, 255, 255, 0.9);  */
+  opacity: 0;
+  transform: translateY(-20px);
+  max-width: 33vw;
+  animation: fadeInUp 0.4s ease-out 1s forwards;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
 }
 
-/* .welcome1{
-  display: flex;
-  margin-left: 105vh;
-  margin-top: 20vh;
-  align-items: center;
-  color: rgb(137, 12, 12);
-  font-size: 12vh;
-  opacity: 0;
-  transform: translateY(-40px) scale(0.95);
-  animation: titleEntrance 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards;
-} */
-
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 .descriptionbuddy {
   margin-top: 10vh;
   margin-left: 5vh;
@@ -136,13 +145,13 @@ html, body {
 }
 
 .optionsbutton {
-  position: absolute;
-  top: 40%;
+  position:absolute;
+  top: 50%;
   left: 50vh;
   right: 0;
   display: flex;
   justify-content: center;
-  gap: 5vh;
+  gap: 3.8vh;
   width: 100%;
   align-items: center;
   flex-direction: column;
@@ -260,7 +269,60 @@ html, body {
     transform: translateY(0) scale(1);
   }
 }
+.optionsbutton1 {
+  position:absolute;
+  top: 35%;
+  left: 50vh;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 3.8vh;
+  width: 100%;
+  align-items: center;
+  flex-direction: column;
+  opacity: 0.9;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeUp 0.5s ease-out 0.5s forwards;
+}
 
+
+.button2 {
+  border: 3px solid red;
+  margin: 12px;
+  height: 12vh;
+  width: 18vw;
+  border-radius: 8px;
+  background: #000000;
+  box-shadow: -5px -5px 15px #444, 5px 5px 15px #222, inset 5px 5px 10px #444,
+    inset -5px -5px 10px #222;
+  cursor: pointer;
+  border: none;
+  font-size: 1.8rem;
+  color: white;
+  transition: 500ms;
+  font-weight: 600;
+  padding: 0.75rem 1.5rem;
+  transition: transform 0.1s ease-in-out;
+}
+
+.button2:hover {
+  box-shadow: -5px -5px 15px #444, 5px 5px 15px #222, inset 5px 5px 10px #222,
+    inset -5px -5px 10px #444;
+  color: #000000;
+  background-color: #1c85e8;
+  transition: 500ms;
+  transform: scale(1.2);
+  animation: buttonEntrance 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.button2:nth-child(1) {
+  animation-delay: 0.5s;
+}
+
+.button2:nth-child(2) {
+  animation-delay: 0.6s;
+}
 
 @media  (max-width: 950px)  {
   .titlebuddy {
@@ -288,28 +350,13 @@ html, body {
 }
 
 @media  (min-width: 950px) and (max-width: 1230px) {
-  /* .titlebuddy {
-    margin-left: 24vh;
-    margin-top: 15vh;
-  }
 
-  .button1 {
-    width: 15vw;
-    height: 10vh;
-    font-size: 1rem;
-  } 
-
-  .descriptionbuddy {
-    margin-left: 5vh;
-    font-size: 1rem;
-    overflow-wrap: break-word;
-    word-wrap: break-word;
-  }
-
-  .heading {
-    margin-left: 10vh;
-    font-size: 2rem;
-  } */
+   .welcome1 {
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
    .titlebuddy {
     margin-left: 25vh;
     margin-top: 15vh;
@@ -433,12 +480,7 @@ html, body {
 
 
 @media (max-width: 600px) {
-  /* .titlebuddy {
-    font-size: 5vh;
-    margin-left: 2vh;
-    margin-top: 3vh;
-  }*/
-
+  
   .descriptionbuddy {
     margin-left: 4%;
     margin-top: 1.5vh;
@@ -450,9 +492,24 @@ html, body {
     font-size: 1rem;
     margin: 6px;
   }
+}
+@media (max-width: 490px) {
+    .button1 {
+    width: 40vw;
+    font-size: 1.2rem;
+    font-weight: 550;
+  }
 
-  /* .optionsbutton {
-    gap: 1.5vh;
-    margin-top: 8vh;
-  } */
+  .optionsbutton{
+    top:60%;
+    flex-direction: row;
+  }
+  .welcome1{
+    top: 55%;
+    right: 2vh;
+    font-size: 2.7rem;
+    max-width: 90vw;
+  }
+  
+
 }
