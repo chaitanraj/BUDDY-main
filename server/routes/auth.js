@@ -39,12 +39,13 @@ router.post("/login", async (req, res) => {
   });
   
 
-  res.cookie("token", token, {
-    httpOnly: true,
-    secure: true,
-    sameSite: "None",
-    maxAge: 24 * 60 * 60 * 1000,
-  });
+
+res.cookie("token", token, {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === 'production', 
+  sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
+  maxAge: 24 * 60 * 60 * 1000,
+});
 
   console.log("Token Done", token)
   return res.json({ token, user: { name: user.name, email: user.email } });
