@@ -10,27 +10,19 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cookieParser());
-app.options("*", cors());
 app.use(
   cors({
-    origin: [
-      "https://buddy-ride.vercel.app",  
-      "http://localhost:5173",        
-      "http://localhost:3000",         
-      "http://127.0.0.1:5173"        
-    ],
+    origin: (origin, callback) => {
+      const allowedOrigins = ["http://localhost:5173"];
+      if (allowedOrigins.includes(origin) || !origin) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: [
-      'Content-Type', 
-      'Authorization', 
-      'X-Requested-With',
-      'Accept',
-      'Origin'
-    ]
   })
 );
-
 app.use(express.json());
 
 // Routes
