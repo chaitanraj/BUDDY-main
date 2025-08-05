@@ -37,7 +37,6 @@ const Home = () => {
             if (res.ok) {
                 setIsAuthenticated(false);
                 setUser(null);
-                // window.location.href = "/";
                 navigate("/"); 
                 console.log("Logout successful");
             } else {
