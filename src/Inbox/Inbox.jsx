@@ -13,6 +13,10 @@ const Inbox = () => {
 
   useEffect(() => {
     const fetchInbox = async () => {
+      console.log('🌍 Current window location:', window.location.href);
+      console.log('🔧 Environment mode:', import.meta.env.MODE);
+      console.log('🔗 VITE_API_URL:', import.meta.env.VITE_API_URL);
+      console.log('📡 Constructed URL:', `${import.meta.env.VITE_API_URL}/inbox`);
       try {
          const res = await fetch(`${import.meta.env.VITE_API_URL}/inbox`, {
           method: 'GET',
