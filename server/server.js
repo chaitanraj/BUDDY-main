@@ -13,7 +13,7 @@ app.use(cookieParser());
 app.use(
   cors({
     origin: (origin, callback) => {
-      const allowedOrigins = ["http://localhost:5173"];
+      const allowedOrigins = ["http://localhost:5173","https://buddy-ride.vercel.app"];
       if (allowedOrigins.includes(origin) || !origin) {
         callback(null, true);
       } else {
