@@ -1,100 +1,258 @@
-.top{
-    display: flex;
-    justify-content: center;
-    align-items: center;     
-    gap: 10rem;              
-    height: 80vh;
-    flex-wrap: wrap; 
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Poppins:wght@600&display=swap');
+
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  width: 100%;
+  height: 100%;
+  font-family: 'Poppins', sans-serif;
 }
 
- /* 
-  .card-container {
-    position: relative;
-    width: 12rem;   
-    height: 16rem;  
-    background-color: #3d3c3d;
-    background-color: rgba(0, 0, 0, 0.25);
-    overflow: hidden;
-    border-radius: 1rem;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
-  }
-  
-  .card-content {
-    font-family: 'Times New Roman', Times, serif;
-    position: absolute;
-    inset: 2px;
-    background-color: #323132;
-    border-radius: 1rem;
-    opacity: 0.9;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: bold;
-  }
-  
-  .card-glow {
-    position: absolute;
-    width: 14rem;   
-    height: 12rem;  
-    background-color: white;
-    filter: blur(50px);
-    top: -50%;
-    left: -50%;
-  }
-   */
+.headwrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem 0;
+}
 
-   .card {
-    width: 190px;
-    height: 254px;
-    background: #07182E;
-    position: relative;
-    display: flex;
-    place-content: center;
-    place-items: center;
-    overflow: hidden;
-    border-radius: 20px;
-    color: white;
+.top {
+  gap: 10rem;
+  flex-wrap: wrap;
+}
+
+.card-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3vh;
+}
+
+.card {
+  width: 30vh;
+  height: 10vh;
+  background: #07182E;
+  position: relative;
+  display: grid;
+  place-content: center;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 20px;
+  color: white;
+  opacity: 0.9;
+  font-size: 1.1rem;
+  font-weight: bolder;
+}
+
+.card p {
+  z-index: 1;
+  color: white;
+  font-size: 1.4em;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  width: 100px;
+  background-image: linear-gradient(180deg, rgb(0, 183, 255), rgb(255, 48, 255));
+  height: 130%;
+  animation: rotBGimg 3s linear infinite;
+  transition: all 0.2s linear;
+}
+
+@keyframes rotBGimg {
+  from {
+    transform: rotate(0deg);
   }
-  
-  .card p {
-    z-index: 1;
-    color: white;
-    font-size: 1.4em;
+
+  to {
+    transform: rotate(360deg);
   }
-  
-  .card::before {
-    content: '';
-    position: absolute;
-    width: 100px;
-    background-image: linear-gradient(180deg, rgb(0, 183, 255), rgb(255, 48, 255));
-    height: 130%;
-    animation: rotBGimg 3s linear infinite;
-    transition: all 0.2s linear;
+}
+
+.card::after {
+  content: '';
+  position: absolute;
+  background: #131313;
+  inset: 5px;
+  border-radius: 15px;
+}
+
+.data {
+  background-color: rgb(0, 0, 0);
+  color: whitesmoke;
+  border: solid black 1px;
+  border-radius: 20px;
+  width: 80vw;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-top: 5vh;
+  margin-bottom: 3vh;
+  font-family: 'Poppins', sans-serif;
+  opacity: 0.9;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+
+.data .data1 p {
+  margin: 1rem 0;
+  line-height: 1.6;
+}
+
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.features {
+  transform: scale(0.85);
+  transform-origin: top center;
+  width: 118vw;
+  margin: 0 -9vw;
+  padding-bottom: 4rem;
+}
+
+
+@media screen and (max-width: 480px) {
+  .headwrap {
+    padding: 1rem 0.5rem;
   }
-  
-  @keyframes rotBGimg {
-    from {
-      transform: rotate(0deg);
-    }
-  
-    to {
-      transform: rotate(360deg);
-    }
+
+  .top {
+    gap: 3rem;
+    flex-direction: column;
+    align-items: center;
   }
-  
-  .card::after {
-    content: '';
-    position: absolute;
-    background: #131313;
-    ;
-    inset: 5px;
+
+  .card-container {
+    margin-top: 2vh;
+  }
+
+  .card, .card1 {
+    width: 35vw;
+    height: 12vh;
+    min-width: 140px;
+    min-height: 80px;
+    font-size: 0.9rem;
     border-radius: 15px;
-  }  
-  /* .card:hover:before {
-    background-image: linear-gradient(180deg, rgb(81, 255, 0), purple);
-    animation: rotBGimg 3.5s linear infinite;
-  } */
-  
-  
+  }
+
+  .card ,.card1 p {
+    font-size: 1.1em;
+    padding: 0 0.5rem;
+    text-align: center;
+  }
+
+  .card, .card1::after {
+    inset: 3px;
+    border-radius: 12px;
+  }
+
+  .data, .data1  {
+    height: 50vh;
+    width: 90vw;
+    font-size: 1.2rem;
+    padding: 1.5rem 1rem;
+    margin-top: 3vh;
+    margin-bottom: 2vh;
+    border-radius: 15px;
+  }
+
+  .data p {
+    margin: 0.8rem 0;
+    line-height: 1.5;
+  }
+
+  .features {
+    transform: scale(0.95);
+    width: 105vw;
+    margin: 0 -2.5vw;
+    padding-bottom: 2rem;
+  }
+
+  .fetauresdata {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.featuresdata {
+  display: flex;
+  gap: 10vh;
+}
+
+.data1 {
+  height: 32vh;
+  width: 35vw;
+  font-size: 1.5rem;
+  color: white;
+  background-color: rgb(0, 0, 0);
+  /* color: whitesmoke; */
+  border: solid black 1px;
+  border-radius: 20px;
+  text-align: center;
+  margin-top: 5vh;
+  margin-bottom: 3vh;
+  font-family: 'Poppins', sans-serif;
+  opacity: 0.9;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+
+
+.card1 {
+  width: 36vh;
+  height: 13vh;
+  font-size:1.5rem;
+  background: #07182E;
+  position: relative;
+  display: grid;
+  place-content: center;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 20px;
+  color: white;
+  opacity: 0.9;
+  font-weight: bolder;
+}
+
+.card1 p {
+  z-index: 1;
+  color: white;
+  font-size: 1.4em;
+}
+
+.card1::before {
+  content: '';
+  position: absolute;
+  width: 100px;
+  background-image: linear-gradient(180deg, rgb(0, 183, 255), rgb(255, 48, 255));
+  height: 130%;
+  animation: rotBGimg 3s linear infinite;
+  transition: all 0.2s linear;
+}
+
+@keyframes rotBGimg {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.card1::after {
+  content: '';
+  position: absolute;
+  background: #131313;
+  inset: 5px;
+  border-radius: 15px;
+}

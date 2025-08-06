@@ -1,9 +1,8 @@
 import React from "react";
 import styles from "./Navbar.module.css";
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useState, useEffect,useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import './Hambergermenu'
-import Hambergermenu from "./Hambergermenu.jsx";
 import "./profile.css";
 import img from "../pics/user.png"
 import dropdown from "../pics/dropdown.png"
@@ -13,8 +12,8 @@ const Navbar = () => {
     const [user, setUser] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isMobile, setIsMobile] = useState(window.innerWidth >= 800);
-    // window.location.href = "/";
-
+    const [showMenu, setShowMenu] = useState(false);
+    const dropdownRef = useRef(null);
 
     useEffect(() => {
         // fetch(`${import.meta.env.VITE_API_URL}/verify-user`,{
@@ -34,7 +33,6 @@ const Navbar = () => {
             })
     }, []);
     
-
     useEffect(() => {
         const handleResize = () => {
             setIsMobile(window.innerWidth >= 800);
@@ -43,8 +41,6 @@ const Navbar = () => {
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
-    const [showMenu, setShowMenu] = useState(false);
-    const dropdownRef = useRef(null);
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -66,6 +62,7 @@ const Navbar = () => {
         console.log("Toggle menu clicked, current state:", showMenu);
         setShowMenu(prev => !prev);
     };
+
     const handleLogout = async () => {
         try {
             const res = await fetch("http://localhost:5000/logout", {
@@ -76,7 +73,7 @@ const Navbar = () => {
             if (res.ok) {
                 setIsAuthenticated(false);
                 setUser(null);
-                navigate("/"); // or home
+                navigate("/");
                 console.log("Logout successful");
             } else {
                 console.log("Logout failed");
@@ -88,25 +85,26 @@ const Navbar = () => {
 
     return (
         isMobile ? (
-        
-            <div className={styles.navbar}>
+            <div className={styles.navbar} style={{overflow: 'visible'}}>
                 <div className={styles.logoItem} onClick={() => navigate("/")}>
                     <img className={styles.img} src="/logonew.png" alt="Let's find you a buddy" />
                 </div>
                 {isAuthenticated && (
-                    <div className="profile-container" ref={dropdownRef} onClick={toggleMenu}>
+                    <div 
+                        className="profile-container" 
+                        ref={dropdownRef} 
+                        onClick={toggleMenu}
+                    >
                         <div className="profile-name">
                             <img className="usericon" src={img} alt="user" />
                             {user}
                             <img className="usericon" src={dropdown} alt="dropdown" />
                         </div>
-                        {showMenu && (
-                            <div className="dropdown-menu">
-                                {/* <div className="menu-item" onClick={(e) => { e.stopPropagation(); handleLogout(); }}>Logout</div> */}
-                                <div className="menu-item" onClick={(e) => { e.stopPropagation(); navigate("/result") }}>Create Ride</div>
-                                <div className="menu-item" onClick={(e) => { e.stopPropagation(); navigate("/inbox") }}>Inbox</div>
-                            </div>
-                        )}
+                        <div className={`dropdown-menu ${showMenu ? 'show' : ''}`}>
+                            <div className="menu-item" onClick={(e) => { e.stopPropagation(); navigate("/result") }}>Create Ride</div>
+                            <div className="menu-item" onClick={(e) => { e.stopPropagation(); navigate("/inbox") }}>Inbox</div>
+                            <div className="menu-item" onClick={(e) => { e.stopPropagation(); handleLogout(); }}>Logout</div>
+                        </div>
                     </div>
                 )}
                 <div className={styles.aTag}>
@@ -120,10 +118,6 @@ const Navbar = () => {
                 <div className={styles.logoItem} onClick={() => navigate("/")}>
                     <img className={styles.img} src="/logonew.png" alt="Let's find you a buddy" />
                 </div>
-                <div className={styles.tagLine}>
-                    LET'S FIND YOUR RIDE PARTNER
-                </div>
-                <Hambergermenu />
             </div>
         )
     );

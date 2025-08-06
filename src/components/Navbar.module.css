@@ -21,8 +21,12 @@
      opacity: 0;
   transform: translateY(-10px);
   animation: fadeSlideIn 0.4s ease-out 0.2s forwards;
+     overflow: visible !important;
 }
-
+.profileContainer {
+    position: relative;
+    z-index: 9999;
+}
 @keyframes fadeSlideIn {
   0% {
     opacity: 0;
