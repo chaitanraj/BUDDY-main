@@ -2,10 +2,10 @@ import React from "react";
 import styles from "./Navbar.module.css";
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from "react";
-import './Hambergermenu'
 import "./profile.css";
 import img from "../pics/user.png"
 import dropdown from "../pics/dropdown.png"
+import Hambergermenu from "./Hambergermenu";
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -100,7 +100,7 @@ const Navbar = () => {
                             {user}
                             <img className="usericon" src={dropdown} alt="dropdown" />
                         </div>
-                        <div className={`dropdown-menu ${showMenu ? 'show' : ''}`}>
+                        <div className={`dropdown-menu2 ${showMenu ? 'show' : ''}`}>
                             <div className="menu-item" onClick={(e) => { e.stopPropagation(); navigate("/result") }}>Create Ride</div>
                             <div className="menu-item" onClick={(e) => { e.stopPropagation(); navigate("/inbox") }}>Inbox</div>
                             <div className="menu-item" onClick={(e) => { e.stopPropagation(); handleLogout(); }}>Logout</div>
@@ -114,11 +114,15 @@ const Navbar = () => {
                 </div>
             </div>
         ) : (
+            <>
             <div className={styles.navbar}>
                 <div className={styles.logoItem} onClick={() => navigate("/")}>
                     <img className={styles.img} src="/logonew.png" alt="Let's find you a buddy" />
-                </div>
+                </div>   
+                <Hambergermenu/>
             </div>
+             
+                </>
         )
     );
 }

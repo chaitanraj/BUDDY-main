@@ -38,7 +38,6 @@ const Home = () => {
                 setIsAuthenticated(false);
                 setUser(null);
                 navigate("/"); 
-                
                 console.log("Logout successful");
             } else {
                 console.log("Logout failed");

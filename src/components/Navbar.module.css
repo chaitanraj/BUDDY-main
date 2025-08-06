@@ -4,7 +4,6 @@
 }
 
 .navbar {
-    /* background: rgba(0, 0, 0, 0.7); */
      background-color: #000; 
     backdrop-filter: blur(10px);
     display: flex;

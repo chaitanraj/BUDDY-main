@@ -23,7 +23,7 @@ const About = () => {
                             <p>OUR Mission</p>
                         </div>
                     </div>
-                    <div className="data" style={{height:'25vh'}}>
+                    <div className="data2" >
                         <p>At Buddy, our mission is to make ride-sharing seamless, efficient, and secure. We aim to help users save time, reduce travel costs, and build connections—all while minimizing their environmental impact.
                         </p>
                     </div>
@@ -39,7 +39,7 @@ const About = () => {
                         </div>
                     </div>
                     <div>
-                    <div className="featuresdata">
+                <div className="featuresdata">
                     <div className="data1">
                         <h3 style={{textDecoration:'underline'}}>🧭 Location-Based Matching</h3>
                         <p>Our intelligent location-based API ensures precise pickup and drop points, making your ride planning effortless.
@@ -55,8 +55,7 @@ const About = () => {
                         <p>Quick ride creation and real-time matching help you get on the road without delay.
                         </p>
                     </div>
-                    </div>
-
+                </div>
                     </div>
                 </div>
                 </div>
