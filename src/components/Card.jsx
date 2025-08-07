@@ -1,13 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import styles from '../components/Card.module.css';
+import { AuthContext } from "../context/Authcontext";
 
 const Card = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const{login}=useContext(AuthContext);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -24,9 +26,10 @@ const Card = () => {
                 body: JSON.stringify({ email, password }),
             });
 
-            // const data = await res.json();
+            const data = await res.json();
             if (res.ok) {
                 console.log("Login successfull: ");
+                 login({ name: data.user.name });
                 navigate("/");
             } else {
                 alert("Login failed");
@@ -36,6 +39,8 @@ const Card = () => {
             alert("Server error");
         }
     };
+
+
     return (
         <div className={styles.logincard}>
             <div className={styles.login}>

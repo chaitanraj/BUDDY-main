@@ -13,6 +13,7 @@ import About from './About/About.jsx'
 import Feedback from './Feedback/Feedback.jsx'
 import { useState, useEffect } from 'react'
 import Inbox from './Inbox/Inbox.jsx';
+import { Authprovider } from './context/Authcontext.jsx'
 
 
 export const mystyle = (imageurl) => ({
@@ -154,7 +155,9 @@ const App = () => {
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <Authprovider>
     <App />
+    </Authprovider>
   </StrictMode>
 );
 

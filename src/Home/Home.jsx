@@ -1,50 +1,23 @@
 import React from "react";
 import styles from "./Home.module.css";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { AuthContext } from "../context/Authcontext";
 
 const Home = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const [user, setUser] = useState(null)
     const navigate = useNavigate();
 
+    const { isLoggedIn, username, login, logout } = useContext(AuthContext);
+       console.log("🏠 Home render - isLoggedIn:", isLoggedIn, "username:", username);
     useEffect(() => {
-    //   fetch(`${import.meta.env.VITE_API_URL}/verify-user`,{
-        fetch("http://localhost:5000/verify-user", {
-            method: "GET",
-            credentials: "include",
-        })
-            .then((res) => {
-                if (!res.ok)
-                    throw new Error("Not authenticated")
-                return res.json();
-            })
-            .then((data) => {
-                setIsAuthenticated(true);
-                setUser(data.name);
-                console.log("Successfull Login")
-            })
-    }, []);
+        setIsAuthenticated(isLoggedIn);
+        console.log("AuthContext")
+    }, [isLoggedIn]);
 
-    
-    const handleLogout = async () => {
-        try {
-            const res = await fetch(`${import.meta.env.VITE_API_URL}/logout`, {
-                method: "GET",
-                credentials: "include",
-            });
 
-            if (res.ok) {
-                setIsAuthenticated(false);
-                setUser(null);
-                navigate("/"); 
-                console.log("Logout successful");
-            } else {
-                console.log("Logout failed");
-            }
-        } catch (err) {
-            console.error("Error during logout:", err);
-        }
+    const handleLogout = async (e) => {
+        logout();
     };
 
     return (
@@ -69,12 +42,12 @@ const Home = () => {
             {isAuthenticated ? (
                 <>
                     <div className={styles.welcome1}>
-                        Welcome {user}!
+                        Welcome {username}!
                     </div>
-                        <div className={styles.optionsbutton}>
-                            <button onClick={() => navigate("/result")} className={styles.button1}>Create RIDE!</button>
-                            <button onClick={handleLogout} className={styles.button1}>Logout!</button>
-                        </div>
+                    <div className={styles.optionsbutton}>
+                        <button onClick={() => navigate("/result")} className={styles.button1}>Create RIDE!</button>
+                        <button onClick={handleLogout} className={styles.button1}>Logout!</button>
+                    </div>
                 </>
             ) : (
                 <>

@@ -32,7 +32,7 @@ const InboxRouter = require('./routes/inbox');
 const feedbackRouter = require('./routes/feedback');
 
 // Logout route
-app.get("/logout", (req, res) => {
+app.post("/logout", (req, res) => {
   console.log("🔥 Logout route hit!");
   res.clearCookie("token", {
     httpOnly: true,

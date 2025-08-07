@@ -12,6 +12,26 @@ const Hambergermenu = () => {
     const closeMenu = () => {
         setIsOpen(false);
     };
+    
+    const handleLogout = async () => {
+        try {
+            const res = await fetch("http://localhost:5000/logout", {
+                method: "GET",
+                credentials: "include",
+            });
+
+            if (res.ok) {
+                setIsAuthenticated(false);
+                setUser(null);
+                navigate("/");
+                console.log("Logout successful");
+            } else {
+                console.log("Logout failed");
+            }
+        } catch (err) {
+            console.error("Error during logout:", err);
+        }
+    };
 
     return (
         <div className="hamburger-container">
@@ -44,11 +64,11 @@ const Hambergermenu = () => {
                         About
                     </NavLink>
                     <NavLink 
-                        to="/feedback" 
+                        onSubmit={handleLogout}
                         className="navlink"
                         onClick={closeMenu}
                     >
-                        Feedback
+                        Logout
                     </NavLink>
                 </div>
             </div>

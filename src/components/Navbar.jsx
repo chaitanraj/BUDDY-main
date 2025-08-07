@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import styles from "./Navbar.module.css";
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useState, useEffect, useRef } from "react";
@@ -6,33 +6,24 @@ import "./profile.css";
 import img from "../pics/user.png"
 import dropdown from "../pics/dropdown.png"
 import Hambergermenu from "./Hambergermenu";
+import { AuthContext } from "../context/Authcontext";
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const [user, setUser] = useState(null);
+    // const [user, setUser] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+    const { isLoggedIn, username, login, logout } = useContext(AuthContext);
+
+    useEffect(() => {
+        setIsAuthenticated(isLoggedIn);
+    }, [isLoggedIn]);
+
+
     const [isMobile, setIsMobile] = useState(window.innerWidth >= 800);
     const [showMenu, setShowMenu] = useState(false);
     const dropdownRef = useRef(null);
 
-    useEffect(() => {
-        // fetch(`${import.meta.env.VITE_API_URL}/verify-user`,{
-        fetch("http://localhost:5000/verify-user", {
-            method: "GET",
-            credentials: "include",
-        })
-            .then((res) => {
-                if (!res.ok)
-                    throw new Error("Not authenticated")
-                return res.json();
-            })
-            .then((data) => {
-                setIsAuthenticated(true);
-                setUser(data.name);
-                console.log("Successfull Login")
-            })
-    }, []);
-    
     useEffect(() => {
         const handleResize = () => {
             setIsMobile(window.innerWidth >= 800);
@@ -63,41 +54,27 @@ const Navbar = () => {
         setShowMenu(prev => !prev);
     };
 
-    const handleLogout = async () => {
-        try {
-            const res = await fetch("http://localhost:5000/logout", {
-                method: "GET",
-                credentials: "include",
-            });
 
-            if (res.ok) {
-                setIsAuthenticated(false);
-                setUser(null);
-                navigate("/");
-                console.log("Logout successful");
-            } else {
-                console.log("Logout failed");
-            }
-        } catch (err) {
-            console.error("Error during logout:", err);
-        }
+    const handleLogout = async (e) => {
+        logout();
     };
+
 
     return (
         isMobile ? (
-            <div className={styles.navbar} style={{overflow: 'visible'}}>
+            <div className={styles.navbar} style={{ overflow: 'visible' }}>
                 <div className={styles.logoItem} onClick={() => navigate("/")}>
                     <img className={styles.img} src="/logonew.png" alt="Let's find you a buddy" />
                 </div>
                 {isAuthenticated && (
-                    <div 
-                        className="profile-container" 
-                        ref={dropdownRef} 
+                    <div
+                        className="profile-container"
+                        ref={dropdownRef}
                         onClick={toggleMenu}
                     >
                         <div className="profile-name">
                             <img className="usericon" src={img} alt="user" />
-                            {user}
+                            {username}
                             <img className="usericon" src={dropdown} alt="dropdown" />
                         </div>
                         <div className={`dropdown-menu2 ${showMenu ? 'show' : ''}`}>
@@ -115,14 +92,14 @@ const Navbar = () => {
             </div>
         ) : (
             <>
-            <div className={styles.navbar}>
-                <div className={styles.logoItem} onClick={() => navigate("/")}>
-                    <img className={styles.img} src="/logonew.png" alt="Let's find you a buddy" />
-                </div>   
-                <Hambergermenu/>
-            </div>
-             
-                </>
+                <div className={styles.navbar}>
+                    <div className={styles.logoItem} onClick={() => navigate("/")}>
+                        <img className={styles.img} src="/logonew.png" alt="Let's find you a buddy" />
+                    </div>
+                    <Hambergermenu />
+                </div>
+
+            </>
         )
     );
 }
