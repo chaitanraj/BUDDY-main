@@ -1,5 +1,5 @@
 .result {
-    height: 40%;
+  height: 40%;
   max-width: 400px;
   width: 150vw;
   padding: 3vh;
@@ -257,7 +257,7 @@
 @media screen and (max-width: 480px) {
   .result {
     width: 18rem;
-    height: 33rem;
+    height: 33.5rem;
   }
   .resultheader{
     font-size: large;
@@ -270,6 +270,9 @@
   }
   .resultgender label{
     font-size: 0.9rem;
+  }
+  .resultheader {
+  margin-top: -1vh;
   }
   
 }

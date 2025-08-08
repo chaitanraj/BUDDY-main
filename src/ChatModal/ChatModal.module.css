@@ -153,5 +153,19 @@ margin-top:1vh;
     padding: 1rem;
     font-size: 0.95rem;
     border-radius: 0.75rem;
+    height: 19vh;
+  }
+  .chatHeader{
+    font-size: 1rem;
+    margin-top: -1vh;
+  }
+  .inputBox{
+    padding: 4px;
+  }
+  .sendButton {
+  padding: 5px 18px;
+  }
+  .cancelBtn {
+  padding: 0.5rem 0.5rem;
   }
 }
