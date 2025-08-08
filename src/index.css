@@ -1,23 +1,19 @@
 html {
   margin: 0 !important;
   padding: 0 !important;
-  background: transparent !important;
+  background: black !important; /* Change from transparent to black */
 }
 
 body {
   margin: 0 !important;
   padding: 0 !important;
-  background: transparent !important;
+  background: black !important; /* Change from transparent to black */
 }
 
 #root {
   margin: 0 !important;
   padding: 0 !important;
-  background: transparent !important;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+  background: black !important; /* Change from transparent to black */
+  min-height: 100vh; /* Add this to ensure it fills the viewport */
+  min-width: 100vw;  /* Add this to ensure it fills the viewport */
 }
