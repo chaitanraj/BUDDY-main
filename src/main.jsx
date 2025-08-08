@@ -20,6 +20,7 @@ export const mystyle = (imageurl) => ({
   width: "100vw",
   height: "100vh",
   minHeight: "100vh",
+  backgroundColor:"black",
   backgroundImage: `url(/${imageurl})`,
   backgroundSize: "cover",
   backgroundPosition: "center",

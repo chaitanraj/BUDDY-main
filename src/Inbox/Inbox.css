@@ -438,4 +438,7 @@
   width: 80vw;
   font-size: 1.2rem;
 }
+.inbox-container{
+  height: calc(85vh - 160px);
+}
 }
