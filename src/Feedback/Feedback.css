@@ -2,8 +2,8 @@
   display: flex;
   justify-content: center;
   position: relative;
-  height: 18vh;
-  width: 40vh;
+  height: 20vh;
+  width: 45vh;
   background-color: #FFF;
   border-radius: 4px;
   color: #333;
@@ -39,10 +39,28 @@
 }
 
 .subscribe h1 {
-  /* text-align: center; */
-  font-size: 4vh;
+  margin-top: 2vh;
+  font-size: 3vh;
   font-weight: bold;
-  /* line-height: 28px; */
+}
+
+#subscribe2{
+  font-size: 3vh;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#subscribe2 h1{
+   margin-top: 1vh;
+  font-size: 1.2rem;
+}
+
+#subscribe2 h5{
+  margin-top: 0.5vh;
+  font-size: 0.7rem;
 }
 
 .subscribe textarea {
@@ -54,6 +72,7 @@
   width: 80%;
   background: transparent;
   transition: all .25s ease;
+  font-size: 1rem;
 }
 
 .subscribe textarea:focus {

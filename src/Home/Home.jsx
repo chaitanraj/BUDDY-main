@@ -9,7 +9,6 @@ const Home = () => {
     const navigate = useNavigate();
 
     const { isLoggedIn, username, login, logout } = useContext(AuthContext);
-       console.log("🏠 Home render - isLoggedIn:", isLoggedIn, "username:", username);
     useEffect(() => {
         setIsAuthenticated(isLoggedIn);
         console.log("AuthContext")
