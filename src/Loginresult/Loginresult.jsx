@@ -1,16 +1,21 @@
 import React, { useState } from 'react';
 import "./Loginresult.css";
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+
 import { jwtDecode } from 'jwt-decode';
+import { AuthContext } from '../context/Authcontext';
 
 const Loginresult = () => {
   const navigate = useNavigate();
-  const [name, setName] = useState('');
   const [location, setLocation] = useState('');
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [gender, setGender] = useState('');
   const [suggestions, setSuggestions] = useState([]);
+
+
+  const { isLoggedIn, username, login, logout } = useContext(AuthContext);
 
   const handleLocationChange = async (e) => {
     const query = e.target.value;
@@ -61,7 +66,7 @@ const handleSubmit = async (e) => {
       credentials: "include",
       method: "POST",
       body: JSON.stringify({
-        name,
+        name:username,
         gender,
         location,
         datetime
@@ -92,11 +97,7 @@ return (
       <form onSubmit={handleSubmit}>
         <div className="resultfield">
           <label>Name: </label>
-          <input type="text" placeholder="Enter your name"
-            onChange={(e) => {
-              setName(e.target.value)
-            }}
-          />
+          <input value={username} readOnly/>
         </div>
 
         <div className="resultfield" style={{ position: 'relative', zIndex: 2 }}>

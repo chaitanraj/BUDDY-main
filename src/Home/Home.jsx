@@ -9,6 +9,7 @@ const Home = () => {
     const navigate = useNavigate();
 
     const { isLoggedIn, username, login, logout } = useContext(AuthContext);
+    
     useEffect(() => {
         setIsUser(isLoggedIn);
         console.log("AuthContext")
