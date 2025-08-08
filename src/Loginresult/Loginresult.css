@@ -1,5 +1,5 @@
 .result {
-    height: 90%;
+    height: 40%;
   max-width: 400px;
   width: 150vw;
   padding: 3vh;
@@ -22,7 +22,9 @@
 
 .resultheader {
   text-align: center;
-  text-decoration: underline;
+}
+.resultheader{
+  font-size: 1.8rem;
 }
 .resultgender{
   display: flex;
@@ -58,12 +60,12 @@
 
 .resultfield input {
   width: 90%;
-  padding: 0.8rem;
+  padding: 0.5rem;
   font-size: 16px;
   border: 1px solid #f4ebeb;
   border-radius: 9999px;
   outline: none;
-  box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+  /* box-shadow: inset 2px 5px 10px rgb(5, 5, 5); */
 
 
 }

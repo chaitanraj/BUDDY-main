@@ -114,7 +114,7 @@ body,html{
   border: 1px solid #f4ebeb;
   border-radius: 9999px;
   outline: none;
-  box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+  /* box-shadow: inset 2px 5px 10px rgb(5, 5, 5); */
   /* margin-left: 2.5vh; */
 }
 

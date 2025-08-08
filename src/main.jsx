@@ -24,7 +24,7 @@ export const mystyle = (imageurl) => ({
   backgroundSize: "cover",
   backgroundPosition: "center",
   backgroundRepeat: "no-repeat",
-  backgroundAttachment: "fixed",
+  // backgroundAttachment: "fixed",
   overflowX: "hidden",
   overflowY: "auto",
   // position: "fixed",

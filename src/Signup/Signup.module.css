@@ -7,7 +7,7 @@ body,html{
   padding: 0;
 }
 .signup {
-  height: 31rem;
+  height: 33.5rem;
   width: 25rem;
   padding: 3vh;
   margin-top: 4vh;
@@ -92,7 +92,7 @@ body,html{
   border: 0.1rem solid #ffffff;
   border-radius: 9999px;
   outline: none;
-  box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
+  /* box-shadow: inset 2px 5px 10px rgb(5, 5, 5); */
 }
 
 
