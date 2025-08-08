@@ -44,7 +44,7 @@ const Card = () => {
     return (
         <div className={styles.logincard}>
             <div className={styles.login}>
-                <h1 className={styles.loginheader}>LOGIN!</h1>
+                <h1 className={styles.loginheader}>LOGIN</h1>
                 <form onSubmit={handleSubmit}>
                     <div className={styles.detailField}>
                         <label>Email-Id: </label>
@@ -63,7 +63,6 @@ const Card = () => {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </div>
-
                     <div className={styles.submitbtn}>
                         <button className={styles.btn17} type="submit">
                             <span className={styles.textcontainer}>

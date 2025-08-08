@@ -60,7 +60,6 @@ body,html{
 
 .loginheader {
   text-align: center;
-  text-decoration: underline;
   opacity: 0;
   transform: translateY(-10px);
   animation: slideInFromTop 0.5s ease-out 0.2s forwards;
@@ -375,7 +374,7 @@ body,html{
     height: 2vh;
   }
   .message {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   }
   .gender {
   font-size: large;

@@ -5,7 +5,7 @@
   font-style: italic;
 }
 
-html, body {
+ body {
   margin: 0;
   padding: 0;
   height: 100%;
@@ -272,7 +272,7 @@ html, body {
 .optionsbutton1 {
   position:absolute;
   top: 35%;
-  left: 50vh;
+  /* left: 50vh; */
   right: 0;
   display: flex;
   justify-content: center;
@@ -510,6 +510,19 @@ html, body {
     font-size: 2.7rem;
     max-width: 90vw;
   }
-  
+  .optionsbutton1 {
+ 
+  top: 55%;
+  left: 0vh;
+}
+
+
+.button2 {
+ 
+  height: 10vh;
+  width: 37vw;
+  font-size: 1.3rem;
+}
+
 
 }

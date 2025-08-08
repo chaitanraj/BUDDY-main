@@ -254,17 +254,20 @@
 }
 @media screen and (max-width: 480px) {
   .result {
-    width: 35rem;
-    height: 35rem;
+    width: 18rem;
+    height: 33rem;
   }
   .resultheader{
-    font-size: x-large;
-  }
-  .resultfield label {
     font-size: large;
   }
+  .resultfield label {
+    font-size:0.9rem;
+  }
   .resultfield input {
-    padding: 0.7rem;
+    padding: 0.4rem;
+  }
+  .resultgender label{
+    font-size: 0.9rem;
   }
   
 }

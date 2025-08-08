@@ -36,13 +36,11 @@ const Signup = () => {
         headers: { 
           "Content-Type": "application/json",
         },
-        credentials: 'include', // Add this if you're using cookies
+        credentials: 'include', 
         body: JSON.stringify(formData),
       });
 
-      // Check if the response is ok first
       if (!res.ok) {
-        // Try to get error message if response is JSON
         const contentType = res.headers.get('content-type');
         if (contentType && contentType.includes('application/json')) {
           const errorData = await res.json();
@@ -56,30 +54,20 @@ const Signup = () => {
         return;
       }
 
-      // Only parse JSON if response is ok
-      const contentType = res.headers.get('content-type');
       if (contentType && contentType.includes('application/json')) {
         const data = await res.json();
         alert("Signup successful!");
         navigate("/");
       } else {
-        // Handle case where server returns success but not JSON
         alert("Signup successful!");
         navigate("/");
       }
 
     } catch (error) {
       console.error("Network or parsing error:", error);
-      
-      // Check if it's a JSON parsing error
-      if (error.message.includes('JSON')) {
-        alert("Server response error. Please try again.");
-      } else {
-        // Network error or server unreachable
-        alert("Network error. Please check your connection and try again.");
       }
     }
-  };
+  
 
   return (
     <div className={styles.signupbody}>
@@ -151,6 +139,7 @@ const Signup = () => {
       </div>
     </div>
   );
-};
+  };
+
 
 export default Signup;

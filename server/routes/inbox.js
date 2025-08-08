@@ -46,7 +46,6 @@ router.get("/", verifyUser, async (req, res) => {
   console.log("🔍 Current user ID:", userIdString);
   
   try {
-    // First, get messages without populate to see raw data
     const messages = await Inbox.find({
       $or: [{ from: userId }, { to: userId }],
     }).sort({ timestamp: -1 });
@@ -59,14 +58,12 @@ router.get("/", verifyUser, async (req, res) => {
       message: m.message
     })));
     
-    // Now populate with better error handling
     const populatedMessages = await Inbox.find({
       $or: [{ from: userId }, { to: userId }],
     })
     .populate({
       path: "from",
       select: "name email username",
-      // Don't fail if user doesn't exist
       options: { strictPopulate: false }
     })
     .populate({
@@ -84,7 +81,7 @@ router.get("/", verifyUser, async (req, res) => {
       message: m.message
     })));
     
-    //
+    
     const conversations = {};
     
     populatedMessages.forEach((msg, index) => {
@@ -102,28 +99,23 @@ router.get("/", verifyUser, async (req, res) => {
       let partnerName = null;
       let isCurrentUserSender = false;
       
-      // Determine who the conversation partner is
       if (msg.from && msg.from._id.toString() === userIdString) {
-        // Current user sent this message
         isCurrentUserSender = true;
         if (msg.to) {
           partner = msg.to;
           partnerId = partner._id.toString();
           partnerName = partner.name || partner.username || partner.email || 'Unknown User';
         } else {
-          // Recipient user was deleted
           partnerId = 'deleted-to-user';
           partnerName = 'Deleted User';
         }
       } else if (msg.to && msg.to._id.toString() === userIdString) {
-        // Current user received this message
         isCurrentUserSender = false;
         if (msg.from) {
           partner = msg.from;
           partnerId = partner._id.toString();
           partnerName = partner.name || partner.username || partner.email || 'Unknown User';
         } else {
-          // Sender user was deleted
           partnerId = 'deleted-from-user';
           partnerName = 'Deleted User';
         }
@@ -132,20 +124,17 @@ router.get("/", verifyUser, async (req, res) => {
         return;
       }
       
-      // Initialize conversation if it doesn't exist
       if (!conversations[partnerId]) {
         conversations[partnerId] = {
           partnerId: partnerId,
           username: partnerName,
           messages: [],
           latestTimestamp: msg.timestamp,
-          // Add these for better UI handling
           isPartnerDeleted: partnerId.startsWith('deleted-'),
-          partnerData: partner // Keep original partner data if exists
+          partnerData: partner 
         };
       }
       
-      // Add message to conversation
       conversations[partnerId].messages.push({
         id: msg._id,
         message: msg.message,
@@ -161,17 +150,14 @@ router.get("/", verifyUser, async (req, res) => {
         }
       });
       
-      // Update latest timestamp
       if (msg.timestamp > conversations[partnerId].latestTimestamp) {
         conversations[partnerId].latestTimestamp = msg.timestamp;
       }
     });
     
-    // Sort conversations by latest message timestamp (newest first)
     const conversationArray = Object.values(conversations)
       .sort((a, b) => new Date(b.latestTimestamp) - new Date(a.latestTimestamp));
     
-    // Sort messages within each conversation (oldest first for chat display)
     conversationArray.forEach(conversation => {
       conversation.messages.sort((a, b) => new Date(a.timestamp) - new Date(b.timestamp));
     });

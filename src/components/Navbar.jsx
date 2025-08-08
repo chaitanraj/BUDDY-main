@@ -10,7 +10,6 @@ import { AuthContext } from "../context/Authcontext";
 
 const Navbar = () => {
     const navigate = useNavigate();
-    // const [user, setUser] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
 
     const { isLoggedIn, username, login, logout } = useContext(AuthContext);
@@ -18,7 +17,6 @@ const Navbar = () => {
     useEffect(() => {
         setIsAuthenticated(isLoggedIn);
     }, [isLoggedIn]);
-
 
     const [isMobile, setIsMobile] = useState(window.innerWidth >= 800);
     const [showMenu, setShowMenu] = useState(false);
@@ -54,11 +52,31 @@ const Navbar = () => {
         setShowMenu(prev => !prev);
     };
 
-
     const handleLogout = async (e) => {
         logout();
     };
 
+    // Common Profile Component
+    const ProfileSection = () => (
+        isAuthenticated && (
+            <div
+                className="profile-container"
+                ref={dropdownRef}
+                onClick={toggleMenu}
+            >
+                <div className="profile-name">
+                    <img className="usericon" src={img} alt="user" />
+                    {username}
+                    <img className="usericon" src={dropdown} alt="dropdown" />
+                </div>
+                <div className={`dropdown-menu2 ${showMenu ? 'show' : ''}`}>
+                    <div className="menu-item" onClick={(e) => { e.stopPropagation(); navigate("/result") }}>Create Ride</div>
+                    <div className="menu-item" onClick={(e) => { e.stopPropagation(); navigate("/inbox") }}>Inbox</div>
+                    <div className="menu-item" onClick={(e) => { e.stopPropagation(); handleLogout(); }}>Logout</div>
+                </div>
+            </div>
+        )
+    );
 
     return (
         isMobile ? (
@@ -66,24 +84,7 @@ const Navbar = () => {
                 <div className={styles.logoItem} onClick={() => navigate("/")}>
                     <img className={styles.img} src="/logonew.png" alt="Let's find you a buddy" />
                 </div>
-                {isAuthenticated && (
-                    <div
-                        className="profile-container"
-                        ref={dropdownRef}
-                        onClick={toggleMenu}
-                    >
-                        <div className="profile-name">
-                            <img className="usericon" src={img} alt="user" />
-                            {username}
-                            <img className="usericon" src={dropdown} alt="dropdown" />
-                        </div>
-                        <div className={`dropdown-menu2 ${showMenu ? 'show' : ''}`}>
-                            <div className="menu-item" onClick={(e) => { e.stopPropagation(); navigate("/result") }}>Create Ride</div>
-                            <div className="menu-item" onClick={(e) => { e.stopPropagation(); navigate("/inbox") }}>Inbox</div>
-                            <div className="menu-item" onClick={(e) => { e.stopPropagation(); handleLogout(); }}>Logout</div>
-                        </div>
-                    </div>
-                )}
+                <ProfileSection />
                 <div className={styles.aTag}>
                     <NavLink to="/inbox" className={styles.navlink}>Inbox</NavLink>
                     <NavLink to="/about" className={styles.navlink}>About</NavLink>
@@ -96,9 +97,9 @@ const Navbar = () => {
                     <div className={styles.logoItem} onClick={() => navigate("/")}>
                         <img className={styles.img} src="/logonew.png" alt="Let's find you a buddy" />
                     </div>
+                    <ProfileSection />
                     <Hambergermenu />
                 </div>
-
             </>
         )
     );

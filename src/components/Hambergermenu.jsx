@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import './Hambergermenu.css';
 
 const Hambergermenu = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const navigate=useNavigate();
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -64,11 +65,10 @@ const Hambergermenu = () => {
                         About
                     </NavLink>
                     <NavLink 
-                        onSubmit={handleLogout}
                         className="navlink"
-                        onClick={closeMenu}
+                        onClick={()=>(navigate("/feedback"))}
                     >
-                        Logout
+                        Feedback
                     </NavLink>
                 </div>
             </div>

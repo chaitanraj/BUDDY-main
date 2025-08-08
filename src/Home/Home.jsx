@@ -5,12 +5,12 @@ import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/Authcontext";
 
 const Home = () => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [isUser, setIsUser] = useState(false);
     const navigate = useNavigate();
 
     const { isLoggedIn, username, login, logout } = useContext(AuthContext);
     useEffect(() => {
-        setIsAuthenticated(isLoggedIn);
+        setIsUser(isLoggedIn);
         console.log("AuthContext")
     }, [isLoggedIn]);
 
@@ -38,7 +38,7 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            {isAuthenticated ? (
+            {isUser ? (
                 <>
                     <div className={styles.welcome1}>
                         Welcome {username}!
