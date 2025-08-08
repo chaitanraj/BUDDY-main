@@ -54,7 +54,6 @@ const handleSubmit = async (e) => {
 
 
   try {
-    // const res = await fetch("http://localhost:5000/api/rides/submit-ride", {
        const res = await fetch(`${import.meta.env.VITE_API_URL}/api/rides/submit-ride`,{
       headers: {
         'Content-Type': 'application/json',

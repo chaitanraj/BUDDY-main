@@ -10,7 +10,7 @@ const Feedback = () => {
     const handleFeedback = async (e) => {
         e.preventDefault();
         try {
-            const res = await fetch("http://localhost:5000/feedback", {
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/feedback`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ message: feedback })

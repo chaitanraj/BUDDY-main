@@ -54,7 +54,6 @@ const Inbox = () => {
     try {
       console.log('Sending message:', newMessage, 'to:', selectedChat.username);
       
-      // API CALL(needed to /send message)
       const updatedConversations = conversations.map(conv => {
         if (conv.partnerId === selectedChat.partnerId) {
           return {
@@ -125,7 +124,6 @@ if (error) {
   );
 }
 
-  // Chat
   if (selectedChat) {
     return (
       <div className="chat-container">
