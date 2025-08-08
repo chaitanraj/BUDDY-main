@@ -54,6 +54,7 @@ const Navbar = () => {
 
     const handleLogout = async (e) => {
         logout();
+        navigate("/")
     };
 
     // Common Profile Component
