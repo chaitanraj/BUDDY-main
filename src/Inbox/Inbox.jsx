@@ -9,13 +9,14 @@ const Inbox = () => {
   const [selectedChat, setSelectedChat] = useState(null);
   const [newMessage, setNewMessage] = useState('');
   
-    const navigate=useNavigate();
+  const navigate=useNavigate();
 
   useEffect(() => {
     const fetchInbox = async () => {
      
       try {
-         const res = await fetch(`${import.meta.env.VITE_API_URL}/inbox`, {
+        //  const res = await fetch(`${import.meta.env.VITE_API_URL}/inbox`, {
+         const res = await fetch("http://localhost:5000/inbox", {
           method: 'GET',
           credentials: "include",
           headers: {

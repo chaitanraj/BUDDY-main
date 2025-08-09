@@ -14,6 +14,7 @@ import Feedback from './Feedback/Feedback.jsx'
 import { useState, useEffect } from 'react'
 import Inbox from './Inbox/Inbox.jsx';
 import { Authprovider } from './context/Authcontext.jsx'
+import YourRides from './YourRides/YourRides.jsx'
 
 
 export const mystyle = (imageurl) => ({
@@ -150,6 +151,16 @@ const router = createBrowserRouter([
         <Inbox />
         <Footer />
       </BackgroundWrapper>
+    )
+  },
+  {
+    path: "/yourRides",
+    element: (
+      <BackgroundWrapper bgImage="masterbck.jpg">
+        <Navbar />
+        <YourRides/>
+        <Footer />
+       </BackgroundWrapper>
     )
   }
 ]);

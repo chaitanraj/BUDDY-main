@@ -46,7 +46,7 @@ const Home = () => {
                     </div>
                     <div className={styles.optionsbutton}>
                         <button onClick={() => navigate("/result")} className={styles.button1}>Create RIDE!</button>
-                        <button onClick={handleLogout} className={styles.button1}>Logout!</button>
+                        <button onClick={()=>navigate("/yourRides")} className={styles.button1}>Your Rides</button>
                     </div>
                 </>
             ) : (
