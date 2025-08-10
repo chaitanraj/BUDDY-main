@@ -40,7 +40,7 @@ const YourRides = () => {
     try {
       setLoading(true);
       
-      const response = await fetch(`${import.meta.env.VITE_API_URL}api/rides/submit-ride`, {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/rides/submit-ride`, {
         method: "POST",
         headers: {
           'Content-Type': 'application/json'
