@@ -16,23 +16,30 @@ import Inbox from './Inbox/Inbox.jsx';
 import { Authprovider } from './context/Authcontext.jsx'
 import YourRides from './YourRides/YourRides.jsx'
 
-
-export const mystyle = (imageurl) => ({
-  width: "100vw",
-  height: "100vh",
-  minHeight: "100vh",
-  backgroundImage: `url(/${imageurl})`,
-  backgroundSize: "cover",
-  backgroundPosition: "fixed",
-  backgroundRepeat: "no-repeat",
-  backgroundAttachment: "fixed",
-  overflowX: "hidden",
-  overflowY: "auto",
+// Fixed background container style
+const backgroundContainerStyle = (imageurl) => ({
+  position: "fixed",
   top: 0,
   left: 0,
-  right: 0,
-  bottom: 0,
+  width: "100vw",
+  height: "100vh",
+  backgroundImage: `url(/${imageurl})`,
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  backgroundRepeat: "no-repeat",
+  zIndex: -1,
+  pointerEvents: "none"
 })
+
+// Content wrapper style
+const contentWrapperStyle = {
+  position: "relative",
+  width: "100vw",
+  minHeight: "100vh",
+  overflowX: "hidden",
+  overflowY: "auto",
+  zIndex: 1
+}
 
 const BackgroundWrapper = ({ children, bgImage }) => {
   const [currentBg, setCurrentBg] = useState(bgImage || 'masterbck.jpg');
@@ -54,9 +61,15 @@ const BackgroundWrapper = ({ children, bgImage }) => {
   }, [bgImage]);
 
   return (
-    <div className="body" style={mystyle(currentBg)}>
-      {children}
-    </div>
+    <>
+      {/* Fixed background container */}
+      <div style={backgroundContainerStyle(currentBg)} />
+      
+      {/* Content wrapper */}
+      <div className="body" style={contentWrapperStyle}>
+        {children}
+      </div>
+    </>
   );
 };
 

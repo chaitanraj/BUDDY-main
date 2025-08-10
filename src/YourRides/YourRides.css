@@ -12,6 +12,8 @@
 #heading{
     justify-content: center;
     align-items: center;
+    margin-top: 40vh;
+    min-height: none;
 }
 .container h1 {
   color: #fff;

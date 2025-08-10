@@ -86,13 +86,11 @@ const YourRides = () => {
   if (loading) {
     return <p>Loading...</p>;
   }
-
-  return (
-    <div className="wrap">
-      
-        
-        {rides.length > 0 ? (
-          <div className="container">
+return (
+  <>
+    {rides.length > 0 ? (
+      <div className="wrap">
+        <div className="container">
           <h1>YOUR RIDES</h1>
           <div className="rideslist">
             {rides.map((item, index) => {
@@ -116,14 +114,15 @@ const YourRides = () => {
               );
             })}
           </div>
-          </div>
-        ) : (
-          <div className="container" id="heading">
-            <h1>CREATE RIDES TO GET STARTED!</h1>
-          </div>
-        )}
+        </div>
       </div>
-  );
+    ) : (
+      <div className="container" id="heading">
+        <h1>CREATE RIDES TO GET STARTED!</h1>
+      </div>
+    )}
+  </>
+);
 }
 
 export default YourRides;
