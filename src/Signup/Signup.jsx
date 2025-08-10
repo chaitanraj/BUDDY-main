@@ -46,7 +46,6 @@ const Signup = () => {
           const errorData = await res.json();
           alert(errorData.message || `Signup failed: ${res.status}`);
         } else {
-          // If not JSON, it might be HTML error page
           const errorText = await res.text();
           console.error('Server error:', errorText);
           alert(`Signup failed: ${res.status} - ${res.statusText}`);

@@ -24,10 +24,8 @@ const Loginresult = () => {
       }
     };
 
-    // Add event listener when component mounts
     document.addEventListener('mousedown', handleClickOutside);
     
-    // Cleanup event listener when component unmounts
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
@@ -70,8 +68,7 @@ const Loginresult = () => {
     const datetime = `${date}T${time}`;
 
     try {
-      //  const res = await fetch(`${import.meta.env.VITE_API_URL}/api/rides/submit-ride`,{
-      const res = await fetch("http://localhost:5000/api/rides/submit-ride", {
+       const res = await fetch(`${import.meta.env.VITE_API_URL}/api/rides/submit-ride`,{
         headers: {
           'Content-Type': 'application/json',
         },

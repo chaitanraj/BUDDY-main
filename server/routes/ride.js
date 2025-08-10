@@ -19,14 +19,12 @@ router.post('/submit-ride', verifyUser, async (req, res) => {
       return res.status(400).json({ error: "Invalid datetime format" });
     }
     
-    // Only save if it's not a search-only request AND doesn't already exist
     if (!searchOnly) {
-      // Check if ride already exists
       const existingRide = await Ride.findOne({
         userId,
         location,
         datetime: {
-          $gte: new Date(rideDate.getTime() - 1000), // 1 second tolerance
+          $gte: new Date(rideDate.getTime() - 1000),
           $lte: new Date(rideDate.getTime() + 1000)
         }
       });
@@ -47,7 +45,6 @@ router.post('/submit-ride', verifyUser, async (req, res) => {
       console.log("🔍 Search-only request, not saving");
     }
     
-    // Always search for matches (same logic as before)
     const potentialMatches = await Ride.find({
       userId: { $ne: userId },
       location: location,
@@ -57,7 +54,6 @@ router.post('/submit-ride', verifyUser, async (req, res) => {
       },
     });
     
-    // Rest of your existing logic remains the same...
     if (potentialMatches && potentialMatches.length > 0) {
       const userData = {
         _id: userId,

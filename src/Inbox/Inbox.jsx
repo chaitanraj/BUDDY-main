@@ -15,8 +15,7 @@ const Inbox = () => {
     const fetchInbox = async () => {
      
       try {
-        //  const res = await fetch(`${import.meta.env.VITE_API_URL}/inbox`, {
-         const res = await fetch("http://localhost:5000/inbox", {
+         const res = await fetch(`${import.meta.env.VITE_API_URL}/inbox`, {
           method: 'GET',
           credentials: "include",
           headers: {
