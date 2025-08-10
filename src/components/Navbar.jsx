@@ -16,6 +16,9 @@ const Navbar = () => {
 
     useEffect(() => {
         setIsAuthenticated(isLoggedIn);
+        if (isLoggedIn) {
+            setShowMenu(false);
+        }
     }, [isLoggedIn]);
 
     const [isMobile, setIsMobile] = useState(window.innerWidth >= 800);
