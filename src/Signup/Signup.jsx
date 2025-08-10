@@ -40,8 +40,9 @@ const Signup = () => {
         body: JSON.stringify(formData),
       });
 
+      const contentType = res.headers.get('content-type');
+
       if (!res.ok) {
-        const contentType = res.headers.get('content-type');
         if (contentType && contentType.includes('application/json')) {
           const errorData = await res.json();
           alert(errorData.message || `Signup failed: ${res.status}`);
@@ -64,9 +65,9 @@ const Signup = () => {
 
     } catch (error) {
       console.error("Network or parsing error:", error);
-      }
+      alert("An error occurred during signup. Please try again.");
     }
-  
+  };
 
   return (
     <div className={styles.signupbody}>
@@ -138,7 +139,6 @@ const Signup = () => {
       </div>
     </div>
   );
-  };
-
+};
 
 export default Signup;

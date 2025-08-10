@@ -354,8 +354,8 @@ body,html{
 }
 @media screen and (max-width: 450px) {
   .signup {
-  margin-top: 1px;
-  height: 25rem;
+  margin-top: 3vh;
+  height: 30rem;
   width: 20rem;
   }
   .signupdetailField label {
