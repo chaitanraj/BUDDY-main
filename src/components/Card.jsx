@@ -8,6 +8,7 @@ import { AuthContext } from "../context/Authcontext";
 const Card = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const{login}=useContext(AuthContext);
 
@@ -16,8 +17,8 @@ const Card = () => {
         if (!email || !password) {
             alert("Please fill in all fields");
             return;
-        }
-    
+        }  
+        setLoading(true);
         try {
             const res = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
                 method: "POST",
@@ -25,7 +26,6 @@ const Card = () => {
                 credentials: "include",
                 body: JSON.stringify({ email, password }),
             });
-
             const data = await res.json();
             if (res.ok) {
                 console.log("Login successfull: ");
@@ -37,9 +37,10 @@ const Card = () => {
         } catch (err) {
             console.error("Error:", err);
             alert("Server error");
+        }finally{
+            setLoading(false);
         }
     };
-
 
     return (
         <div className={styles.logincard}>
@@ -64,10 +65,12 @@ const Card = () => {
                         />
                     </div>
                     <div className={styles.submitbtn}>
-                        <button className={styles.btn17} type="submit">
+                        <button className={styles.btn17} type="submit"  disabled={loading}>
+                              {loading ? "Logging in..." :
                             <span className={styles.textcontainer}>
                                 <span className={styles.text}>SUBMIT</span>
                             </span>
+                            }
                         </button>
                     </div>
                     <div className={styles.message}>

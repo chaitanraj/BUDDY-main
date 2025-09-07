@@ -338,7 +338,10 @@ body,html{
     transform: translateX(-20px);
     animation: slideInFromLeft 0.4s ease-out 0.5s forwards;
 }
-
+.btn17:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
 
 
 @media screen and (max-width: 900px) {

@@ -13,7 +13,6 @@ const Inbox = () => {
 
   useEffect(() => {
     const fetchInbox = async () => {
-     
       try {
          const res = await fetch(`${import.meta.env.VITE_API_URL}/inbox`, {
           method: 'GET',
