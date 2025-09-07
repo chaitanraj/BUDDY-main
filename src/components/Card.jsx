@@ -66,7 +66,9 @@ const Card = () => {
                     </div>
                     <div className={styles.submitbtn}>
                         <button className={styles.btn17} type="submit"  disabled={loading}>
-                              {loading ? "Logging in..." :
+                              {loading ?  <span className={styles.textcontainer}>
+                                <span className={styles.text}>Logging In.....</span>
+                            </span> :
                             <span className={styles.textcontainer}>
                                 <span className={styles.text}>SUBMIT</span>
                             </span>
