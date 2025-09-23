@@ -1,0 +1,106 @@
+.subscribe {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  height: 20vh;
+  width: 45vh;
+  background-color: #FFF;
+  border-radius: 4px;
+  color: #333;
+  box-shadow: 0px 0px 60px 5px rgba(0, 0, 0, 0.4);
+  transform: translateY(20px);
+  animation: fadeInUp 0.9s ease-out forwards;
+}
+
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.feedbackdiv{
+   display: grid;
+   place-content: center;
+    height: 80vh;
+}
+
+.subscribe:after {
+  position: absolute;
+  content: "";
+  right: -10px;
+  bottom: 18px;
+  width: 0;
+  height: 0;
+  border-left: 0px solid transparent;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #1a044e;
+}
+
+.subscribe h1 {
+  margin-top: 2vh;
+  font-size: 3vh;
+  font-weight: bold;
+}
+
+#subscribe2{
+  font-size: 3vh;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#subscribe2 h1{
+   margin-top: 1vh;
+  font-size: 1.2rem;
+}
+
+#subscribe2 h5{
+  margin-top: 0.5vh;
+  font-size: 0.7rem;
+}
+
+.subscribe textarea {
+  position: absolute;
+  bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #d4d4d4;
+  padding: 1.0vh;
+  width: 80%;
+  background: transparent;
+  transition: all .25s ease;
+  font-size: 1rem;
+}
+
+.subscribe textarea:focus {
+  outline: none;
+  border-bottom: 1px solid #0d095e;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', 'sans-serif';
+}
+
+.subscribe .submit-btn {
+  position: absolute;
+  border-radius: 30px;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  background-color: #0f0092;
+  color: #FFF;
+  padding: 12px 25px;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: 5px;
+  right: -10px;
+  bottom: -20px;
+  cursor: pointer;
+  transition: all .25s ease;
+  box-shadow: -5px 6px 20px 0px rgba(26, 26, 26, 0.4);
+}
+
+.subscribe .submit-btn:hover {
+  background-color: #07013d;
+  box-shadow: -5px 6px 20px 0px rgba(88, 88, 88, 0.569);
+}

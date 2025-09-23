@@ -1,24 +1,39 @@
+body,html{
+  padding: 0;
+  margin: 0;
+}
+.signupbody{
+  margin: 0vh;
+  padding: 0;
+}
 .signup {
-  height: 25rem;
+  height: 33.5rem;
   width: 25rem;
   padding: 3vh;
   margin-top: 4vh;
   border-radius: 30px;
-  background: #212121;
+  /* background:rgba(33, 33, 33, 0.8) ; */
+  background: #000000;
   box-shadow: 15px 15px 30px rgb(25, 25, 25),
     -15px -15px 30px rgb(60, 60, 60);
   color: white;
   display: inline-block;
   transition: transform 0.1s ease-in-out;
 }
-
+.signupbody{
+  opacity: 0;
+    transform: translateY(100px) scale(0.8);
+    animation: cardEntrance 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards;
+}
 .signup:hover {
   transform: scale(1.02);
-
 }
 
 .signupheader {
   text-align: center;
+  opacity: 0;
+    transform: translateY(-20px);
+    animation: slideInFromTop 0.6s ease-out 0.8s forwards;
 }
 
 .gender {
@@ -27,23 +42,41 @@
   font-weight: bold;
   margin-bottom: 0.8rem;
   flex-wrap: wrap;
+  opacity: 0;
+    transform: translateX(-30px);
+    animation: slideInFromLeft 0.6s ease-out 1.6s forwards;
 }
 
 .radiobtn {
-  margin-left: 25px;
+  margin-left: 15px;
   display: flex;
   gap: 30px;
+   opacity: 0;
+    transform: translateX(-30px);
+    animation: slideInFromLeft 0.6s ease-out 1.8s forwards;
 }
 
 .signupdetailField {
-
   display: flex;
   justify-content: space-around;
   flex-direction: column;
   padding: 0.3rem;
   margin-bottom: 0.8rem;
-
+   opacity: 0;
+    transform: translateX(-30px);
+    animation: slideInFromLeft 0.6s ease-out forwards;
 }
+.signupdetailField:nth-child(1) {
+    animation-delay: 1.0s;
+}
+
+.signupdetailField:nth-child(2) {
+    animation-delay: 1.2s;
+}
+.signupdetailField:nth-child(3) {
+    animation-delay: 1.4s;
+}
+
 
 
 .signupdetailField label {
@@ -54,15 +87,12 @@
 
 .signupdetailField input {
   width: 90%;
-
   padding: 0.5rem;
   font-size: 1rem;
   border: 0.1rem solid #ffffff;
   border-radius: 9999px;
   outline: none;
-  box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
-
-
+  /* box-shadow: inset 2px 5px 10px rgb(5, 5, 5); */
 }
 
 
@@ -70,8 +100,6 @@
   margin-left: 5px;
   transform: scale(1.2);
   box-shadow: none;
-
-
 }
 
 .signupbody {
@@ -79,8 +107,69 @@
   justify-content: center;
   align-items: center;
   align-content: center;
+  margin-top: 5vh;
 }
 
+.message {
+  margin-top: 2.5vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+    transform: translateX(-30px);
+    animation: slideInFromLeft 0.6s ease-out 1.6s forwards;
+     font-size: 1.2rem;
+}
+
+.logininstead {
+  color: white;
+  box-shadow: none;
+  transition: color 0.3s ease, transform 0.2s ease-in;
+}
+
+.logininstead:hover {
+  color: #6e69e9;
+  /* text-decoration: underline; */
+  transform: scale(1.2);
+}
+
+@keyframes cardEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(100px) scale(0.8);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideInFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 
 .btn17,
 .btn17 *,
@@ -232,21 +321,63 @@
 .submitbtn {
   display: flex;
   justify-content: center;
+  opacity: 0;
+  transform: translateX(-30px);
+  animation: slideInFromLeft 0.6s ease-out 1.4s forwards;
 }
 
 /* responsive design */
 @media screen and (max-width: 900px) {
   .signup {
+    height: 30rem;
     width: 15rem;
+    box-shadow: none;
+    margin-top: none;
   }
-  .signupheader{
+
+  .signupheader {
     font-size: x-large;
   }
+
   .signupdetailField label {
     font-size: large;
   }
+
   .signupdetailField input {
     padding: 0.7rem;
   }
 
+  .message{
+  margin-top: 2vh;
+  }
+
+}
+@media screen and (max-width: 450px) {
+  .signup {
+  margin-top: 3vh;
+  height: 30rem;
+  width: 20rem;
+  }
+  .signupdetailField label {
+    font-size: 2.2vh;
+  }
+
+  .signupdetailField input {
+    padding: 0.7rem;
+    height: 1vh;
+  }
+  .radiobtn{
+    gap: 4vh;
+  }
+  .message {
+  font-size: 1rem;
+  }
+  .gender {
+  font-size: 1rem;
+  }
+  .btn17 {
+  width: 70%;
+  height: 3%;
+  font-size: 70%;
+  }
 }

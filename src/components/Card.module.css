@@ -1,11 +1,16 @@
+body,html{
+  margin: 0;
+  padding: 0;
+}
+
 .login {
-    height: 90%;
+  height: 90%;
   max-width: 400px;
   width: 150vw;
   padding: 3vh;
   margin-top: 4vh;
   border-radius: 30px;
-  background: #212121;
+  background: #000000;
   box-shadow: 15px 15px 30px rgb(25, 25, 25),
     -15px -15px 30px rgb(60, 60, 60);
   color: white;
@@ -13,45 +18,93 @@
   transition: transform 0.1s ease-in-out;
 }
 
+.logincard {
+  opacity: 0;
+  /* transform: translateY(100px) scale(0.8); */
+  transform: translateY(20px) scale(0.98);
+  animation: cardEntrance 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s forwards;
+}
+
 .login:hover {
   transform: scale(1.02);
 
 }
 
+.message {
+  font-size: 1.2rem;
+  margin-top: 2.5vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  justify-content: center;
+  align-items: center;
+  animation-delay: 0.6s;
+   opacity: 0;
+  transform: translateX(-30px);
+  animation: slideInFromLeft 0.6s ease-out forwards;
+}
+
+
+.signupinstead {
+  color: white;
+  box-shadow: none;
+  transition: color 0.3s ease, transform 0.2s ease-in;
+}
+
+.signupinstead:hover {
+  color: #6e69e9;
+  /* text-decoration: underline; */
+  transform: scale(1.2);
+}
+
+
 .loginheader {
   text-align: center;
-  text-decoration: underline;
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: slideInFromTop 0.5s ease-out 0.2s forwards;
 }
-.gender{
+
+.gender {
+  font-size: large;
   display: flex;
   flex-wrap: wrap;
-  font-size: large;
   font-weight: bold;
   padding: 5px;
   margin-bottom: 15px;
 }
-.radiobtn{
-  
+
+.radiobtn {
   margin-left: 25px;
-  display: flex; 
+  display: flex;
   gap: 30px;
 }
-.detailField {
 
-  display: flex; 
+.detailField { 
+  display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
   flex-direction: column;
   padding: 5px;
   margin-bottom: 15px;
-
+  opacity: 0;
+  transform: translateX(-20px);
+  animation: slideInFromLeft 0.4s ease-out forwards;
 }
 
+.detailField:nth-child(1) {
+    animation-delay: 0.3s;
+}
+
+.detailField:nth-child(2) {
+    animation-delay: 0.4s;
+}
 
 .detailField label {
   font-size: larger;
   font-weight: bold;
   margin-bottom: 5px;
+  /* margin-left: 2.5vh; */
 }
 
 .detailField input {
@@ -61,9 +114,8 @@
   border: 1px solid #f4ebeb;
   border-radius: 9999px;
   outline: none;
-  box-shadow: inset 2px 5px 10px rgb(5, 5, 5);
-
-
+  /* box-shadow: inset 2px 5px 10px rgb(5, 5, 5); */
+  /* margin-left: 2.5vh; */
 }
 
 
@@ -71,15 +123,63 @@
   margin-left: 5px;
   transform: scale(1.2);
   box-shadow: none;
-
-
 }
-.logincard{
+
+.logincard {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
+  margin-top: 15vh;
 }
+
+@keyframes cardEntrance {
+  0% {
+    opacity: 0;
+    transform: translateY(100px) scale(0.8);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes slideInFromTop {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* @keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+} */
+
+@keyframes slideInFromLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 
 
 .btn17,
@@ -95,6 +195,7 @@
 .btn17 {
   width: 90%;
   height: 10%;
+  font-size: 100%;
   -webkit-tap-highlight-color: transparent;
   -webkit-appearance: button;
   background-color: #000;
@@ -104,7 +205,7 @@
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
     Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif,
     Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji;
-  font-size: 100%;
+  
   font-weight: 900;
   line-height: 1.5;
   margin: 0;
@@ -230,23 +331,63 @@
   color: black;
 }
 
-.submitbtn{
+.submitbtn {
   display: flex;
   justify-content: center;
+  opacity: 0;
+    transform: translateX(-20px);
+    animation: slideInFromLeft 0.4s ease-out 0.5s forwards;
 }
+.btn17:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 
 @media screen and (max-width: 900px) {
   .login {
     width: 15rem;
+    box-shadow: none;
+    
   }
-  .loginheader{
+
+  .loginheader {
     font-size: x-large;
   }
+
   .detailField label {
     font-size: large;
   }
+
   .detailField input {
     padding: 0.7rem;
   }
-  
+
+}
+
+@media screen and (max-width: 450px) {
+  .login {
+  margin-top: 1vh;
+  }
+  .detailField label {
+    font-size: 2.3vh;
+  }
+  .detailField input {
+    padding: 0.8rem;
+    height: 2vh;
+  }
+  .message {
+  font-size: 0.9rem;
+  }
+  .gender {
+  font-size: large;
+  }
+  .btn17 {
+  width: 80%;
+  height: 5%;
+  font-size: 90%;
+  }
+  .detailField { 
+  margin-top: 1.1rem;
+  }
 }

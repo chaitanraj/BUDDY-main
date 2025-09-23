@@ -1,17 +1,36 @@
-.footer{
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    align-items: center;
-    height: 7vh;
-    background: rgba(0, 0, 0, 0.7); 
-    backdrop-filter: blur(20px);
-    color: beige;
-    width: 100vw;
-    bottom: 0;
-    position: fixed;
-    font-size:1.5rem;
+.footer {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  align-items: center;
+  height: 7.5vh;
+  background: rgba(0, 0, 0);
+  background-color: #000;
+  backdrop-filter: blur(20px);
+  color: #f0f0c0;
+  width: 100vw;
+  bottom: 0;
+  opacity: 0;
+  font-size: 1.2rem;
+  position:absolute;
+  
+  transform: translateY(20px);
+  animation: fadeSlideUp 0.4s ease-out 0.4s forwards;
 }
+
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Links to SOCIALS */
 
 ul {
     list-style: none;
@@ -115,18 +134,16 @@ ul {
   .example-2 .icon-content a[data-social="youtube"] ~ .tooltip {
     background-color: #ff0000;
   }
-  /* Responsive Design */
-@media (max-width: 768px) {
-  .footer {
-    display: flex;
-      flex-direction: row;
-      text-align: center;
-      font-size: 1rem;
 
+
+/* Resposniveness */
+@media screen and (max-width: 480px) {
+  .footer{
+    font-size: 0.6rem;
   }
-.footer p{
-  font-size: 0.8rem;
+
 }
+@media (max-width: 768px) {
   .example-2 {
       margin-top: 0.5rem;
   }

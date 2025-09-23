@@ -1,80 +1,86 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
+
+import { NavLink } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import styles from '../components/Card.module.css';
+import { AuthContext } from "../context/Authcontext";
 
 const Card = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
+    const navigate = useNavigate();
+    const{login}=useContext(AuthContext);
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!email || !password) {
+            alert("Please fill in all fields");
+            return;
+        }  
+        setLoading(true);
         try {
-            const res = await fetch('http://localhost:5000/api/login', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
+            const res = await fetch(`${import.meta.env.VITE_API_URL}/login`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                credentials: "include",
                 body: JSON.stringify({ email, password }),
             });
-
             const data = await res.json();
             if (res.ok) {
-                alert('Login successful!');
-                console.log(data);
-                // maybe redirect or save token here
+                console.log("Login successfull: ");
+                 login({ name: data.user.name });
+                navigate("/");
             } else {
-                alert(data.message || 'Login failed');
+                alert("Login failed");
             }
         } catch (err) {
-            console.error('Error:', err);
-            alert('Server error');
+            console.error("Error:", err);
+            alert("Server error");
+        }finally{
+            setLoading(false);
         }
     };
+
     return (
         <div className={styles.logincard}>
-        <div className={styles.login}>
-            <h1 className={styles.loginheader}>Enter Details</h1>  
-            {/* <div className={styles.detailField}>
-                <label>Location: </label>
-                <input type="text" placeholder="Enter your location" />
-            </div> */}
-             {/* <div className={styles.detailField}>
-                <label>Name: </label>
-                <input type="text" placeholder="Enter your name" />
+            <div className={styles.login}>
+                <h1 className={styles.loginheader}>LOGIN</h1>
+                <form onSubmit={handleSubmit}>
+                    <div className={styles.detailField}>
+                        <label>Email-Id: </label>
+                        <input
+                            type="email"
+                            placeholder="Enter your email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+                    </div>
+                    <div className={styles.detailField}>
+                        <label>Password: </label>
+                        <input
+                            type="password"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
+                    </div>
+                    <div className={styles.submitbtn}>
+                        <button className={styles.btn17} type="submit"  disabled={loading}>
+                              {loading ?  <span className={styles.textcontainer}>
+                                <span className={styles.text}>Logging In.....</span>
+                            </span> :
+                            <span className={styles.textcontainer}>
+                                <span className={styles.text}>SUBMIT</span>
+                            </span>
+                            }
+                        </button>
+                    </div>
+                    <div className={styles.message}>
+                        <p>Don't have an account?</p>
+                        <NavLink to="/signup" className={styles.signupinstead}>SIGN UP instead!</NavLink>
+                    </div>
+                </form>
             </div>
-          
-            <div className={styles.detailField}>
-                <label>Date: </label>
-                <input type="date" />
-            </div>
-            <div className={styles.detailField}>
-                <label>Time: </label>
-                <input type="time" />
-            </div>
-            <div className={styles.gender} >
-                <label>Gender: </label>
-                <div className={styles.radiobtn}>
-                    <label>Male </label>
-                    <input type="radio" name="myGender" />
-                    <label>Female </label>
-                    <input type="radio" name="myGender" />
-                </div>
-            </div>        */}
-
-            <div className={styles.detailField}>
-                <label>Email-Id: </label>
-                <input type="email" placeholder="Enter your email" />
-            </div>
-            <div className={styles.detailField}>
-                <label>Password: </label>
-                <input type="password" />
-            </div>
-            <div className={styles.submitbtn}>
-                <button className={styles.btn17}>
-                    <span className={styles.textcontainer}>
-                        <span className={styles.text}>SUBMIT</span>
-                    </span>
-                </button>
-            </div>
-        </div>
         </div>
     );
 }
