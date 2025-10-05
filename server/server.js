@@ -48,6 +48,10 @@ app.use("/api/rides", rideRouter);
 app.use("/inbox", InboxRouter);
 app.use("/feedback", feedbackRouter);
 
+app.get("/health",(req,res)=>{
+  res.send("Port 5000 is healthy")
+})
+
 // MongoDB connection
 mongoose
   .connect(process.env.MONGO_URI)
