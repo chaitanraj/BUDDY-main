@@ -5,12 +5,31 @@
   font-style: italic;
 }
 
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
  body {
   margin: 0;
   padding: 0;
   height: 100%;
   overflow-x: hidden;
 }
+
+
+/* .gradientoption3 {
+  background: linear-gradient(45deg, #141414 0%, #000000 50%, #0d0d0d 100%);
+  min-height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  display: flex;           
+  flex-direction: column;
+} */
 
 .container1 {
   opacity: 0;
@@ -77,6 +96,7 @@
   opacity: 0;
   transform: translateY(30px);
   animation: slideInFromBottom 1s ease-out 1.6s forwards;
+  padding: 1px;
 
 }
 
@@ -125,6 +145,7 @@
   }
 }
 .descriptionbuddy {
+  padding: 1px;
   margin-top: 10vh;
   margin-left: 5vh;
   margin-right: 5vh;

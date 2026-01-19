@@ -78,11 +78,14 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: (
-      <BackgroundWrapper bgImage="masterbck.jpg">
+      <>
+       <BackgroundWrapper bgImage="masterbck.jpg">
         <Navbar />
         <Home />
         <Footer />
-      </BackgroundWrapper>
+        
+       </BackgroundWrapper>
+       </>
     )
   },
   {

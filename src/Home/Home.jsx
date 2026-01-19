@@ -9,7 +9,7 @@ const Home = () => {
     const navigate = useNavigate();
 
     const { isLoggedIn, username, login, logout } = useContext(AuthContext);
-    
+
     useEffect(() => {
         setIsUser(isLoggedIn);
         console.log("AuthContext")
@@ -46,7 +46,7 @@ const Home = () => {
                     </div>
                     <div className={styles.optionsbutton}>
                         <button onClick={() => navigate("/result")} className={styles.button1}>Create RIDE!</button>
-                        <button onClick={()=>navigate("/yourRides")} className={styles.button1}>Your Rides</button>
+                        <button onClick={() => navigate("/yourRides")} className={styles.button1}>Your Rides</button>
                     </div>
                 </>
             ) : (

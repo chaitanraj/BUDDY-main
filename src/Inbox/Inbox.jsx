@@ -8,13 +8,13 @@ const Inbox = () => {
   const [error, setError] = useState(null);
   const [selectedChat, setSelectedChat] = useState(null);
   const [newMessage, setNewMessage] = useState('');
-  
-  const navigate=useNavigate();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchInbox = async () => {
       try {
-         const res = await fetch(`${import.meta.env.VITE_API_URL}/inbox`, {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/inbox`, {
           method: 'GET',
           credentials: "include",
           headers: {
@@ -51,43 +51,58 @@ const Inbox = () => {
     if (!newMessage.trim() || !selectedChat) return;
 
     try {
-      console.log('Sending message:', newMessage, 'to:', selectedChat.username);
-      
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/inbox`, {
+        method: 'POST',
+        credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          to: selectedChat.partnerId,
+          message: newMessage
+        })
+      });
+
+      if (!res.ok) {
+        throw new Error(`Failed to send message: ${res.status}`);
+      }
+
+      const newMsg = {
+        message: newMessage,
+        timestamp: new Date().toISOString(),
+        sender: 'you',
+        id: Date.now()
+      };
+
       const updatedConversations = conversations.map(conv => {
         if (conv.partnerId === selectedChat.partnerId) {
           return {
             ...conv,
-            messages: [...(conv.messages || []), {
-              message: newMessage,
-              timestamp: new Date().toISOString(),
-              sender: 'you'
-            }]
+            messages: [...(conv.messages || []), newMsg],
+            latestTimestamp: newMsg.timestamp
           };
         }
         return conv;
       });
-      
+
       setConversations(updatedConversations);
       setSelectedChat(prev => ({
         ...prev,
-        messages: [...(prev.messages || []), {
-          message: newMessage,
-          timestamp: new Date().toISOString(),
-          sender: 'you'
-        }]
+        messages: [...(prev.messages || []), newMsg]
       }));
-      
+
       setNewMessage('');
     } catch (err) {
       console.error('Error sending message:', err);
+      alert('Failed to send message. Please try again.');
     }
   };
- 
+
   const getLatestMessage = (conversation) => {
     if (!conversation.messages || conversation.messages.length === 0) {
       return "No messages";
     }
-   
+
     const lastMessage = conversation.messages[conversation.messages.length - 1];
     return lastMessage.message;
   };
@@ -97,7 +112,7 @@ const Inbox = () => {
     const now = new Date();
     const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     const messageDate = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-    
+
     if (messageDate.getTime() === today.getTime()) {
       return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
     } else {
@@ -113,22 +128,22 @@ const Inbox = () => {
     );
   }
 
-if (error) {
-  return (
-    <div className="login-container">
-      <button onClick={() => navigate("/login")} className="button1">
-        LOGIN TO ACCESS INBOX
-      </button>
-    </div>
-  );
-}
+  if (error) {
+    return (
+      <div className="login-container">
+        <button onClick={() => navigate("/login")} className="button1">
+          LOGIN TO ACCESS INBOX
+        </button>
+      </div>
+    );
+  }
 
   if (selectedChat) {
     return (
       <div className="chat-container">
-       
+
         <div className="chat-header">
-          <button 
+          <button
             onClick={handleBackToInbox}
             className="back-button"
           >
@@ -149,8 +164,8 @@ if (error) {
         <div className="messages-container">
           {selectedChat.messages && selectedChat.messages.length > 0 ? (
             selectedChat.messages.map((msg, idx) => (
-              <div 
-                key={idx} 
+              <div
+                key={idx}
                 className={`message-group ${msg.sender === 'you' ? 'message-sent' : 'message-received'}`}
               >
                 <div className={`message-bubble ${msg.sender === 'you' ? 'bubble-sent' : 'bubble-received'}`}>
@@ -209,16 +224,16 @@ if (error) {
           </div>
         ) : (
           conversations.map((conv, idx) => (
-            <div 
-              key={conv.partnerId || idx} 
+            <div
+              key={conv.partnerId || idx}
               onClick={() => handleOpenChat(conv)}
               className="conversation-item"
             >
-              
+
               <div className="conversation-avatar">
                 👤
               </div>
-              
+
               <div className="conversation-content">
                 <div className="conversation-header">
                   <h3 className="conversation-username">
@@ -228,11 +243,11 @@ if (error) {
                     {formatTime(conv.latestTimestamp)}
                   </span>
                 </div>
-                
+
                 <p className="conversation-last-message">
                   {getLatestMessage(conv)}
                 </p>
-                
+
                 <div className="conversation-footer">
                   <span className="conversation-message-count">
                     {conv.messages ? conv.messages.length : 0} messages

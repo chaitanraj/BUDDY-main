@@ -45,7 +45,7 @@ res.cookie("token", token, {
   maxAge: 24 * 60 * 60 * 1000,
 });
 
-  console.log("Token Done", token)
+console.log("Token Done", token)
   return res.json({ token, user: { name: user.name, email: user.email } });
 });
 
